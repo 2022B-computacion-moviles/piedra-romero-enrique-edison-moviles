@@ -1,0 +1,7 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="app_name">ES movcomp-eepr</string>
+    <string name="hola_mundo">-Hola mundo PORT-</string>
+    <color name="letter">#030403</color>
+    <color name="bg">#6A5B23</color>
+</resources>

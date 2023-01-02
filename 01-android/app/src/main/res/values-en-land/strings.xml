@@ -1,0 +1,7 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="app_name">EN movcomp-eepr</string>
+    <string name="hola_mundo">-Hello world LAND-</string>
+    <color name="letter">#735426</color>
+    <color name="bg">#229725</color>
+</resources>
