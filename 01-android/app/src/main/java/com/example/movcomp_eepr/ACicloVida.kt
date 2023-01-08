@@ -58,6 +58,24 @@ class ACicloVida : AppCompatActivity() {
         mostrarSnackBar("onDestroy")
     }
 
+    override fun onSaveInstanceState(outState: Bundle) {
+        outState.run {
+            //Guardar primitivos
+            //          llaves            valor
+            putString("textoGuardado", textoGlobal)
+        }
+        super.onSaveInstanceState(outState)
+    }
+
+    override fun onRestoreInstanceState(savedInstanceState: Bundle) {
+        super.onRestoreInstanceState(savedInstanceState)
+        val textoRecuperado:String?=savedInstanceState.getString("textoGuardado")
+        if(textoRecuperado!=null){
+            mostrarSnackBar(textoRecuperado)
+            textoGlobal=textoRecuperado
+        }
+    }
+
 
     override fun onSupportNavigateUp(): Boolean {
         val navController = findNavController(R.id.nav_host_fragment_content_aciclo_vida)
