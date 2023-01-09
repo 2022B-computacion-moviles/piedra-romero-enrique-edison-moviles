@@ -1,0 +1,125 @@
+[
+    {
+        "nombre": "c1",
+        "fecha_inaguracion": "Jul 4, 5, 12:00:00 AM",
+        "porcentaje_personas_satisfechas": 45.6,
+        "exporta_internacionalmente": true,
+        "cantidad_empleados": 456,
+        "carros": []
+    },
+    {
+        "nombre": "c2",
+        "fecha_inaguracion": "Jul 4, 6, 12:00:00 AM",
+        "porcentaje_personas_satisfechas": 67.8,
+        "exporta_internacionalmente": true,
+        "cantidad_empleados": 456,
+        "carros": [
+            {
+                "marca": "m1",
+                "fecha_elaboracion": "Jul 3, 85, 12:00:00 AM",
+                "precio": 567.8,
+                "color_subjetivo": true,
+                "meses_plazo_pagar": 5
+            },
+            {
+                "marca": "m3",
+                "fecha_elaboracion": "Jul 5, 5645, 12:00:00 AM",
+                "precio": 456.8,
+                "color_subjetivo": true,
+                "meses_plazo_pagar": 5
+            }
+        ]
+    },
+    {
+        "nombre": "c2",
+        "fecha_inaguracion": "Jul 4, 6, 12:00:00 AM",
+        "porcentaje_personas_satisfechas": 67.8,
+        "exporta_internacionalmente": true,
+        "cantidad_empleados": 456,
+        "carros": [
+            {
+                "marca": "m1",
+                "fecha_elaboracion": "Jul 3, 85, 12:00:00 AM",
+                "precio": 567.8,
+                "color_subjetivo": true,
+                "meses_plazo_pagar": 5
+            },
+            {
+                "marca": "m3",
+                "fecha_elaboracion": "Jul 5, 5645, 12:00:00 AM",
+                "precio": 456.8,
+                "color_subjetivo": true,
+                "meses_plazo_pagar": 5
+            }
+        ]
+    },
+    {
+        "nombre": "c2",
+        "fecha_inaguracion": "Jul 4, 6, 12:00:00 AM",
+        "porcentaje_personas_satisfechas": 67.8,
+        "exporta_internacionalmente": true,
+        "cantidad_empleados": 456,
+        "carros": [
+            {
+                "marca": "m1",
+                "fecha_elaboracion": "Jul 3, 85, 12:00:00 AM",
+                "precio": 567.8,
+                "color_subjetivo": true,
+                "meses_plazo_pagar": 5
+            },
+            {
+                "marca": "m3",
+                "fecha_elaboracion": "Jul 5, 5645, 12:00:00 AM",
+                "precio": 456.8,
+                "color_subjetivo": true,
+                "meses_plazo_pagar": 5
+            }
+        ]
+    },
+    {
+        "nombre": "c2",
+        "fecha_inaguracion": "Jul 4, 6, 12:00:00 AM",
+        "porcentaje_personas_satisfechas": 67.8,
+        "exporta_internacionalmente": true,
+        "cantidad_empleados": 456,
+        "carros": [
+            {
+                "marca": "m1",
+                "fecha_elaboracion": "Jul 3, 85, 12:00:00 AM",
+                "precio": 567.8,
+                "color_subjetivo": true,
+                "meses_plazo_pagar": 5
+            },
+            {
+                "marca": "m3",
+                "fecha_elaboracion": "Jul 5, 5645, 12:00:00 AM",
+                "precio": 456.8,
+                "color_subjetivo": true,
+                "meses_plazo_pagar": 5
+            }
+        ]
+    },
+    {
+        "nombre": "c2",
+        "fecha_inaguracion": "Jul 4, 6, 12:00:00 AM",
+        "porcentaje_personas_satisfechas": 67.8,
+        "exporta_internacionalmente": true,
+        "cantidad_empleados": 456,
+        "carros": [
+            {
+                "marca": "m1",
+                "fecha_elaboracion": "Jul 3, 85, 12:00:00 AM",
+                "precio": 567.8,
+                "color_subjetivo": true,
+                "meses_plazo_pagar": 5
+            },
+            {
+                "marca": "m3",
+                "fecha_elaboracion": "Jul 5, 5645, 12:00:00 AM",
+                "precio": 456.8,
+                "color_subjetivo": true,
+                "meses_plazo_pagar": 5
+            }
+        ]
+    }
+]

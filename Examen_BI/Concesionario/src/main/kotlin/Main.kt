@@ -61,11 +61,17 @@ fun main(args: Array<String>) {
 
         }
         3 ->{
-            print("3")
+            update()
 
         }
         4 ->{
-            delete()
+            var option_4: Boolean=true
+            while(option_4){
+                delete()
+                print("Salir? (s/n): ")
+                option_4 = reader.readLine().toLowerCase() == "n"
+
+            }
 
         }
     }
@@ -171,7 +177,126 @@ fun read(){
 
 }
 
+fun question_change(parametro: String): Boolean{
+    print("Va a cambiar el $parametro? (s/n):")
+    return reader.readLine().toLowerCase() == "s"
+}
+fun question_to_change(parametro: String,  ): Any{
+    print("Va a cambiar el $parametro? (s/n):")
+    return reader.readLine().toLowerCase() == "s"
+}
+
 fun update(){
+    var option: Int
+    var concesionarios_json=miArchivero.leer_info()
+
+    println("1. Actualizar Concesionario")
+    println("2. Actualizar Carro de un Concesionario")
+    print("Opción: ")
+    option= reader.readLine().toInt()
+
+    if(option==1){
+        var index:Int
+        var option3_1: Boolean=true
+        while(option3_1) {
+            var i: Int = 1
+            var index: Int
+            for (concesionario in concesionarios_json) {
+                println("$i" + ". ${concesionario.nombre}")
+                i++
+            }
+            print("Ingrese un número para actualizar el Concesionario (>0): ")
+            index = reader.readLine().toInt()
+            if (index > 0 && index <= concesionarios_json.size) {
+                var concesionario_aux=concesionarios_json[index - 1]
+                concesionarios_json.removeAt(index - 1)
+
+
+                if (question_change("Nombre")){
+                    reader.readLine()
+                    concesionario_aux.nombre = reader.readLine()
+                }
+                if (question_change("Fecha de inaguración")){
+                    reader.readLine()
+                    concesionario_aux.fecha_inaguracion= formatoFecha.parse(reader.readLine())
+                }
+                if (question_change("Porcentaje de personas satisfechas")){
+                    reader.readLine()
+                    concesionario_aux.porcentaje_personas_satisfechas=reader.readLine().toDouble()
+                }
+                if (question_change("La opción de Exportaciones fuera del Pais")){
+                    reader.readLine()
+                    concesionario_aux.exporta_internacionalmente = reader.readLine().toLowerCase() == "s"
+                }
+                if (question_change("Cantidad de empleados")){
+                    reader.readLine()
+                    concesionario_aux.cantidad_empleados=reader.readLine().toInt()
+                }
+                concesionarios_json.add(concesionario_aux)
+
+                miArchivero.modificar_info(concesionarios_json)
+            }
+            println()
+            print("Continuar? (s/n): ")
+            option3_1=reader.readLine().toLowerCase() == "s"
+        }
+    }
+    else if(option==2){
+        var i: Int = 1
+        var index_con: Int
+        for (concesionario in concesionarios_json) {
+            println("$i" + ". ${concesionario.nombre}")
+            i++
+        }
+        print("Ingrese un número para ingresar al Concesionario (>0): ")
+        index_con = reader.readLine().toInt()
+
+        if (index_con > 0 && index_con <= concesionarios_json.size) {
+
+            var concesionario_aux=concesionarios_json[index_con-1]
+
+            var option4_2:Boolean=true
+            while(option4_2) {
+                var j:Int=1
+                var option4_2_1:Int
+
+                for (carro in concesionario_aux.carros) {
+                    println("$j" + ".")
+                    println(carro.mostrarAtributos())
+                    j++
+                }
+                println("1. Eliminar un carro")
+                println("2. Eliminar todos los carros de este Concesionario")
+                print("Opción: ")
+                option4_2_1= reader.readLine().toInt()
+
+                if(option4_2_1==1) {
+                    var index_car: Int
+                    print("Ingrese un número para eliminar el Carro (>0): ")
+                    index_car = reader.readLine().toInt()
+                    if (index_car > 0 && index_car <= concesionario_aux.carros.size) {
+                        concesionario_aux.carros.removeAt(index_car - 1)
+                        miArchivero.modificar_info(concesionarios_json)
+                    }
+                }
+                else{
+                    var option4_2_2: Boolean
+                    print("Esta seguro de eliminar todos los carros del Concesionario? (s/n): ")
+                    option4_2_2=reader.readLine().toLowerCase() == "s"
+                    if(option4_2_2){
+                        println("Eliminar Carros")
+                        concesionario_aux.carros.clear()
+                        miArchivero.modificar_info(concesionarios_json)
+                    }
+
+
+                }
+                print("Continuar? (s/n): ")
+                option4_2 = reader.readLine().toLowerCase() == "s"
+            }
+
+        }
+    }
 
 }
 
@@ -221,22 +346,41 @@ fun delete(){
 
             var concesionario_aux=concesionarios_json[index_con-1]
 
-
-
             var option4_2:Boolean=true
             while(option4_2) {
                 var j:Int=1
-                var index_car: Int
+                var option4_2_1:Int
+
                 for (carro in concesionario_aux.carros) {
                     println("$j" + ".")
                     println(carro.mostrarAtributos())
                     j++
                 }
-                print("Ingrese un número para eliminar el Carro (>0): ")
-                index_car = reader.readLine().toInt()
-                if (index_car > 0 && index_car <= concesionario_aux.carros.size) {
-                    concesionario_aux.carros.removeAt(index_car - 1)
-                    miArchivero.modificar_info(concesionarios_json)
+                println("1. Eliminar un carro")
+                println("2. Eliminar todos los carros de este Concesionario")
+                print("Opción: ")
+                option4_2_1= reader.readLine().toInt()
+
+                if(option4_2_1==1) {
+                    var index_car: Int
+                    print("Ingrese un número para eliminar el Carro (>0): ")
+                    index_car = reader.readLine().toInt()
+                    if (index_car > 0 && index_car <= concesionario_aux.carros.size) {
+                        concesionario_aux.carros.removeAt(index_car - 1)
+                        miArchivero.modificar_info(concesionarios_json)
+                    }
+                }
+                else{
+                    var option4_2_2: Boolean
+                    print("Esta seguro de eliminar todos los carros del Concesionario? (s/n): ")
+                    option4_2_2=reader.readLine().toLowerCase() == "s"
+                    if(option4_2_2){
+                        println("Eliminar Carros")
+                        concesionario_aux.carros.clear()
+                        miArchivero.modificar_info(concesionarios_json)
+                    }
+
+
                 }
                 print("Continuar? (s/n): ")
                 option4_2 = reader.readLine().toLowerCase() == "s"
