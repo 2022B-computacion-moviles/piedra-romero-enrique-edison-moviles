@@ -90,12 +90,7 @@ fun create(){
     //var carros: Array<Carro> = arrayOf()
     var carros = arrayListOf <Carro> ()
 
-    //Para Carros
-    var marca: String
-    var fecha_elaboracion: Date
-    var precio: Double
-    var color_subjetivo: Boolean
-    var meses_plazo_pagar: Int
+
 
     var option: Boolean
 
@@ -115,6 +110,13 @@ fun create(){
     print("\tVa a ingresar Carros? (s/n): ")
     option= reader.readLine().toLowerCase() == "s"
     while(option){
+        //Para Carros
+        var marca: String
+        var fecha_elaboracion: Date
+        var precio: Double
+        var color_subjetivo: Boolean
+        var meses_plazo_pagar: Int
+
         print("\tIngrese la Marca: ")
         marca=reader.readLine()
         print("\tIngrese la fecha de elaboración: ")
@@ -178,13 +180,10 @@ fun read(){
 }
 
 fun question_change(parametro: String): Boolean{
-    print("Va a cambiar el $parametro? (s/n):")
+    print("Va a cambiar $parametro? (s/n):")
     return reader.readLine().toLowerCase() == "s"
 }
-fun question_to_change(parametro: String,  ): Any{
-    print("Va a cambiar el $parametro? (s/n):")
-    return reader.readLine().toLowerCase() == "s"
-}
+
 
 fun update(){
     var option: Int
@@ -255,44 +254,55 @@ fun update(){
 
             var concesionario_aux=concesionarios_json[index_con-1]
 
-            var option4_2:Boolean=true
-            while(option4_2) {
+            var option3_2:Boolean=true
+            while(option3_2) {
                 var j:Int=1
-                var option4_2_1:Int
 
                 for (carro in concesionario_aux.carros) {
                     println("$j" + ".")
                     println(carro.mostrarAtributos())
                     j++
                 }
-                println("1. Eliminar un carro")
-                println("2. Eliminar todos los carros de este Concesionario")
-                print("Opción: ")
-                option4_2_1= reader.readLine().toInt()
 
-                if(option4_2_1==1) {
-                    var index_car: Int
-                    print("Ingrese un número para eliminar el Carro (>0): ")
-                    index_car = reader.readLine().toInt()
-                    if (index_car > 0 && index_car <= concesionario_aux.carros.size) {
-                        concesionario_aux.carros.removeAt(index_car - 1)
-                        miArchivero.modificar_info(concesionarios_json)
+                var index_car: Int
+                print("Ingrese un número para actualizar el Carro (>0): ")
+                index_car = reader.readLine().toInt()
+                if (index_car > 0 && index_car <= concesionario_aux.carros.size) {
+                    var carro_aux=concesionario_aux.carros[index_car - 1]
+                    concesionario_aux.carros.removeAt(index_car - 1)
+
+
+                    if (question_change("Marca")){
+                        reader.readLine()
+                        carro_aux.marca=reader.readLine()
                     }
-                }
-                else{
-                    var option4_2_2: Boolean
-                    print("Esta seguro de eliminar todos los carros del Concesionario? (s/n): ")
-                    option4_2_2=reader.readLine().toLowerCase() == "s"
-                    if(option4_2_2){
-                        println("Eliminar Carros")
-                        concesionario_aux.carros.clear()
-                        miArchivero.modificar_info(concesionarios_json)
+                    if (question_change("Fecha de elaboración")){
+                        reader.readLine()
+                        carro_aux.fecha_elaboracion=formatoFecha.parse(reader.readLine())
+                    }
+                    if (question_change("Precio")){
+                        reader.readLine()
+                        carro_aux.precio=reader.readLine().toDouble()
+                    }
+                    if (question_change("Color antes de la compra")){
+                        reader.readLine()
+                        carro_aux.color_subjetivo= reader.readLine().toLowerCase() == "s"
+                    }
+                    if (question_change("Meses a pagar")){
+                        reader.readLine()
+                        carro_aux.meses_plazo_pagar=reader.readLine().toInt()
                     }
 
+                    concesionario_aux.carros.add(carro_aux)
 
+                    concesionarios_json.removeAt(index_con-1)
+                    concesionarios_json.add(concesionario_aux)
+
+                    miArchivero.modificar_info(concesionarios_json)
                 }
+
                 print("Continuar? (s/n): ")
-                option4_2 = reader.readLine().toLowerCase() == "s"
+                option3_2 = reader.readLine().toLowerCase() == "s"
             }
 
         }
