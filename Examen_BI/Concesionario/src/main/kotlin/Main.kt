@@ -31,49 +31,62 @@ fun main(args: Array<String>) {
     var select_activity: Int
 
 
-    println("\t\tActividades a realizar")
-    println("1. Insertar")
-    println("2. Leer")
-    println("3. Modificar")
-    println("4. Eliminar")
-    print("Ingrese su opción: ")
-    select_activity=reader.readLine().toInt()
+    var option_general: Boolean=true
 
-    when(select_activity){
-        1 ->{
-            var option_1: Boolean=true
-            while(option_1) {
-                create()
-                print("Salir? (s/n): ")
-                option_1 = reader.readLine().toLowerCase() == "n"
+    while (option_general) {
+        println("\t\tActividades a realizar")
+        println("1. Insertar")
+        println("2. Leer")
+        println("3. Modificar")
+        println("4. Eliminar")
+        print("Ingrese su opción: ")
+        select_activity = reader.readLine().toInt()
+
+        when (select_activity) {
+            1 -> {
+                var option_1: Boolean = true
+                while (option_1) {
+                    create()
+                    print("Salir de '1. Insertar'? (s/n): ")
+                    option_1 = reader.readLine().toLowerCase() == "n"
+                }
+
+            }
+            2 -> {
+                var option_2: Boolean = true
+                while (option_2) {
+                    read()
+                    print("Salir de '2. Leer'? (s/n): ")
+                    option_2 = reader.readLine().toLowerCase() == "n"
+
+                }
+
+
+            }
+            3 -> {
+                var option_3: Boolean = true
+                while (option_3) {
+                    update()
+                    print("Salir de '3. Modificar'? (s/n): ")
+                    option_3 = reader.readLine().toLowerCase() == "n"
+
+                }
+
+            }
+            4 -> {
+                var option_4: Boolean = true
+                while (option_4) {
+                    delete()
+                    print("Salir de '4. Eliminar'? (s/n): ")
+                    option_4 = reader.readLine().toLowerCase() == "n"
+
+                }
+
             }
 
         }
-        2 ->{
-            var option_2: Boolean=true
-            while(option_2){
-                read()
-                print("Salir? (s/n): ")
-                option_2 = reader.readLine().toLowerCase() == "n"
-
-            }
-
-
-        }
-        3 ->{
-            update()
-
-        }
-        4 ->{
-            var option_4: Boolean=true
-            while(option_4){
-                delete()
-                print("Salir? (s/n): ")
-                option_4 = reader.readLine().toLowerCase() == "n"
-
-            }
-
-        }
+        print("Esta seguro de finalizar todo? (s/n): ")
+        option_general = reader.readLine().toLowerCase() == "n"
     }
 
 }
@@ -208,7 +221,7 @@ fun update(){
             index = reader.readLine().toInt()
             if (index > 0 && index <= concesionarios_json.size) {
                 var concesionario_aux=concesionarios_json[index - 1]
-                concesionarios_json.removeAt(index - 1)
+                //concesionarios_json.removeAt(index - 1)
 
 
                 if (question_change("Nombre")){
@@ -231,7 +244,8 @@ fun update(){
                     reader.readLine()
                     concesionario_aux.cantidad_empleados=reader.readLine().toInt()
                 }
-                concesionarios_json.add(concesionario_aux)
+                //concesionarios_json.add(concesionario_aux)
+                concesionarios_json[index - 1]=concesionario_aux
 
                 miArchivero.modificar_info(concesionarios_json)
             }
@@ -269,7 +283,7 @@ fun update(){
                 index_car = reader.readLine().toInt()
                 if (index_car > 0 && index_car <= concesionario_aux.carros.size) {
                     var carro_aux=concesionario_aux.carros[index_car - 1]
-                    concesionario_aux.carros.removeAt(index_car - 1)
+                    //concesionario_aux.carros.removeAt(index_car - 1)
 
 
                     if (question_change("Marca")){
@@ -293,10 +307,12 @@ fun update(){
                         carro_aux.meses_plazo_pagar=reader.readLine().toInt()
                     }
 
-                    concesionario_aux.carros.add(carro_aux)
+                    concesionario_aux.carros[index_car - 1]=carro_aux
+                    //concesionario_aux.carros.add(carro_aux)
 
-                    concesionarios_json.removeAt(index_con-1)
-                    concesionarios_json.add(concesionario_aux)
+                    //concesionarios_json.removeAt(index_con-1)
+                    //concesionarios_json.add(concesionario_aux)
+                    concesionarios_json[index_con-1]=concesionario_aux
 
                     miArchivero.modificar_info(concesionarios_json)
                 }
