@@ -156,7 +156,7 @@ fun read(){
     var option: Int
     var concesionarios_json=miArchivero.leer_info()
 
-    println("1. Ver todos de todos los Concesionarios")
+    println("1. Ver todos los Concesionarios")
     println("2. Ver de un solo Concesionario")
     print("Opción: ")
     option= reader.readLine().toInt()

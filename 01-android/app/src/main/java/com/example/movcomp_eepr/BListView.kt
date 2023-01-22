@@ -106,7 +106,7 @@ class BListView : AppCompatActivity() {
     }
 
     fun aniadirEntrenador(adaptador: ArrayAdapter<BEntrenador>){
-        arreglo.add(BEntrenador("Ejemplo","a@a.com"))
+        arreglo.add(BEntrenador(1, "Ejemplo","a@a.com"))
         adaptador.notifyDataSetChanged() //Para que se cambie en la pantalla
     }
 }
