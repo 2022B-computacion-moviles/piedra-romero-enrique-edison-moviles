@@ -1,4 +1,8 @@
 package com.example.movcomp_eepr
 
-class EBaseDeDatos() {
+class EBaseDeDatos {
+    companion object{
+        var tablaEntrenador: ESqliteHelperEntrenador? = null
+    }
+
 }
