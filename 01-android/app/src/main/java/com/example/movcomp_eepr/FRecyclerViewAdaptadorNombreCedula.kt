@@ -10,7 +10,7 @@ import androidx.recyclerview.widget.RecyclerView
 class FRecyclerViewAdaptadorNombreCedula(
     private val contexto: GRecyclerView,
     private val lista: ArrayList<BEntrenador>,
-    private val recyclerView: RecyclerView
+    //private val recyclerView: RecyclerView
 ) : RecyclerView.Adapter<FRecyclerViewAdaptadorNombreCedula.MyViewHolder>() {
     inner class MyViewHolder(view: View) : RecyclerView.ViewHolder(view) {
         val nombreTextView: TextView
@@ -31,7 +31,7 @@ class FRecyclerViewAdaptadorNombreCedula(
             contexto.aumentarTotallikes()
         }
     }
-    // Setear el Layput que vamos a utilizar
+    // Setear el Layout que vamos a utilizar
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): MyViewHolder {
         val itemView = LayoutInflater
             .from(parent.context)
