@@ -21,6 +21,9 @@ class EditarCarro : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_editar_carro)
 
+        val actionBar = supportActionBar
+        actionBar?.title = "Editar Carro"
+
         val concesionario_aux = intent.getSerializableExtra("concesionario") as BConcesionario
 
         idItemSeleccionado= intent.getIntExtra("idItemSeleccionado",0)
@@ -29,6 +32,7 @@ class EditarCarro : AppCompatActivity() {
         //concesionario_aux=BBaseDatosMemoria.arregloBConcesionario[idItemSeleccionado]
 
         carro= concesionario_aux.carros[idCarroSeleccionado]
+
 
         val marca = findViewById<EditText>(R.id.input_car_newmarca)
         marca.setText(carro.marca)
@@ -66,17 +70,19 @@ class EditarCarro : AppCompatActivity() {
             }
     }
 
+    //Se ejecuta cuando la actividad sea visible para el usuario
+    override fun onResume() {
+        super.onResume()
+        BBaseDatosMemoria.adaptadorCarros.notifyDataSetChanged()
+        BBaseDatosMemoria.adaptador.notifyDataSetChanged()
+    }
+
 
     fun editarCarro(carro: BCarro, concesionario_aux: BConcesionario){
-        //BBaseDatosMemoria.arregloBConcesionario[idItemSeleccionado].carros[idCarroSeleccionado]=carro
-        //var concesionario_aux= BBaseDatosMemoria.arregloBConcesionario[idItemSeleccionado]
 
-        //concesionario_aux.carros[idCarroSeleccionado]=carro
-
-        //var concesionario=concesionario_aux
         concesionario_aux.carros[idCarroSeleccionado]=carro
 
-        //concesionario.carros[idCarroSeleccionado] = carro
+
         BBaseDatosMemoria.arregloBConcesionario[idItemSeleccionado]=concesionario_aux
         BBaseDatosMemoria.adaptadorCarros.notifyDataSetChanged()
         BBaseDatosMemoria.adaptador.notifyDataSetChanged()

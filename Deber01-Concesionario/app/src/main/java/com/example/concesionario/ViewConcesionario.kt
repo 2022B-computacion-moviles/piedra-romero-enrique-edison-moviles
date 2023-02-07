@@ -26,7 +26,8 @@ class ViewConcesionario : AppCompatActivity() {
         idItemSeleccionado= intent.getIntExtra("idItemSeleccionado",0)
         //concesionario=BBaseDatosMemoria.arregloBConcesionario[idItemSeleccionado]
 
-
+        val actionBar = supportActionBar
+        actionBar?.title = concesionario.nombre
 
         val nombre = findViewById<TextView>(R.id.vc_nombre)
         nombre.text=concesionario.nombre
@@ -72,6 +73,13 @@ class ViewConcesionario : AppCompatActivity() {
 
         registerForContextMenu(listviewcarros)
 
+    }
+
+    //Se ejecuta cuando la actividad sea visible para el usuario
+    override fun onResume() {
+        super.onResume()
+        BBaseDatosMemoria.adaptadorCarros.notifyDataSetChanged()
+        BBaseDatosMemoria.adaptador.notifyDataSetChanged()
     }
 
     //idItemSeleccion para saber que elemento(del listview) escogió

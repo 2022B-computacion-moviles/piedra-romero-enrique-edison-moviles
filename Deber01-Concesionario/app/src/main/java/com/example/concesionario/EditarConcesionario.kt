@@ -9,9 +9,14 @@ import android.widget.EditText
 import android.widget.TextView
 
 class EditarConcesionario : AppCompatActivity() {
+
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_editar_concesionario)
+
+        val actionBar = supportActionBar
+        actionBar?.title = "Editar Concesionario"
 
         val concesionario = intent.getSerializableExtra("concesionario") as BConcesionario
         val idItemSeleccionado= intent.getIntExtra("idItemSeleccionado",0)

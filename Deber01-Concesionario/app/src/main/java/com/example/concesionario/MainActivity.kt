@@ -12,6 +12,8 @@ import android.widget.*
 
 class MainActivity : AppCompatActivity() {
 
+
+
     //private lateinit var adaptador: ArrayAdapter<BConcesionario>
     val arreglo:ArrayList<BConcesionario> =BBaseDatosMemoria.arregloBConcesionario
     var idItemSeleccionado=0
@@ -20,6 +22,9 @@ class MainActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
+
+        val actionBar = supportActionBar
+        actionBar?.title = "Concesionarios"
 
 
         val listView=findViewById<ListView>(R.id.lv_concesionarios)

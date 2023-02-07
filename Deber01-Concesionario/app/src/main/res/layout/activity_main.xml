@@ -6,30 +6,13 @@
     android:layout_height="match_parent"
     tools:context=".MainActivity">
 
-    <TextView
-        android:id="@+id/textView"
-        android:layout_width="411dp"
-        android:layout_height="73dp"
-        android:background="#1F608C"
-        android:paddingLeft="35dp"
-        android:paddingTop="10dp"
-        android:text="Concesionarios"
-        android:textSize="34sp"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.0"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.0" />
-
     <ListView
         android:id="@+id/lv_concesionarios"
-        android:layout_width="359dp"
-        android:layout_height="218dp"
-        android:layout_marginTop="12dp"
+        android:layout_width="313dp"
+        android:layout_height="279dp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/textView" />
+        tools:layout_editor_absoluteY="36dp" />
 
     <Button
         android:id="@+id/btn_crear_concesionario"
