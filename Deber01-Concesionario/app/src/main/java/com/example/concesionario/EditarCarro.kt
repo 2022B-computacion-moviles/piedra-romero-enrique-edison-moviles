@@ -12,7 +12,8 @@ class EditarCarro : AppCompatActivity() {
     var idItemSeleccionado=0
     var idCarroSeleccionado=0
 
-    private lateinit var concesionario: BConcesionario
+    //private lateinit var concesionario: BConcesionario
+    private lateinit var concesionario_aux: BConcesionario
 
     private lateinit var carro: BCarro
 
@@ -20,14 +21,14 @@ class EditarCarro : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_editar_carro)
 
-        concesionario = intent.getSerializableExtra("concesionario") as BConcesionario
+        concesionario_aux = intent.getSerializableExtra("concesionario") as BConcesionario
 
         idItemSeleccionado= intent.getIntExtra("idItemSeleccionado",0)
         idCarroSeleccionado= intent.getIntExtra("idCarroSeleccionado",0)
 
-        //concesionario=BBaseDatosMemoria.arregloBConcesionario[idItemSeleccionado]
+        //concesionario_aux=BBaseDatosMemoria.arregloBConcesionario[idItemSeleccionado]
 
-        carro= concesionario.carros[idCarroSeleccionado]
+        carro= concesionario_aux.carros[idCarroSeleccionado]
 
         val marca = findViewById<EditText>(R.id.input_car_newmarca)
         marca.setText(carro.marca)
@@ -69,6 +70,10 @@ class EditarCarro : AppCompatActivity() {
     fun editarCarro(carro: BCarro){
         //BBaseDatosMemoria.arregloBConcesionario[idItemSeleccionado].carros[idCarroSeleccionado]=carro
         //var concesionario_aux= BBaseDatosMemoria.arregloBConcesionario[idItemSeleccionado]
+
+        //concesionario_aux.carros[idCarroSeleccionado]=carro
+
+        var concesionario=concesionario_aux
         concesionario.carros[idCarroSeleccionado]=carro
 
         //concesionario.carros[idCarroSeleccionado] = carro
