@@ -9,11 +9,7 @@ import android.widget.EditText
 import android.widget.TextView
 
 class EditarCarro : AppCompatActivity() {
-    var idItemSeleccionado=0
-    var idCarroSeleccionado=0
 
-    //private lateinit var concesionario: BConcesionario
-    //private lateinit var concesionario_aux: BConcesionario
 
     private lateinit var carro: BCarro
 
@@ -26,8 +22,8 @@ class EditarCarro : AppCompatActivity() {
 
         val concesionario_aux = intent.getSerializableExtra("concesionario") as BConcesionario
 
-        idItemSeleccionado= intent.getIntExtra("idItemSeleccionado",0)
-        idCarroSeleccionado= intent.getIntExtra("idCarroSeleccionado",0)
+        var idItemSeleccionado= intent.getIntExtra("idItemSeleccionado",0)
+        var idCarroSeleccionado= intent.getIntExtra("idCarroSeleccionado",0)
 
         //concesionario_aux=BBaseDatosMemoria.arregloBConcesionario[idItemSeleccionado]
 
@@ -61,7 +57,7 @@ class EditarCarro : AppCompatActivity() {
                         BBaseDatosMemoria.formatoFecha.parse(fecha_elaboracion.text.toString()),
                         (precio.text.toString()).toDouble(),
                         color_subjetivo.text.toString()=="true",
-                        (meses_plazo_pagar.text.toString()).toInt()), concesionario_aux
+                        (meses_plazo_pagar.text.toString()).toInt()), concesionario_aux, idItemSeleccionado, idCarroSeleccionado
                     )
 
 
@@ -78,10 +74,9 @@ class EditarCarro : AppCompatActivity() {
     }
 
 
-    fun editarCarro(carro: BCarro, concesionario_aux: BConcesionario){
+    fun editarCarro(carro: BCarro, concesionario_aux: BConcesionario,idItemSeleccionado: Int, idCarroSeleccionado: Int){
 
         concesionario_aux.carros[idCarroSeleccionado]=carro
-
 
         BBaseDatosMemoria.arregloBConcesionario[idItemSeleccionado]=concesionario_aux
         BBaseDatosMemoria.adaptadorCarros.notifyDataSetChanged()

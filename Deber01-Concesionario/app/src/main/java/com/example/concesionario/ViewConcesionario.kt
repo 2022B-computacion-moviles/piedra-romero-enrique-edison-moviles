@@ -15,16 +15,22 @@ class ViewConcesionario : AppCompatActivity() {
     var idItemSeleccionado=0
 
 
-    private lateinit var concesionario: BConcesionario
+    lateinit var concesionario: BConcesionario
+    val arregloConcesionario:ArrayList<BConcesionario> =BBaseDatosMemoria.arregloBConcesionario
+    //lateinit var arregloCarros:ArrayList<BCarro>
 
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_view_concesionario)
 
-        concesionario = intent.getSerializableExtra("concesionario") as BConcesionario
+        //concesionario = intent.getSerializableExtra("concesionario") as BConcesionario
+
+
         idItemSeleccionado= intent.getIntExtra("idItemSeleccionado",0)
         //concesionario=BBaseDatosMemoria.arregloBConcesionario[idItemSeleccionado]
+        concesionario=arregloConcesionario[idItemSeleccionado]
+
 
         val actionBar = supportActionBar
         actionBar?.title = concesionario.nombre
@@ -39,9 +45,11 @@ class ViewConcesionario : AppCompatActivity() {
         cantidad_empleados.text=concesionario.cantidad_empleados.toString()
         //lista carros
         val listviewcarros=findViewById<ListView>(R.id.vc_lv_carros)
-        BBaseDatosMemoria.adaptadorCarros= ArrayAdapter(this, android.R.layout.simple_list_item_1, concesionario.carros)
+        BBaseDatosMemoria.adaptadorCarros= ArrayAdapter(this, android.R.layout.simple_list_item_1, arregloConcesionario[idItemSeleccionado].carros)
         listviewcarros.adapter=BBaseDatosMemoria.adaptadorCarros
+
         BBaseDatosMemoria.adaptadorCarros.notifyDataSetChanged()
+        BBaseDatosMemoria.adaptador.notifyDataSetChanged()
 
         val botonAniadirListView=findViewById<Button>(R.id.btn_add_car)
         botonAniadirListView
@@ -103,7 +111,8 @@ class ViewConcesionario : AppCompatActivity() {
     override fun onContextItemSelected(item: MenuItem): Boolean {
         return when (item.itemId){
             R.id.item_btn_car_editar->{
-                //val carro = concesionario.carros[idCarroSeleccionado]
+                //val carro = arregloCarros[idCarroSeleccionado]
+                val concesionario = arregloConcesionario[idItemSeleccionado]
                 val intent = Intent(this, EditarCarro::class.java)
                 //intent.putExtra("carro", carro)
                 intent.putExtra("concesionario", concesionario)
@@ -123,6 +132,8 @@ class ViewConcesionario : AppCompatActivity() {
 
     fun agregarCarro(carro: BCarro){
         concesionario.carros.add(carro)
+        //arregloCarros.add(carro)
+        //concesionario.carros=arregloCarros
         BBaseDatosMemoria.arregloBConcesionario[idItemSeleccionado]=concesionario
         BBaseDatosMemoria.adaptadorCarros.notifyDataSetChanged()
         BBaseDatosMemoria.adaptador.notifyDataSetChanged()
@@ -142,6 +153,8 @@ class ViewConcesionario : AppCompatActivity() {
 
     fun eliminarCarro(position: Int) {
         concesionario.carros.removeAt(position)
+        //arregloCarros.removeAt(position)
+        //concesionario.carros=arregloCarros
 
         BBaseDatosMemoria.arregloBConcesionario[idItemSeleccionado]=concesionario
         BBaseDatosMemoria.adaptadorCarros.notifyDataSetChanged()
