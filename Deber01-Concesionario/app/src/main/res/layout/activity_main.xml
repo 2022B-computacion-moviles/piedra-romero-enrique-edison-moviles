@@ -24,11 +24,10 @@
 
     <ListView
         android:id="@+id/lv_concesionarios"
-        android:layout_width="334dp"
-        android:layout_height="263dp"
-        android:layout_marginTop="100dp"
+        android:layout_width="359dp"
+        android:layout_height="218dp"
+        android:layout_marginTop="12dp"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.493"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/textView" />
 
@@ -36,11 +35,63 @@
         android:id="@+id/btn_crear_concesionario"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="108dp"
+        android:layout_marginTop="548dp"
         android:text="Crear"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.876"
+        app:layout_constraintHorizontal_bias="0.498"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
+
+    <EditText
+        android:id="@+id/input_conc_nombre"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="332dp"
+        android:ems="10"
+        android:hint="Nombre"
+        android:inputType="textPersonName"
+        app:layout_constraintEnd_toEndOf="@+id/input_conc_fecha"
+        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintStart_toStartOf="@+id/input_conc_fecha"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <EditText
+        android:id="@+id/input_conc_fecha"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:ems="10"
+        android:hint="Fecha Inaguración"
+        android:inputType="textPersonName"
+        app:layout_constraintEnd_toEndOf="@+id/input_conc_porcentaje"
+        app:layout_constraintStart_toStartOf="@+id/input_conc_porcentaje"
+        app:layout_constraintTop_toBottomOf="@+id/input_conc_nombre" />
+
+    <EditText
+        android:id="@+id/input_conc_porcentaje"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="12dp"
+        android:ems="10"
+        android:hint="Porcentaje Satisfechos"
+        android:inputType="textPersonName"
+        app:layout_constraintEnd_toEndOf="@+id/input_conc_empleados"
+        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintStart_toStartOf="@+id/input_conc_empleados"
+        app:layout_constraintTop_toBottomOf="@+id/input_conc_fecha" />
+
+    <EditText
+        android:id="@+id/input_conc_empleados"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="8dp"
+        android:ems="10"
+        android:hint="Cantidad Empleados"
+        android:inputType="textPersonName"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="@+id/btn_crear_concesionario"
+        app:layout_constraintHorizontal_bias="0.491"
+        app:layout_constraintStart_toStartOf="@+id/btn_crear_concesionario"
+        app:layout_constraintTop_toBottomOf="@+id/input_conc_porcentaje"
+        app:layout_constraintVertical_bias="0.01" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

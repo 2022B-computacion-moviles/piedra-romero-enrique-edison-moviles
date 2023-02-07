@@ -2,13 +2,11 @@ package com.example.concesionario
 
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import android.text.TextUtils
 import android.view.ContextMenu
 import android.view.MenuItem
 import android.view.View
-import android.widget.AdapterView
-import android.widget.ArrayAdapter
-import android.widget.Button
-import android.widget.ListView
+import android.widget.*
 
 class MainActivity : AppCompatActivity() {
 
@@ -31,7 +29,28 @@ class MainActivity : AppCompatActivity() {
         val botonAniadirListView=findViewById<Button>(R.id.btn_crear_concesionario)
         botonAniadirListView
             .setOnClickListener {
-                agregarConcesionario(adaptador)
+                //agregarConcesionario(adaptador)
+                val nombre = findViewById<EditText>(R.id.input_conc_nombre)
+                val fecha_inaguracion = findViewById<EditText>(R.id.input_conc_fecha)
+                val porcentaje_personas_satisfechas = findViewById<EditText>(R.id.input_conc_porcentaje)
+                val cantidad_empleados = findViewById<EditText>(R.id.input_conc_empleados)
+
+
+                if (TextUtils.isEmpty(nombre.text) || TextUtils.isEmpty(fecha_inaguracion.text) || TextUtils.isEmpty(porcentaje_personas_satisfechas.text) || TextUtils.isEmpty(cantidad_empleados.text)) {
+                    //No pasa nada
+                }
+                else{
+                    //Parametros completos
+                    agregarConcesionario(BConcesionario(
+                        nombre.text.toString(),
+                        BBaseDatosMemoria.formatoFecha.parse(fecha_inaguracion.text.toString()),
+                        (porcentaje_personas_satisfechas.text.toString()).toDouble(),
+                        (cantidad_empleados.text.toString()).toInt(),
+                        BBaseDatosMemoria.arregloBCarro)
+                    )
+
+                }
+
             }
 
         registerForContextMenu(listView)
@@ -77,14 +96,21 @@ class MainActivity : AppCompatActivity() {
 
 
 
-
+/*
     fun agregarConcesionario(adaptador: ArrayAdapter<BConcesionario>){
         BBaseDatosMemoria.arregloBConcesionario.add(BConcesionario(
             "Conc5", BBaseDatosMemoria.formatoFecha.parse("02/07/1990"), 34.5,
-            true, 104, BBaseDatosMemoria.arregloBCarro
+             104, BBaseDatosMemoria.arregloBCarro
         ))
         adaptador.notifyDataSetChanged() //Para que se cambie en la pantalla
+    }*/
+
+    fun agregarConcesionario(concesionario: BConcesionario){
+        arreglo.add(concesionario)
+        adaptador.notifyDataSetChanged() //Para que se cambie en la pantalla
     }
+
+
 
     fun eliminarConcesionario(position: Int) {
         arreglo.removeAt(position)

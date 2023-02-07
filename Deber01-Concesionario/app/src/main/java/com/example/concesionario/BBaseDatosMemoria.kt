@@ -12,9 +12,9 @@ class BBaseDatosMemoria {
         init {
             arregloBCarro.add(BCarro("carro1", formatoFecha.parse("02/02/2002"), 56.4, true,5))
 
-            arregloBConcesionario.add(BConcesionario("Conc1",formatoFecha.parse("01/07/2001"), 34.5, true, 104,arregloBCarro))
-            arregloBConcesionario.add(BConcesionario("Conc2",formatoFecha.parse("02/07/2001"), 34.5, true, 105,arregloBCarro))
-            arregloBConcesionario.add(BConcesionario("Conc3",formatoFecha.parse("03/07/2001"), 34.5, true, 106,arregloBCarro))
+            arregloBConcesionario.add(BConcesionario("Conc1",formatoFecha.parse("01/07/2001"), 34.5,  104,arregloBCarro))
+            arregloBConcesionario.add(BConcesionario("Conc2",formatoFecha.parse("02/07/2001"), 34.5,  105,arregloBCarro))
+            arregloBConcesionario.add(BConcesionario("Conc3",formatoFecha.parse("03/07/2001"), 34.5,  106,arregloBCarro))
         }
 
 
