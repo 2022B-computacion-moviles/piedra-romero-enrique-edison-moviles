@@ -1,5 +1,6 @@
 package com.example.concesionario
 
+import android.app.AlertDialog
 import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
@@ -31,10 +32,10 @@ class MainActivity : AppCompatActivity() {
         botonAniadirListView
             .setOnClickListener {
                 //agregarConcesionario(adaptador)
-                val nombre = findViewById<EditText>(R.id.input_conc_nombre)
-                val fecha_inaguracion = findViewById<EditText>(R.id.input_conc_fecha)
-                val porcentaje_personas_satisfechas = findViewById<EditText>(R.id.input_conc_porcentaje)
-                val cantidad_empleados = findViewById<EditText>(R.id.input_conc_empleados)
+                val nombre = findViewById<EditText>(R.id.input_conc_newnombre)
+                val fecha_inaguracion = findViewById<EditText>(R.id.input_conc_newfecha)
+                val porcentaje_personas_satisfechas = findViewById<EditText>(R.id.input_conc_newporcentaje)
+                val cantidad_empleados = findViewById<EditText>(R.id.input_conc_newempleados)
 
 
                 if (TextUtils.isEmpty(nombre.text) || TextUtils.isEmpty(fecha_inaguracion.text) || TextUtils.isEmpty(porcentaje_personas_satisfechas.text) || TextUtils.isEmpty(cantidad_empleados.text)) {
@@ -80,7 +81,14 @@ class MainActivity : AppCompatActivity() {
     override fun onContextItemSelected(item: MenuItem): Boolean {
         return when (item.itemId){
             R.id.item_btn_editar->{
-                "${idItemSeleccionado}"
+                val concesionario = arreglo[idItemSeleccionado]
+                // Crea un Intent para abrir la siguiente actividad
+                val intent = Intent(this, EditarConcesionario::class.java)
+                // Agrega el objeto Concesionario al Intent como un extra
+                intent.putExtra("concesionario", concesionario) //El objeto debe ser Serializable
+                intent.putExtra("idItemSeleccionado", idItemSeleccionado)
+                //intent.putExtra("adaptador", adaptador as Serializable)
+                startActivity(intent)
                 return true
             }
             R.id.item_btn_eliminar->{
@@ -88,7 +96,11 @@ class MainActivity : AppCompatActivity() {
                 return true
             }
             R.id.item_btn_ver->{
-                irActividad(ViewConcesionario::class.java)
+                val concesionario = arreglo[idItemSeleccionado]
+
+                val intent = Intent(this, ViewConcesionario::class.java)
+                intent.putExtra("concesionario", concesionario)
+                startActivity(intent)
 
                 return true
             }
@@ -117,6 +129,10 @@ class MainActivity : AppCompatActivity() {
     fun eliminarConcesionario(position: Int) {
         arreglo.removeAt(position)
         adaptador.notifyDataSetChanged()
+    }
+
+    fun dialogo(){
+
     }
 
 
