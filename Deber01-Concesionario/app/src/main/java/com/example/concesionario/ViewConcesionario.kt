@@ -11,6 +11,9 @@ import android.widget.*
 
 class ViewConcesionario : AppCompatActivity() {
     var idCarroSeleccionado=0
+    var idItemSeleccionado=0
+
+
     private lateinit var concesionario: BConcesionario
 
 
@@ -19,6 +22,7 @@ class ViewConcesionario : AppCompatActivity() {
         setContentView(R.layout.activity_view_concesionario)
 
         concesionario = intent.getSerializableExtra("concesionario") as BConcesionario
+        idItemSeleccionado= intent.getIntExtra("idItemSeleccionado",0)
 
         val nombre = findViewById<TextView>(R.id.vc_nombre)
         nombre.text=concesionario.nombre
@@ -81,7 +85,10 @@ class ViewConcesionario : AppCompatActivity() {
 
     fun eliminarCarro(position: Int) {
         concesionario.carros.removeAt(position)
+
+        BBaseDatosMemoria.arregloBConcesionario[idItemSeleccionado]=concesionario
         BBaseDatosMemoria.adaptadorCarros.notifyDataSetChanged()
+        BBaseDatosMemoria.adaptador.notifyDataSetChanged()
 
         AlertDialog.Builder(this)
             .setTitle("Eliminado")

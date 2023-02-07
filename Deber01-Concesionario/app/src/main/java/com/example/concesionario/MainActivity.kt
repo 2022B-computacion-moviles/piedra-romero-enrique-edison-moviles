@@ -100,6 +100,7 @@ class MainActivity : AppCompatActivity() {
 
                 val intent = Intent(this, ViewConcesionario::class.java)
                 intent.putExtra("concesionario", concesionario)
+                intent.putExtra("idItemSeleccionado", idItemSeleccionado)
                 startActivity(intent)
 
                 return true
