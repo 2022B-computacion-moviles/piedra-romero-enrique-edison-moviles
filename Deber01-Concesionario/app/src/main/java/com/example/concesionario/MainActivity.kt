@@ -1,5 +1,6 @@
 package com.example.concesionario
 
+import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.text.TextUtils
@@ -87,7 +88,8 @@ class MainActivity : AppCompatActivity() {
                 return true
             }
             R.id.item_btn_ver->{
-                "${idItemSeleccionado}"
+                irActividad(ViewConcesionario::class.java)
+
                 return true
             }
             else-> super.onContextItemSelected(item)
@@ -115,6 +117,12 @@ class MainActivity : AppCompatActivity() {
     fun eliminarConcesionario(position: Int) {
         arreglo.removeAt(position)
         adaptador.notifyDataSetChanged()
+    }
+
+
+    fun irActividad(clase:Class<*>){
+        val intent= Intent(this, clase)
+        startActivity(intent)
     }
 
 
