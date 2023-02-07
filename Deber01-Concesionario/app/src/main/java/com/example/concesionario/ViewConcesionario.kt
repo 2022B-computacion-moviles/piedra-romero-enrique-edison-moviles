@@ -1,18 +1,24 @@
 package com.example.concesionario
 
+import android.app.AlertDialog
+import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
-import android.widget.ArrayAdapter
-import android.widget.EditText
-import android.widget.ListView
-import android.widget.TextView
+import android.view.ContextMenu
+import android.view.MenuItem
+import android.view.View
+import android.widget.*
 
 class ViewConcesionario : AppCompatActivity() {
+    var idCarroSeleccionado=0
+    private lateinit var concesionario: BConcesionario
+
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_view_concesionario)
 
-        val concesionario = intent.getSerializableExtra("concesionario") as BConcesionario
+        concesionario = intent.getSerializableExtra("concesionario") as BConcesionario
 
         val nombre = findViewById<TextView>(R.id.vc_nombre)
         nombre.text=concesionario.nombre
@@ -23,11 +29,70 @@ class ViewConcesionario : AppCompatActivity() {
         val cantidad_empleados = findViewById<TextView>(R.id.vc_empleados)
         cantidad_empleados.text=concesionario.cantidad_empleados.toString()
         //lista carros
-        val listviewcarros = findViewById<ListView>(R.id.vc_lv_carros)
-        val adaptador = ArrayAdapter(this, android.R.layout.simple_list_item_1, concesionario.carros)
-        listviewcarros.adapter = adaptador
+        val listviewcarros=findViewById<ListView>(R.id.vc_lv_carros)
+        BBaseDatosMemoria.adaptadorCarros= ArrayAdapter(this, android.R.layout.simple_list_item_1, concesionario.carros)
+        listviewcarros.adapter=BBaseDatosMemoria.adaptadorCarros
+        BBaseDatosMemoria.adaptadorCarros.notifyDataSetChanged()
+
+        registerForContextMenu(listviewcarros)
+
+    }
+
+    //idItemSeleccion para saber que elemento(del listview) escogió
+    override fun onCreateContextMenu(
+        menu: ContextMenu?,
+        v: View?,
+        menuInfo: ContextMenu.ContextMenuInfo?
+    ) {
+        super.onCreateContextMenu(menu, v, menuInfo)
+        //LLenamos los opciones del menu
+        val inflater=menuInflater
+        inflater.inflate(R.menu.menucarro, menu)
+        //Obtener el id del ArrayListSeleccionado
+        val info =menuInfo as AdapterView.AdapterContextMenuInfo
+        val id= info.position
+        idCarroSeleccionado=id
+    }
 
 
+    //opcion seleccionada del menu
+    override fun onContextItemSelected(item: MenuItem): Boolean {
+        return when (item.itemId){
+            R.id.item_btn_car_editar->{
+                /*
+                val concesionario = arreglo[idItemSeleccionado]
+                // Crea un Intent para abrir la siguiente actividad
+                val intent = Intent(this, EditarConcesionario::class.java)
+                // Agrega el objeto Concesionario al Intent como un extra
+                intent.putExtra("concesionario", concesionario) //El objeto debe ser Serializable
+                intent.putExtra("idItemSeleccionado", idItemSeleccionado)
+                //intent.putExtra("adaptador", adaptador as Serializable)
+                startActivity(intent)*/
+                return true
+            }
+            R.id.item_btn_car_eliminar->{
+                eliminarCarro(idCarroSeleccionado)
+                return true
+            }
 
+            else-> super.onContextItemSelected(item)
+        }
+    }
+
+    fun eliminarCarro(position: Int) {
+        concesionario.carros.removeAt(position)
+        BBaseDatosMemoria.adaptadorCarros.notifyDataSetChanged()
+
+        AlertDialog.Builder(this)
+            .setTitle("Eliminado")
+            .setMessage("Con Éxito")
+            .setPositiveButton("Aceptar") { dialog, which ->
+                // acción cuando se presiona Aceptar
+            }
+            .setNegativeButton("Cancelar") { dialog, which ->
+                // acción cuando se presiona Cancelar
+            }
+            .create()
+            .show()
     }
 }

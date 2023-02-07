@@ -13,6 +13,7 @@ class BBaseDatosMemoria {
         val arregloBCarro= arrayListOf<BCarro>()
 
         lateinit var adaptador: ArrayAdapter<BConcesionario>
+        lateinit var adaptadorCarros: ArrayAdapter<BCarro>
 
         //val adaptador = ArrayAdapter(this, android.R.layout.simple_list_item_1, arregloBConcesionario)
 
