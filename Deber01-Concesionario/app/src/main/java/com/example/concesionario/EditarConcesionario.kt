@@ -16,17 +16,17 @@ class EditarConcesionario : AppCompatActivity() {
         val concesionario = intent.getSerializableExtra("concesionario") as BConcesionario
         val idItemSeleccionado= intent.getIntExtra("idItemSeleccionado",0)
 
-        val nombre = findViewById<EditText>(R.id.input_car_newmarca)
+        val nombre = findViewById<EditText>(R.id.input_conc_nombre)
         nombre.setText(concesionario.nombre)
         //CAMBIO LA FECHA
-        val fecha_inaguracion = findViewById<TextView>(R.id.input_car_newfecha)
+        val fecha_inaguracion = findViewById<TextView>(R.id.input_conc_fecha)
         val fechaParseada = BBaseDatosMemoria.formatoEntrada.parse(concesionario.fecha_inaguracion.toString())
         val fechaSalida = BBaseDatosMemoria.formatoSalida.format(fechaParseada)
         fecha_inaguracion.setText(fechaSalida)
 
-        val porcentaje_personas_satisfechas = findViewById<TextView>(R.id.input_car_newcolor)
+        val porcentaje_personas_satisfechas = findViewById<TextView>(R.id.input_conc_porcentaje)
         porcentaje_personas_satisfechas.setText(concesionario.porcentaje_personas_satisfechas.toString())
-        val cantidad_empleados = findViewById<TextView>(R.id.input_car_newmeses)
+        val cantidad_empleados = findViewById<TextView>(R.id.input_conc_empleados)
         cantidad_empleados.setText(concesionario.cantidad_empleados.toString())
 
         val botonEditarConcesionario=findViewById<Button>(R.id.btn_ed_carro)

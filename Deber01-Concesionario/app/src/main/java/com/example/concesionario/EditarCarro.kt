@@ -13,7 +13,7 @@ class EditarCarro : AppCompatActivity() {
     var idCarroSeleccionado=0
 
     //private lateinit var concesionario: BConcesionario
-    private lateinit var concesionario_aux: BConcesionario
+    //private lateinit var concesionario_aux: BConcesionario
 
     private lateinit var carro: BCarro
 
@@ -21,7 +21,7 @@ class EditarCarro : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_editar_carro)
 
-        concesionario_aux = intent.getSerializableExtra("concesionario") as BConcesionario
+        val concesionario_aux = intent.getSerializableExtra("concesionario") as BConcesionario
 
         idItemSeleccionado= intent.getIntExtra("idItemSeleccionado",0)
         idCarroSeleccionado= intent.getIntExtra("idCarroSeleccionado",0)
@@ -57,7 +57,7 @@ class EditarCarro : AppCompatActivity() {
                         BBaseDatosMemoria.formatoFecha.parse(fecha_elaboracion.text.toString()),
                         (precio.text.toString()).toDouble(),
                         color_subjetivo.text.toString()=="true",
-                        (meses_plazo_pagar.text.toString()).toInt())
+                        (meses_plazo_pagar.text.toString()).toInt()), concesionario_aux
                     )
 
 
@@ -67,17 +67,17 @@ class EditarCarro : AppCompatActivity() {
     }
 
 
-    fun editarCarro(carro: BCarro){
+    fun editarCarro(carro: BCarro, concesionario_aux: BConcesionario){
         //BBaseDatosMemoria.arregloBConcesionario[idItemSeleccionado].carros[idCarroSeleccionado]=carro
         //var concesionario_aux= BBaseDatosMemoria.arregloBConcesionario[idItemSeleccionado]
 
         //concesionario_aux.carros[idCarroSeleccionado]=carro
 
-        var concesionario=concesionario_aux
-        concesionario.carros[idCarroSeleccionado]=carro
+        //var concesionario=concesionario_aux
+        concesionario_aux.carros[idCarroSeleccionado]=carro
 
         //concesionario.carros[idCarroSeleccionado] = carro
-        BBaseDatosMemoria.arregloBConcesionario[idItemSeleccionado]=concesionario
+        BBaseDatosMemoria.arregloBConcesionario[idItemSeleccionado]=concesionario_aux
         BBaseDatosMemoria.adaptadorCarros.notifyDataSetChanged()
         BBaseDatosMemoria.adaptador.notifyDataSetChanged()
 
