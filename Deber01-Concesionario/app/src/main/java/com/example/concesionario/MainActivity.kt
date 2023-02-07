@@ -32,10 +32,10 @@ class MainActivity : AppCompatActivity() {
         botonAniadirListView
             .setOnClickListener {
                 //agregarConcesionario(adaptador)
-                val nombre = findViewById<EditText>(R.id.input_conc_newnombre)
-                val fecha_inaguracion = findViewById<EditText>(R.id.input_conc_newfecha)
-                val porcentaje_personas_satisfechas = findViewById<EditText>(R.id.input_conc_newporcentaje)
-                val cantidad_empleados = findViewById<EditText>(R.id.input_conc_newempleados)
+                val nombre = findViewById<EditText>(R.id.input_car_newmarca)
+                val fecha_inaguracion = findViewById<EditText>(R.id.input_car_newfecha)
+                val porcentaje_personas_satisfechas = findViewById<EditText>(R.id.input_car_newcolor)
+                val cantidad_empleados = findViewById<EditText>(R.id.input_car_newmeses)
 
 
                 if (TextUtils.isEmpty(nombre.text) || TextUtils.isEmpty(fecha_inaguracion.text) || TextUtils.isEmpty(porcentaje_personas_satisfechas.text) || TextUtils.isEmpty(cantidad_empleados.text)) {

@@ -13,6 +13,13 @@
         android:theme="@style/Theme.Concesionario"
         tools:targetApi="31">
         <activity
+            android:name=".EditarCarro"
+            android:exported="false">
+            <meta-data
+                android:name="android.app.lib_name"
+                android:value="" />
+        </activity>
+        <activity
             android:name=".EditarConcesionario"
             android:exported="false">
             <meta-data

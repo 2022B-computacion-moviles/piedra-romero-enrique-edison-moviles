@@ -63,15 +63,13 @@ class ViewConcesionario : AppCompatActivity() {
     override fun onContextItemSelected(item: MenuItem): Boolean {
         return when (item.itemId){
             R.id.item_btn_car_editar->{
-                /*
-                val concesionario = arreglo[idItemSeleccionado]
-                // Crea un Intent para abrir la siguiente actividad
-                val intent = Intent(this, EditarConcesionario::class.java)
-                // Agrega el objeto Concesionario al Intent como un extra
-                intent.putExtra("concesionario", concesionario) //El objeto debe ser Serializable
+                //val carro = concesionario.carros[idCarroSeleccionado]
+                val intent = Intent(this, EditarCarro::class.java)
+                //intent.putExtra("carro", carro)
+                intent.putExtra("concesionario", concesionario)
                 intent.putExtra("idItemSeleccionado", idItemSeleccionado)
-                //intent.putExtra("adaptador", adaptador as Serializable)
-                startActivity(intent)*/
+                intent.putExtra("idCarroSeleccionado", idCarroSeleccionado)
+                startActivity(intent)
                 return true
             }
             R.id.item_btn_car_eliminar->{
