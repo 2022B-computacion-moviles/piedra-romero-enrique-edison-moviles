@@ -58,5 +58,6 @@ class EditarConcesionario : AppCompatActivity() {
 
     fun editarConcesionario(concesionario: BConcesionario, idItemSeleccionado: Int){
         BBaseDatosMemoria.arregloBConcesionario[idItemSeleccionado]=concesionario
+        BBaseDatosMemoria.adaptador.notifyDataSetChanged()
     }
 }

@@ -24,8 +24,8 @@ class ViewConcesionario : AppCompatActivity() {
         cantidad_empleados.text=concesionario.cantidad_empleados.toString()
         //lista carros
         val listviewcarros = findViewById<ListView>(R.id.vc_lv_carros)
-        val adapter = ArrayAdapter(this, android.R.layout.simple_list_item_1, concesionario.carros)
-        listviewcarros.adapter = adapter
+        val adaptador = ArrayAdapter(this, android.R.layout.simple_list_item_1, concesionario.carros)
+        listviewcarros.adapter = adaptador
 
 
 

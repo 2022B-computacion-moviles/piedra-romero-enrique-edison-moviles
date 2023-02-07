@@ -12,7 +12,7 @@ import android.widget.*
 
 class MainActivity : AppCompatActivity() {
 
-    private lateinit var adaptador: ArrayAdapter<BConcesionario>
+    //private lateinit var adaptador: ArrayAdapter<BConcesionario>
     val arreglo:ArrayList<BConcesionario> =BBaseDatosMemoria.arregloBConcesionario
     var idItemSeleccionado=0
 
@@ -24,9 +24,9 @@ class MainActivity : AppCompatActivity() {
 
         val listView=findViewById<ListView>(R.id.lv_concesionarios)
         //                          contexto      como se va a ver (XML)
-        adaptador= ArrayAdapter(this, android.R.layout.simple_list_item_1, arreglo)
-        listView.adapter=adaptador
-        adaptador.notifyDataSetChanged()
+        BBaseDatosMemoria.adaptador= ArrayAdapter(this, android.R.layout.simple_list_item_1, arreglo)
+        listView.adapter=BBaseDatosMemoria.adaptador
+        BBaseDatosMemoria.adaptador.notifyDataSetChanged()
 
         val botonAniadirListView=findViewById<Button>(R.id.btn_crear_concesionario)
         botonAniadirListView
@@ -121,19 +121,17 @@ class MainActivity : AppCompatActivity() {
 
     fun agregarConcesionario(concesionario: BConcesionario){
         arreglo.add(concesionario)
-        adaptador.notifyDataSetChanged() //Para que se cambie en la pantalla
+        BBaseDatosMemoria.adaptador.notifyDataSetChanged() //Para que se cambie en la pantalla
     }
 
 
 
     fun eliminarConcesionario(position: Int) {
         arreglo.removeAt(position)
-        adaptador.notifyDataSetChanged()
+        BBaseDatosMemoria.adaptador.notifyDataSetChanged()
     }
 
-    fun dialogo(){
 
-    }
 
 
     fun irActividad(clase:Class<*>){

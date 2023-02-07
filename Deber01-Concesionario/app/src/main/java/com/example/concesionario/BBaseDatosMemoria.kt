@@ -1,5 +1,6 @@
 package com.example.concesionario
 
+import android.widget.ArrayAdapter
 import java.text.SimpleDateFormat
 import java.util.*
 
@@ -11,6 +12,9 @@ class BBaseDatosMemoria {
         val arregloBConcesionario= arrayListOf<BConcesionario>()
         val arregloBCarro= arrayListOf<BCarro>()
 
+        lateinit var adaptador: ArrayAdapter<BConcesionario>
+
+        //val adaptador = ArrayAdapter(this, android.R.layout.simple_list_item_1, arregloBConcesionario)
 
         init {
             arregloBCarro.add(BCarro("carro1", formatoFecha.parse("02/02/2002"), 56.4, true,5))
@@ -20,6 +24,8 @@ class BBaseDatosMemoria {
             arregloBConcesionario.add(BConcesionario("Conc1",formatoFecha.parse("01/07/2001"), 34.5,  104,arregloBCarro))
             arregloBConcesionario.add(BConcesionario("Conc2",formatoFecha.parse("02/07/2001"), 34.5,  105,arregloBCarro))
             arregloBConcesionario.add(BConcesionario("Conc3",formatoFecha.parse("03/07/2001"), 34.5,  106,arregloBCarro))
+            //adaptador = ArrayAdapter(this, android.R.layout.simple_list_item_1, arregloBConcesionario)
+
         }
 
 
