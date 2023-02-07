@@ -6,10 +6,15 @@ class BBaseDatosMemoria {
     companion object{
         val formatoFecha = SimpleDateFormat("dd/MM/yyyy")
         val arregloBConcesionario= arrayListOf<BConcesionario>()
+        val arregloBCarro= arrayListOf<BCarro>()
+
+
         init {
-            arregloBConcesionario.add(BConcesionario("Conc1",formatoFecha.parse("02/07/2001"), 104))
-            arregloBConcesionario.add(BConcesionario("Conc2",formatoFecha.parse("02/07/2001"), 105))
-            arregloBConcesionario.add(BConcesionario("Conc3",formatoFecha.parse("02/07/2001"), 106))
+            arregloBCarro.add(BCarro("carro1", formatoFecha.parse("02/02/2002"), 56.4, true,5))
+
+            arregloBConcesionario.add(BConcesionario("Conc1",formatoFecha.parse("01/07/2001"), 34.5, true, 104,arregloBCarro))
+            arregloBConcesionario.add(BConcesionario("Conc2",formatoFecha.parse("02/07/2001"), 34.5, true, 105,arregloBCarro))
+            arregloBConcesionario.add(BConcesionario("Conc3",formatoFecha.parse("03/07/2001"), 34.5, true, 106,arregloBCarro))
         }
 
 

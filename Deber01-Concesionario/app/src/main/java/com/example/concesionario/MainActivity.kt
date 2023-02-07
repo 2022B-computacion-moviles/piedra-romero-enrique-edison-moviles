@@ -79,8 +79,10 @@ class MainActivity : AppCompatActivity() {
 
 
     fun agregarConcesionario(adaptador: ArrayAdapter<BConcesionario>){
-        BBaseDatosMemoria.arregloBConcesionario.add(BConcesionario("Conc5",
-            BBaseDatosMemoria.formatoFecha.parse("02/07/2001"), 555))
+        BBaseDatosMemoria.arregloBConcesionario.add(BConcesionario(
+            "Conc5", BBaseDatosMemoria.formatoFecha.parse("02/07/1990"), 34.5,
+            true, 104, BBaseDatosMemoria.arregloBCarro
+        ))
         adaptador.notifyDataSetChanged() //Para que se cambie en la pantalla
     }
 
