@@ -13,6 +13,7 @@ class EditarCarro : AppCompatActivity() {
     var idCarroSeleccionado=0
 
     private lateinit var concesionario: BConcesionario
+
     private lateinit var carro: BCarro
 
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -23,6 +24,8 @@ class EditarCarro : AppCompatActivity() {
 
         idItemSeleccionado= intent.getIntExtra("idItemSeleccionado",0)
         idCarroSeleccionado= intent.getIntExtra("idCarroSeleccionado",0)
+
+        //concesionario=BBaseDatosMemoria.arregloBConcesionario[idItemSeleccionado]
 
         carro= concesionario.carros[idCarroSeleccionado]
 
@@ -59,20 +62,16 @@ class EditarCarro : AppCompatActivity() {
 
 
                 }
-
             }
-
-
-
-
-
-
     }
 
 
     fun editarCarro(carro: BCarro){
         //BBaseDatosMemoria.arregloBConcesionario[idItemSeleccionado].carros[idCarroSeleccionado]=carro
-        concesionario.carros[idCarroSeleccionado] = carro
+        //var concesionario_aux= BBaseDatosMemoria.arregloBConcesionario[idItemSeleccionado]
+        concesionario.carros[idCarroSeleccionado]=carro
+
+        //concesionario.carros[idCarroSeleccionado] = carro
         BBaseDatosMemoria.arregloBConcesionario[idItemSeleccionado]=concesionario
         BBaseDatosMemoria.adaptadorCarros.notifyDataSetChanged()
         BBaseDatosMemoria.adaptador.notifyDataSetChanged()

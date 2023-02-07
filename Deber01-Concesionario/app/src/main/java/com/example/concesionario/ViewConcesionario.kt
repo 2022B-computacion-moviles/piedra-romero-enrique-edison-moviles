@@ -21,8 +21,11 @@ class ViewConcesionario : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_view_concesionario)
 
-        concesionario = intent.getSerializableExtra("concesionario") as BConcesionario
+        //concesionario = intent.getSerializableExtra("concesionario") as BConcesionario
         idItemSeleccionado= intent.getIntExtra("idItemSeleccionado",0)
+        concesionario=BBaseDatosMemoria.arregloBConcesionario[idItemSeleccionado]
+
+
 
         val nombre = findViewById<TextView>(R.id.vc_nombre)
         nombre.text=concesionario.nombre
