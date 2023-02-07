@@ -4,6 +4,7 @@ import android.app.AlertDialog
 import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import android.text.TextUtils
 import android.view.ContextMenu
 import android.view.MenuItem
 import android.view.View
@@ -21,9 +22,9 @@ class ViewConcesionario : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_view_concesionario)
 
-        //concesionario = intent.getSerializableExtra("concesionario") as BConcesionario
+        concesionario = intent.getSerializableExtra("concesionario") as BConcesionario
         idItemSeleccionado= intent.getIntExtra("idItemSeleccionado",0)
-        concesionario=BBaseDatosMemoria.arregloBConcesionario[idItemSeleccionado]
+        //concesionario=BBaseDatosMemoria.arregloBConcesionario[idItemSeleccionado]
 
 
 
@@ -40,6 +41,34 @@ class ViewConcesionario : AppCompatActivity() {
         BBaseDatosMemoria.adaptadorCarros= ArrayAdapter(this, android.R.layout.simple_list_item_1, concesionario.carros)
         listviewcarros.adapter=BBaseDatosMemoria.adaptadorCarros
         BBaseDatosMemoria.adaptadorCarros.notifyDataSetChanged()
+
+        val botonAniadirListView=findViewById<Button>(R.id.btn_add_car)
+        botonAniadirListView
+            .setOnClickListener {
+                //agregarConcesionario(adaptador)
+                val marca = findViewById<EditText>(R.id.input_car_marca)
+                val fecha_elaboracion = findViewById<EditText>(R.id.input_car_fecha)
+                val precio = findViewById<TextView>(R.id.input_car_precio)
+                val color_subjetivo = findViewById<TextView>(R.id.input_car_color)
+                val meses_plazo_pagar = findViewById<TextView>(R.id.input_car_meses)
+
+
+                if (TextUtils.isEmpty(marca.text) || TextUtils.isEmpty(fecha_elaboracion.text) || TextUtils.isEmpty(precio.text) || TextUtils.isEmpty(color_subjetivo.text) || TextUtils.isEmpty(meses_plazo_pagar.text)) {
+                    //No pasa nada
+                }
+                else{
+                    //Parametros completos
+                    agregarCarro(BCarro(
+                        marca.text.toString(),
+                        BBaseDatosMemoria.formatoFecha.parse(fecha_elaboracion.text.toString()),
+                        (precio.text.toString()).toDouble(),
+                        color_subjetivo.text.toString()=="true",
+                        (meses_plazo_pagar.text.toString()).toInt())
+                    )
+
+                }
+
+            }
 
         registerForContextMenu(listviewcarros)
 
@@ -82,6 +111,25 @@ class ViewConcesionario : AppCompatActivity() {
 
             else-> super.onContextItemSelected(item)
         }
+    }
+
+    fun agregarCarro(carro: BCarro){
+        concesionario.carros.add(carro)
+        BBaseDatosMemoria.arregloBConcesionario[idItemSeleccionado]=concesionario
+        BBaseDatosMemoria.adaptadorCarros.notifyDataSetChanged()
+        BBaseDatosMemoria.adaptador.notifyDataSetChanged()
+
+        AlertDialog.Builder(this)
+            .setTitle("Agregado")
+            .setMessage("Con Éxito")
+            .setPositiveButton("Aceptar") { dialog, which ->
+                // acción cuando se presiona Aceptar
+            }
+            .setNegativeButton("Cancelar") { dialog, which ->
+                // acción cuando se presiona Cancelar
+            }
+            .create()
+            .show()
     }
 
     fun eliminarCarro(position: Int) {
