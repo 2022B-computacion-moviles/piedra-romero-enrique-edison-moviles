@@ -59,5 +59,17 @@ class EditarConcesionario : AppCompatActivity() {
     fun editarConcesionario(concesionario: BConcesionario, idItemSeleccionado: Int){
         BBaseDatosMemoria.arregloBConcesionario[idItemSeleccionado]=concesionario
         BBaseDatosMemoria.adaptador.notifyDataSetChanged()
+
+        AlertDialog.Builder(this)
+            .setTitle("Modificado")
+            .setMessage("Con Éxito")
+            .setPositiveButton("Aceptar") { dialog, which ->
+                // acción cuando se presiona Aceptar
+            }
+            .setNegativeButton("Cancelar") { dialog, which ->
+                // acción cuando se presiona Cancelar
+            }
+            .create()
+            .show()
     }
 }

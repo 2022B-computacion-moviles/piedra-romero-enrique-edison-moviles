@@ -122,6 +122,18 @@ class MainActivity : AppCompatActivity() {
     fun agregarConcesionario(concesionario: BConcesionario){
         arreglo.add(concesionario)
         BBaseDatosMemoria.adaptador.notifyDataSetChanged() //Para que se cambie en la pantalla
+
+        AlertDialog.Builder(this)
+            .setTitle("Agregado")
+            .setMessage("Con Éxito")
+            .setPositiveButton("Aceptar") { dialog, which ->
+                // acción cuando se presiona Aceptar
+            }
+            .setNegativeButton("Cancelar") { dialog, which ->
+                // acción cuando se presiona Cancelar
+            }
+            .create()
+            .show()
     }
 
 
@@ -129,6 +141,18 @@ class MainActivity : AppCompatActivity() {
     fun eliminarConcesionario(position: Int) {
         arreglo.removeAt(position)
         BBaseDatosMemoria.adaptador.notifyDataSetChanged()
+
+        AlertDialog.Builder(this)
+            .setTitle("Eliminado")
+            .setMessage("Con Éxito")
+            .setPositiveButton("Aceptar") { dialog, which ->
+                // acción cuando se presiona Aceptar
+            }
+            .setNegativeButton("Cancelar") { dialog, which ->
+                // acción cuando se presiona Cancelar
+            }
+            .create()
+            .show()
     }
 
 
