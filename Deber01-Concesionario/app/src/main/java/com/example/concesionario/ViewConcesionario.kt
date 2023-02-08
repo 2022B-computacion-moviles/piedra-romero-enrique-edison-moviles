@@ -111,10 +111,8 @@ class ViewConcesionario : AppCompatActivity() {
     override fun onContextItemSelected(item: MenuItem): Boolean {
         return when (item.itemId){
             R.id.item_btn_car_editar->{
-                //val carro = arregloCarros[idCarroSeleccionado]
                 val concesionario = arregloConcesionario[idItemSeleccionado]
                 val intent = Intent(this, EditarCarro::class.java)
-                //intent.putExtra("carro", carro)
                 intent.putExtra("concesionario", concesionario)
                 intent.putExtra("idItemSeleccionado", idItemSeleccionado)
                 intent.putExtra("idCarroSeleccionado", idCarroSeleccionado)

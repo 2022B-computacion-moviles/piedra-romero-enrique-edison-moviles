@@ -25,8 +25,6 @@ class EditarCarro : AppCompatActivity() {
         var idItemSeleccionado= intent.getIntExtra("idItemSeleccionado",0)
         var idCarroSeleccionado= intent.getIntExtra("idCarroSeleccionado",0)
 
-        //concesionario_aux=BBaseDatosMemoria.arregloBConcesionario[idItemSeleccionado]
-
         carro= concesionario_aux.carros[idCarroSeleccionado]
 
 
@@ -84,7 +82,7 @@ class EditarCarro : AppCompatActivity() {
 
 
         AlertDialog.Builder(this)
-            .setTitle("Modificado c:${idItemSeleccionado} car:${idCarroSeleccionado}")
+            .setTitle("Modificado")
             .setMessage("Con Éxito")
             .setPositiveButton("Aceptar") { dialog, which ->
                 // acción cuando se presiona Aceptar

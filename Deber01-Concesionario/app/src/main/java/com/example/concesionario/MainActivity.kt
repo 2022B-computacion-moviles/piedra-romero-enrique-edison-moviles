@@ -87,12 +87,9 @@ class MainActivity : AppCompatActivity() {
         return when (item.itemId){
             R.id.item_btn_editar->{
                 val concesionario = arreglo[idItemSeleccionado]
-                // Crea un Intent para abrir la siguiente actividad
                 val intent = Intent(this, EditarConcesionario::class.java)
-                // Agrega el objeto Concesionario al Intent como un extra
-                intent.putExtra("concesionario", concesionario) //El objeto debe ser Serializable
+                intent.putExtra("concesionario", concesionario)
                 intent.putExtra("idItemSeleccionado", idItemSeleccionado)
-                //intent.putExtra("adaptador", adaptador as Serializable)
                 startActivity(intent)
                 return true
             }
