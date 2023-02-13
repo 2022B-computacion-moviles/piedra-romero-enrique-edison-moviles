@@ -15,14 +15,12 @@ class FRecyclerViewAdaptadorElements (
         val emisorTextView: TextView
         val receptorTextView: TextView
         val mensajeTextView: TextView
-        //val accionButton: Button
-        //var numeroLikes = 0 // Esto sería mejor guardar en la clase de Entrenador
+
         init {
             emisorTextView = view.findViewById(R.id.rc_tv_emisor)
             receptorTextView = view.findViewById(R.id.rc_tv_receptor)
             mensajeTextView = view.findViewById(R.id.rc_tv_mensaje)
-            //accionButton = view.findViewById(R.id.btn_dar_like)
-            //accionButton.setOnClickListener { anadirLike() }
+
         }
 
     }
@@ -43,8 +41,7 @@ class FRecyclerViewAdaptadorElements (
         holder.emisorTextView.text = mensajeActual.emisor
         holder.receptorTextView.text = mensajeActual.receptor
         holder.mensajeTextView.text = mensajeActual.mensaje
-        //holder.accionButton.text = "Like ${entrenadorActual.nombre}"
-        //holder.likesTextView.text = "0"
+
     }
     // tamaño del arreglo
     override fun getItemCount(): Int {

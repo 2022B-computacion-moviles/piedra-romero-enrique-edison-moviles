@@ -12,9 +12,9 @@ class GRecyclerView : AppCompatActivity() {
         setContentView(R.layout.activity_grecycler_view)
         val listCorrreos = arrayListOf<Correo>()
         listCorrreos
-            .add(Correo("Enrique","Eguez", "Hola Pof"))
+            .add(Correo("Enrique","piedra", "Hola Pof"))
         listCorrreos
-            .add(Correo("Enrique","Eguez 2", "Hola Pof2"))
+            .add(Correo("Enrique","piedra 2", "Hola Pof2"))
 
         val recyclerView = findViewById<RecyclerView>(R.id.grv_correos)
         inicializarRecyclerView(listCorrreos,recyclerView)
@@ -33,5 +33,5 @@ class GRecyclerView : AppCompatActivity() {
         recyclerView.layoutManager = androidx.recyclerview.widget.LinearLayoutManager(this)
         adaptador.notifyDataSetChanged()
     }
-    
+
 }
