@@ -35,6 +35,10 @@
             android:value="AIzaSyCZnHvMtkadW64vde1xUHNfG2xWw6awITs" />
 
         <activity
+            android:name=".GRecyclerView"
+            android:exported="false" />
+
+        <activity
             android:name=".hFragmento"
             android:exported="false"
             android:label="@string/title_activity_hfragmento" />
