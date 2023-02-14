@@ -1,8 +1,9 @@
 package com.example.outlook
 
-import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
-import android.widget.TextView
+import androidx.appcompat.app.AppCompatActivity
+import androidx.recyclerview.widget.DividerItemDecoration
+import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 
 class GRecyclerView : AppCompatActivity() {
@@ -12,11 +13,15 @@ class GRecyclerView : AppCompatActivity() {
         setContentView(R.layout.activity_grecycler_view)
         val listCorrreos = arrayListOf<Correo>()
         listCorrreos
-            .add(Correo("Enrique","piedra", "Hola Pof"))
+            .add(Correo("Enrique","piedra", "Lorem ipsum dolor sit amet. Et optio voluptatum qui doloremque optio et voluptatibus voluptas in harum maxime et vitae quas aut tempora repellat et velit sequi. Est distinctio omnis eum blanditiis provident ea rerum voluptatem. Non illum magni ad nihil consectetur aut porro consequatur qui minus eligendi. A beatae nemo ut magni distinctio vel consequatur galisum."))
         listCorrreos
-            .add(Correo("Enrique","piedra 2", "Hola Pof2"))
+            .add(Correo("Enrique","piedra 2", "Est aliquid similique et voluptatem perferendis vel dolor odit ea praesentium assumenda ut odio fugit. Eos voluptate sint qui enim magnam qui corporis alias non obcaecati velit hic esse placeat qui voluptatem maiores qui velit error. Est deleniti facilis eum cumque enim ex rerum dolores."))
+        listCorrreos
+            .add(Correo("Enrique","piedra 3", "Et neque culpa id vitae beatae aut dolorum officia. In officiis veritatis 33 quia facilis ab dolorum quaerat? Et molestiae ducimus aut numquam rerum est nostrum nisi eos internos eaque qui quisquam quia."))
 
         val recyclerView = findViewById<RecyclerView>(R.id.grv_correos)
+
+
         inicializarRecyclerView(listCorrreos,recyclerView)
     }
     fun inicializarRecyclerView(
@@ -30,7 +35,19 @@ class GRecyclerView : AppCompatActivity() {
         )
         recyclerView.adapter = adaptador
         recyclerView.itemAnimator = androidx.recyclerview.widget.DefaultItemAnimator()
-        recyclerView.layoutManager = androidx.recyclerview.widget.LinearLayoutManager(this)
+
+        val mLayoutManager = LinearLayoutManager(this)
+        recyclerView.layoutManager =mLayoutManager
+        //recyclerView.layoutManager = androidx.recyclerview.widget.LinearLayoutManager(this)
+
+        val mDividerItemDecoration = DividerItemDecoration(
+            recyclerView.context,
+            mLayoutManager.orientation
+        )
+        recyclerView.addItemDecoration(mDividerItemDecoration)
+
+
+
         adaptador.notifyDataSetChanged()
     }
 
