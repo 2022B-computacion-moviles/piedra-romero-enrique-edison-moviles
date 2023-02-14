@@ -15,3 +15,21 @@ class Correo    (
         return "${emisor} - ${receptor} - ${mensaje}"
     }
 }
+
+/*
+class Correo    (
+    var idcorreo: Int,
+    var seccion: Int,
+    var emisor: String,
+    var receptor: String,
+    var mensaje: String
+
+
+): Serializable
+{
+    override fun toString(): String {
+        return "${emisor} - ${receptor} - ${mensaje}"
+    }
+}*/
+
+

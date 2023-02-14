@@ -1,12 +1,16 @@
 package com.example.outlook
 
 import android.os.Bundle
+import android.widget.Button
+import android.widget.EditText
 import androidx.appcompat.app.AppCompatActivity
 import androidx.recyclerview.widget.DividerItemDecoration
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 
 class GRecyclerView : AppCompatActivity() {
+
+    private lateinit var adaptador: FRecyclerViewAdaptadorElements
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -23,12 +27,21 @@ class GRecyclerView : AppCompatActivity() {
 
 
         inicializarRecyclerView(listCorrreos,recyclerView)
+
+
+        val botonAñadir = findViewById<Button>(R.id.btn_crear_elements)
+        botonAñadir
+            .setOnClickListener {
+                listCorrreos
+                    .add(Correo("Enrique","piedra 3", "Et neque culpa id vitae beatae aut dolorum officia. In officiis veritatis 33 quia facilis ab dolorum quaerat? Et molestiae ducimus aut numquam rerum est nostrum nisi eos internos eaque qui quisquam quia."))
+                adaptador.notifyDataSetChanged()
+            }
     }
     fun inicializarRecyclerView(
         lista:ArrayList<Correo>,
         recyclerView: RecyclerView
     ){
-        val adaptador = FRecyclerViewAdaptadorElements(
+        adaptador = FRecyclerViewAdaptadorElements(
             this,
             lista,
             recyclerView
