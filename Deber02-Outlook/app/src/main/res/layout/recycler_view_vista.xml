@@ -81,6 +81,9 @@
     <ScrollView
         android:layout_width="190dp"
         android:layout_height="144dp"
+        android:scrollbars="vertical"
+        android:scrollbarStyle="insideOverlay"
+        android:scrollbarFadeDuration="0"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.606"
@@ -90,8 +93,8 @@
 
         <TextView
             android:id="@+id/rc_tv_mensaje"
-            android:layout_width="200dp"
-            android:layout_height="150dp"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
             android:text="Elemento"
             android:textSize="20dp" />
     </ScrollView>
