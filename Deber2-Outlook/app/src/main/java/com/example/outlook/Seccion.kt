@@ -1,12 +1,17 @@
 package com.example.outlook
 
+import androidx.room.ColumnInfo
 import androidx.room.Entity
 import androidx.room.PrimaryKey
 import java.io.Serializable
 
-@Entity
+@Entity(tableName = "seccion")
 data class Seccion (
-    @PrimaryKey
+    @PrimaryKey(autoGenerate = true)
+    @ColumnInfo(name = "id")
+    var id: Int=0,
+
+    @ColumnInfo(name = "nameseccion")
     var nameseccion: String
 ): Serializable
 {
