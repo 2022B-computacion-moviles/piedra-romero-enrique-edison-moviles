@@ -7,10 +7,10 @@ import androidx.room.*
 @Dao
 interface SeccionDao {
     @Query("SELECT * FROM seccion")
-    fun getAll(): LiveData<List<Seccion>>
+    fun getAll(): List<Seccion>
 
     @Query("SELECT * FROM seccion WHERE nameseccion = :nameseccion")
-    fun get(nameseccion: String): LiveData<Seccion>
+    fun get(nameseccion: String): Seccion
 
     @Insert
     fun insert(secciones: Seccion)
