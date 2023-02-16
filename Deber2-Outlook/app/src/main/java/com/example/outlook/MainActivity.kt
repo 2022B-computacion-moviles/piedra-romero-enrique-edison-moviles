@@ -35,10 +35,7 @@ class MainActivity : AppCompatActivity() {
             .build()
 
 
-        database.seccionDao.insert(Seccion(nameseccion = "Bandeja de entrada"))
-        database.seccionDao.insert(Seccion(nameseccion = "Elementos enviados"))
-        database.seccionDao.insert(Seccion(nameseccion = "Elementos eliminados"))
-        database.seccionDao.insert(Seccion(nameseccion = "Correo no deseado"))
+
 /*
         database.seccionDao.insertAll(Seccion(nameseccion = "Bandeja de entrada"))[0]
         database.seccionDao.insertAll(Seccion(nameseccion = "Correo no deseado"))[0]
@@ -51,6 +48,14 @@ class MainActivity : AppCompatActivity() {
 
         recyclerViewSecciones = findViewById(R.id.rv_secciones)
         secciones=database.seccionDao.getAll()
+
+        if(secciones.isEmpty()){
+            database.seccionDao.insert(Seccion(nameseccion = "Bandeja de entrada"))
+            database.seccionDao.insert(Seccion(nameseccion = "Elementos enviados"))
+            database.seccionDao.insert(Seccion(nameseccion = "Elementos eliminados"))
+            database.seccionDao.insert(Seccion(nameseccion = "Correo no deseado"))
+            secciones=database.seccionDao.getAll()
+        }
         val adaptadorSeccion = RecyclerViewAdapterSeccion(
             secciones
         )
