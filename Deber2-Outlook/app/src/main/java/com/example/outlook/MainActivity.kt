@@ -9,6 +9,7 @@ import androidx.lifecycle.LiveData
 import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProvider
 import androidx.recyclerview.widget.DefaultItemAnimator
+import androidx.recyclerview.widget.DividerItemDecoration
 import androidx.recyclerview.widget.LinearLayoutManager
 
 import androidx.recyclerview.widget.RecyclerView
@@ -33,6 +34,7 @@ class MainActivity : AppCompatActivity() {
             .fallbackToDestructiveMigration()
             .build()
 
+
         database.seccionDao.insert(Seccion(nameseccion = "Bandeja de entrada"))
         database.seccionDao.insert(Seccion(nameseccion = "Elementos enviados"))
         database.seccionDao.insert(Seccion(nameseccion = "Elementos eliminados"))
@@ -54,8 +56,14 @@ class MainActivity : AppCompatActivity() {
         )
         recyclerViewSecciones.adapter = adaptadorSeccion
 
-        recyclerViewSecciones.layoutManager = LinearLayoutManager(this)
+        val mLayoutManager = LinearLayoutManager(this)
+        recyclerViewSecciones.layoutManager =mLayoutManager
 
+        val mDividerItemDecoration = DividerItemDecoration(
+            recyclerViewSecciones.context,
+            mLayoutManager.orientation
+        )
+        recyclerViewSecciones.addItemDecoration(mDividerItemDecoration)
         adaptadorSeccion.notifyDataSetChanged()
 
 
