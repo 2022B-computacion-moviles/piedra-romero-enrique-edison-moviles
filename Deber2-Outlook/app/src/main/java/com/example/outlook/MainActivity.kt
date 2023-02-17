@@ -1,8 +1,13 @@
 package com.example.outlook
 
 import android.app.AlertDialog
+import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import android.view.ContextMenu
+import android.view.MenuItem
+import android.view.View
+import android.widget.AdapterView
 import android.widget.Button
 import android.widget.TextView
 import androidx.lifecycle.LiveData
@@ -17,12 +22,14 @@ import androidx.room.Room
 
 class MainActivity : AppCompatActivity() {
 
-    private lateinit var seccionViewModel: SeccionViewModel
-    private lateinit var recyclerViewSecciones: RecyclerView
-    private lateinit var adapter: RecyclerViewAdapterSeccion
+    //private lateinit var recyclerViewSecciones: RecyclerView
+    private lateinit var adaptadorSeccion: RecyclerViewAdapterSeccion
 
     private lateinit var database: AppDataBase
     var secciones = emptyList<Seccion>()
+
+    var idItemSeleccionado=0
+    lateinit var seccionaux: Seccion
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -35,18 +42,8 @@ class MainActivity : AppCompatActivity() {
             .build()
 
 
+        val recyclerViewSecciones = findViewById<RecyclerView>(R.id.rv_secciones)
 
-/*
-        database.seccionDao.insertAll(Seccion(nameseccion = "Bandeja de entrada"))[0]
-        database.seccionDao.insertAll(Seccion(nameseccion = "Correo no deseado"))[0]
-
- */
-
-
-
-
-
-        recyclerViewSecciones = findViewById(R.id.rv_secciones)
         secciones=database.seccionDao.getAll()
 
         if(secciones.isEmpty()){
@@ -56,9 +53,7 @@ class MainActivity : AppCompatActivity() {
             database.seccionDao.insert(Seccion(nameseccion = "Correo no deseado"))
             secciones=database.seccionDao.getAll()
         }
-        val adaptadorSeccion = RecyclerViewAdapterSeccion(
-            secciones
-        )
+        adaptadorSeccion = RecyclerViewAdapterSeccion(secciones)
         recyclerViewSecciones.adapter = adaptadorSeccion
 
         val mLayoutManager = LinearLayoutManager(this)
@@ -72,72 +67,43 @@ class MainActivity : AppCompatActivity() {
         adaptadorSeccion.notifyDataSetChanged()
 
 
-        /*
-
-        database.seccionDao.getAll().observe(this, Observer {
-            secciones = it
-
-            val adaptadorSeccion = RecyclerViewAdapterSeccion(
-                secciones
-            )
-            recyclerViewSecciones.adapter = adaptadorSeccion
-            adaptadorSeccion.notifyDataSetChanged()
-        })*/
-
-
-
-        AlertDialog.Builder(this)
-            .setTitle("Modificado")
-            .setMessage("Con Éxito ${secciones.size}")
-            .setPositiveButton("Aceptar") { dialog, which ->
-                // acción cuando se presiona Aceptar
-            }
-            .setNegativeButton("Cancelar") { dialog, which ->
-                // acción cuando se presiona Cancelar
-            }
-            .create()
-            .show()
-
-
-
-        /*
-val secciones = database.seccionDao.getAll()
-var text_s=""
-secciones.forEach { seccion ->
-    text_s+="${seccion.id}, ${seccion.nameseccion}\n"
-}*/
-
-        /*
-
-        recyclerView = findViewById(R.id.rv_secciones)
-        seccionViewModel = ViewModelProvider(this).get(SeccionViewModel::class.java)
-
-        seccionViewModel.seccionsDefault() // Llamada al método antes de inicializar el adaptador
-
-        val secciones = seccionViewModel.seccionesLiveData.value ?: emptyList()
-        adapter = RecyclerViewAdapterSeccion(secciones)
-        recyclerView.adapter = adapter
-
-        recyclerView.layoutManager = LinearLayoutManager(this)
-
-
-        seccionViewModel.seccionsDefault()
-
-        AlertDialog.Builder(this)
-            .setTitle("Modificado")
-            .setMessage("Con Éxito ${secciones.size}")
-            .setPositiveButton("Aceptar") { dialog, which ->
-                // acción cuando se presiona Aceptar
-            }
-            .setNegativeButton("Cancelar") { dialog, which ->
-                // acción cuando se presiona Cancelar
-            }
-            .create()
-            .show()
-
-
-         */
-
+        registerForContextMenu(recyclerViewSecciones)
 
     }
+
+    //idItemSeleccion para saber que elemento(del listview) escogió
+    override fun onCreateContextMenu(
+        menu: ContextMenu?,
+        v: View?,
+        menuInfo: ContextMenu.ContextMenuInfo?
+    ) {
+        super.onCreateContextMenu(menu, v, menuInfo)
+        val inflater=menuInflater
+        inflater.inflate(R.menu.menu_seccion, menu)
+        val info =menuInfo as AdapterView.AdapterContextMenuInfo
+        val id= info.position
+        idItemSeleccionado=id
+
+        // Obtiene el objeto Seccion correspondiente al índice seleccionado
+        seccionaux = adaptadorSeccion.getItem(id)
+    }
+
+
+    override fun onContextItemSelected(item: MenuItem): Boolean {
+        return when (item.itemId){
+            R.id.menu_seccion_eliminar->{
+                eliminarSeccion(seccionaux)
+                return true
+            }
+            else-> super.onContextItemSelected(item)
+        }
+    }
+
+
+    fun eliminarSeccion(seccion: Seccion) {
+        database.seccionDao.delete(seccion)
+        adaptadorSeccion.notifyDataSetChanged()
+
+    }
+
 }

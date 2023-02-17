@@ -28,4 +28,10 @@ class RecyclerViewAdapterSeccion(private val secciones: List<Seccion>) :
     }
 
     override fun getItemCount(): Int = secciones.size
+
+    fun getItem(position: Int): Seccion {
+        return secciones[position]
+    }
+
+
 }
