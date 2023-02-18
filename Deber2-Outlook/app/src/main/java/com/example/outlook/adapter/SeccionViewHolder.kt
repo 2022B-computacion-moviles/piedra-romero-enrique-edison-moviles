@@ -13,9 +13,11 @@ class SeccionViewHolder (view: View) : RecyclerView.ViewHolder(view) {
     val nameseccion= view.findViewById<TextView>(R.id.seccion_name)
 
     fun render(
-        seccionModel: Seccion
+        seccionModel: Seccion,
+        onClickListener: (Seccion) -> Unit
     ) {
         nameseccion.text = seccionModel.nameseccion
+        itemView.setOnClickListener { onClickListener(seccionModel)}
 
     }
 }

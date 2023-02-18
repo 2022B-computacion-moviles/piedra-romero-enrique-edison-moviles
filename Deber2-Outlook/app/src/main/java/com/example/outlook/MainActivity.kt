@@ -10,6 +10,7 @@ import android.view.View
 import android.widget.AdapterView
 import android.widget.Button
 import android.widget.TextView
+import android.widget.Toast
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProvider
@@ -58,8 +59,11 @@ class MainActivity : AppCompatActivity() {
     private fun initializeRecyclerView(list: List<Seccion>, recyclerView: RecyclerView) {
         recyclerView.itemAnimator = androidx.recyclerview.widget.DefaultItemAnimator()
         recyclerView.layoutManager = LinearLayoutManager(this)
-        recyclerView.adapter=SeccionAdapter(list)
+        recyclerView.adapter=SeccionAdapter(list) {onItemSelected(it)}
+    }
 
+    private fun onItemSelected(seccion: Seccion) {
+        Toast.makeText(this, seccion.nameseccion, Toast.LENGTH_SHORT).show()
     }
 
 
