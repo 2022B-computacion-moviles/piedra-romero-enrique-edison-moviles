@@ -22,11 +22,8 @@ import androidx.room.Room
 
 class MainActivity : AppCompatActivity() {
 
-    //private lateinit var recyclerViewSecciones: RecyclerView
-    private lateinit var adaptadorSeccion: RecyclerViewAdapterSeccion
-
     private lateinit var database: AppDataBase
-    var secciones = emptyList<Seccion>()
+    var secciones = ArrayList<Seccion>()
 
     var idItemSeleccionado=0
     lateinit var seccionaux: Seccion
@@ -41,36 +38,31 @@ class MainActivity : AppCompatActivity() {
             .fallbackToDestructiveMigration()
             .build()
 
-
         val recyclerViewSecciones = findViewById<RecyclerView>(R.id.rv_secciones)
-
-        secciones=database.seccionDao.getAll()
+        secciones = database.seccionDao.getAll().toMutableList() as ArrayList<Seccion>
 
         if(secciones.isEmpty()){
             database.seccionDao.insert(Seccion(nameseccion = "Bandeja de entrada"))
             database.seccionDao.insert(Seccion(nameseccion = "Elementos enviados"))
             database.seccionDao.insert(Seccion(nameseccion = "Elementos eliminados"))
             database.seccionDao.insert(Seccion(nameseccion = "Correo no deseado"))
-            secciones=database.seccionDao.getAll()
+            secciones = database.seccionDao.getAll().toMutableList() as ArrayList<Seccion>
         }
-        adaptadorSeccion = RecyclerViewAdapterSeccion(secciones)
-        recyclerViewSecciones.adapter = adaptadorSeccion
-
-        val mLayoutManager = LinearLayoutManager(this)
-        recyclerViewSecciones.layoutManager =mLayoutManager
-
-        val mDividerItemDecoration = DividerItemDecoration(
-            recyclerViewSecciones.context,
-            mLayoutManager.orientation
-        )
-        recyclerViewSecciones.addItemDecoration(mDividerItemDecoration)
-        adaptadorSeccion.notifyDataSetChanged()
-
-
-        registerForContextMenu(recyclerViewSecciones)
-
+        initializeRecyclerView(secciones,recyclerViewSecciones)
     }
 
+
+    private fun initializeRecyclerView(list: ArrayList<Seccion>, recyclerView: RecyclerView) {
+        val adapter = RecyclerViewAdapterSeccion(list)
+
+        recyclerView.adapter = adapter
+        recyclerView.itemAnimator = androidx.recyclerview.widget.DefaultItemAnimator()
+        recyclerView.layoutManager = androidx.recyclerview.widget.LinearLayoutManager(this)
+        adapter.notifyDataSetChanged()
+    }
+
+
+/*
     //idItemSeleccion para saber que elemento(del listview) escogió
     override fun onCreateContextMenu(
         menu: ContextMenu?,
@@ -84,15 +76,14 @@ class MainActivity : AppCompatActivity() {
         val id= info.position
         idItemSeleccionado=id
 
-        // Obtiene el objeto Seccion correspondiente al índice seleccionado
-        seccionaux = adaptadorSeccion.getItem(id)
+
     }
 
 
     override fun onContextItemSelected(item: MenuItem): Boolean {
         return when (item.itemId){
             R.id.menu_seccion_eliminar->{
-                eliminarSeccion(seccionaux)
+
                 return true
             }
             else-> super.onContextItemSelected(item)
@@ -100,10 +91,6 @@ class MainActivity : AppCompatActivity() {
     }
 
 
-    fun eliminarSeccion(seccion: Seccion) {
-        database.seccionDao.delete(seccion)
-        adaptadorSeccion.notifyDataSetChanged()
 
-    }
-
+*/
 }

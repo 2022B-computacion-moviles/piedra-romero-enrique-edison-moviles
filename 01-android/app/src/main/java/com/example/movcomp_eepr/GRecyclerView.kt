@@ -33,6 +33,8 @@ class GRecyclerView : AppCompatActivity() {
         adaptador.notifyDataSetChanged()
     }
 
+
+
     fun aumentarTotallikes(){
         totalLikes++
         val totalLikestextView = findViewById<TextView>(R.id.tv_total_likes)
