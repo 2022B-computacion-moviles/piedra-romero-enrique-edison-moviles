@@ -57,14 +57,30 @@ class MainActivity : AppCompatActivity() {
 
 
     private fun initializeRecyclerView(list: List<Seccion>, recyclerView: RecyclerView) {
+        val manager=LinearLayoutManager(this)
+        val decoration=DividerItemDecoration(this, manager.orientation)
+
         recyclerView.itemAnimator = androidx.recyclerview.widget.DefaultItemAnimator()
-        recyclerView.layoutManager = LinearLayoutManager(this)
+        recyclerView.layoutManager = manager
         recyclerView.adapter=SeccionAdapter(list) {onItemSelected(it)}
+        recyclerView.addItemDecoration(decoration)
+
+
     }
 
     private fun onItemSelected(seccion: Seccion) {
-        Toast.makeText(this, seccion.nameseccion, Toast.LENGTH_SHORT).show()
+        //Toast.makeText(this, seccion.nameseccion, Toast.LENGTH_SHORT).show()
+        val intent = Intent(this, ViewSeccion::class.java)
+        intent.putExtra("seccion", seccion)
+        startActivity(intent)
     }
+
+    fun irActividad(clase:Class<*>){
+        val intent= Intent(this, clase)
+        startActivity(intent)
+    }
+
+
 
 
 }
