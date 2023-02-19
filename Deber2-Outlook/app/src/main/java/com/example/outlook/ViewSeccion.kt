@@ -172,15 +172,17 @@ class ViewSeccion : AppCompatActivity() {
         recyclerView.addItemDecoration(decoration)
     }
 
+    //FUNCIONES LAMBDA's
     private fun onCorreoSelected(correo: Correo) {
         // Manejar evento de selección de correo
-        Toast.makeText(this, "seccion seleccionado: ${correo.emisor}", Toast.LENGTH_SHORT).show()
+        Toast.makeText(this, "Emisor: ${correo.emisor}", Toast.LENGTH_SHORT).show()
 
     }
 
     private fun onSeccionSelected(seccion: Seccion) {
         // Manejar evento de selección de sección
-        Toast.makeText(this, "seccion seleccionado: ${seccion.nameseccion}", Toast.LENGTH_SHORT).show()
+        Toast.makeText(this, "Correo movido a ${seccion.nameseccion}", Toast.LENGTH_SHORT).show()
+        
     }
 
 
