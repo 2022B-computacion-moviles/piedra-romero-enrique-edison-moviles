@@ -1,17 +1,14 @@
 package com.example.outlook.adapter
 
-import android.view.SubMenu
 import android.view.View
 import android.widget.ImageView
 import android.widget.TextView
-import android.widget.Toast
 import androidx.appcompat.widget.PopupMenu
 import androidx.recyclerview.widget.RecyclerView
 import com.example.outlook.AppDataBase
 import com.example.outlook.Correo
 import com.example.outlook.R
 import com.example.outlook.Seccion
-import org.w3c.dom.Text
 
 class CorreoViewHolder (view: View) : RecyclerView.ViewHolder(view) {
 
@@ -58,8 +55,9 @@ class CorreoViewHolder (view: View) : RecyclerView.ViewHolder(view) {
 
         popupMenu.setOnMenuItemClickListener { menuItem ->
             when (menuItem.itemId) {
-                R.id.menu_correo_eliminar -> {
+                R.id.menu_correo_ver -> {
                     //emisor.text = "eliminado"
+                    onClickListener(correoModel)
                     return@setOnMenuItemClickListener true
                 }
                 else -> return@setOnMenuItemClickListener false

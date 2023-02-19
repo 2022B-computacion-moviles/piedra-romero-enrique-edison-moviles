@@ -174,14 +174,18 @@ class ViewSeccion : AppCompatActivity() {
 
     //FUNCIONES LAMBDA's
     private fun onCorreoSelected(correo: Correo) {
-        // Manejar evento de selección de correo
-        Toast.makeText(this, "Emisor: ${correo.emisor}", Toast.LENGTH_SHORT).show()
+        // Manejar evento de selección de correo para Ver
+        //Toast.makeText(this, "Emisor: ${correo.emisor}", Toast.LENGTH_SHORT).show()
+        val intent = Intent(this, ViewCorreo::class.java)
+        intent.putExtra("correo", correo)
+        startActivity(intent)
 
     }
 
     private fun onSeccionSelected(seccion: Seccion) {
         // Manejar evento de selección de sección
         Toast.makeText(this, "Correo movido a ${seccion.nameseccion}", Toast.LENGTH_SHORT).show()
+        recreate()
         
     }
 
