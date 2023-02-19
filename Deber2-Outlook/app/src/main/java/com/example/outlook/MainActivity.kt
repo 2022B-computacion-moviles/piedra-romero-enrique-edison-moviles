@@ -20,6 +20,7 @@ import androidx.recyclerview.widget.LinearLayoutManager
 
 import androidx.recyclerview.widget.RecyclerView
 import androidx.room.Room
+import com.example.outlook.adapter.AdaptadorBD
 import com.example.outlook.adapter.SeccionAdapter
 
 class MainActivity : AppCompatActivity() {
@@ -64,7 +65,8 @@ class MainActivity : AppCompatActivity() {
 
         recyclerView.itemAnimator = androidx.recyclerview.widget.DefaultItemAnimator()
         recyclerView.layoutManager = manager
-        recyclerView.adapter=SeccionAdapter(list) {onItemSelected(it)}
+        AdaptadorBD.adaptador=SeccionAdapter(list) {onItemSelected(it)}
+        recyclerView.adapter=AdaptadorBD.adaptador
         recyclerView.addItemDecoration(decoration)
 
 

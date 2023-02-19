@@ -9,10 +9,12 @@ import android.widget.Toast
 import androidx.recyclerview.widget.DividerItemDecoration
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
+import com.example.outlook.adapter.AdaptadorBD
 import com.example.outlook.adapter.CorreoAdapter
 
 class ViewSeccion : AppCompatActivity() {
     lateinit var seccion: Seccion
+    lateinit var adapter: CorreoAdapter
     private lateinit var database: AppDataBase
     var correos = emptyList<Correo>()
 
@@ -173,9 +175,16 @@ class ViewSeccion : AppCompatActivity() {
 
         recyclerView.itemAnimator = androidx.recyclerview.widget.DefaultItemAnimator()
         recyclerView.layoutManager = manager
-        //recyclerView.adapter = CorreoAdapter(list) { correo, seccion -> onItemSelected(correo, seccion) }
-        recyclerView.adapter = CorreoAdapter(list, { correo -> onCorreoSelected(correo) }, { seccion -> onSeccionSelected(seccion) })
+        adapter=CorreoAdapter(list, { correo -> onCorreoSelected(correo) }, { seccion -> onSeccionSelected(seccion) })
+
+        recyclerView.adapter = adapter
         recyclerView.addItemDecoration(decoration)
+    }
+
+    override fun onResume() {
+        super.onResume()
+        AdaptadorBD.adaptador.notifyDataSetChanged()
+
     }
 
     //FUNCIONES LAMBDA's
@@ -191,8 +200,9 @@ class ViewSeccion : AppCompatActivity() {
     private fun onSeccionSelected(seccion: Seccion) {
         // Manejar evento de selección de sección
         Toast.makeText(this, "Correo movido a ${seccion.nameseccion}", Toast.LENGTH_SHORT).show()
+        //adapter.notifyDataSetChanged()
+        AdaptadorBD.adaptador.notifyDataSetChanged()
         recreate()
-        
     }
 
     fun irActividad(clase:Class<*>){

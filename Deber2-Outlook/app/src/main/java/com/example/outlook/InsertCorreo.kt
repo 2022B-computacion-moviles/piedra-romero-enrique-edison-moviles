@@ -1,5 +1,6 @@
 package com.example.outlook
 
+import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.widget.Button
@@ -26,10 +27,15 @@ class InsertCorreo : AppCompatActivity() {
             database.correoDao.insert(Correo(emisor = emisor.text.toString(), receptor = receptor.text.toString(), mensaje = mensaje.text.toString(), idseccion = seccion.id))
             Toast.makeText(this, "Correo Ingresado correctamente", Toast.LENGTH_SHORT).show()
         }
-        
 
 
 
 
+
+    }
+
+    fun irActividad(clase:Class<*>){
+        val intent= Intent(this, clase)
+        startActivity(intent)
     }
 }
