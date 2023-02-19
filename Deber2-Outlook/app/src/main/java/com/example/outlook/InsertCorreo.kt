@@ -26,6 +26,9 @@ class InsertCorreo : AppCompatActivity() {
         bton_enviar.setOnClickListener{
             database.correoDao.insert(Correo(emisor = emisor.text.toString(), receptor = receptor.text.toString(), mensaje = mensaje.text.toString(), idseccion = seccion.id))
             Toast.makeText(this, "Correo Ingresado correctamente", Toast.LENGTH_SHORT).show()
+            val intent = Intent(this, ViewSeccion::class.java)
+            intent.putExtra("seccion", seccion)
+            startActivity(intent)
         }
 
 
