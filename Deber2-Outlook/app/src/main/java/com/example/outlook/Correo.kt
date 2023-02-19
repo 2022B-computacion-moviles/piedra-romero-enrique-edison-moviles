@@ -1,5 +1,6 @@
 package com.example.outlook
 
+import android.text.Editable
 import androidx.room.*
 import java.io.Serializable
 
@@ -15,7 +16,7 @@ import java.io.Serializable
     ],
     indices = [Index("idseccion")]
 )
-data class Correo (
+data class Correo(
     @PrimaryKey(autoGenerate = true)
     @ColumnInfo(name = "idcorreo")
     var idcorreo: Int = 0,

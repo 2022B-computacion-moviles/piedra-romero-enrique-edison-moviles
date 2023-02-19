@@ -1,6 +1,5 @@
 package com.example.outlook
 
-import android.app.AlertDialog
 import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
@@ -10,9 +9,7 @@ import android.widget.Toast
 import androidx.recyclerview.widget.DividerItemDecoration
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
-import androidx.room.Room
 import com.example.outlook.adapter.CorreoAdapter
-import com.example.outlook.adapter.SeccionAdapter
 
 class ViewSeccion : AppCompatActivity() {
     lateinit var seccion: Seccion
@@ -163,7 +160,9 @@ class ViewSeccion : AppCompatActivity() {
 
         val create_correo=findViewById<Button>(R.id.view_seccion_crear_correo)
         create_correo.setOnClickListener {
-            irActividad(InsertCorreo::class.java)
+            val intent = Intent(this, InsertCorreo::class.java)
+            intent.putExtra("seccion", seccion)
+            startActivity(intent)
         }
 
     }

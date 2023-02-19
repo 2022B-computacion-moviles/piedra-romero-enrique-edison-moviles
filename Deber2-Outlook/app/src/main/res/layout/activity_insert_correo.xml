@@ -49,7 +49,7 @@
         app:layout_constraintVertical_bias="0.232" />
 
     <EditText
-        android:id="@+id/editTextTextPersonName"
+        android:id="@+id/insert_correo_emisor"
         android:layout_width="227dp"
         android:layout_height="49dp"
         android:ems="10"
@@ -62,7 +62,7 @@
         tools:ignore="SpeakableTextPresentCheck,TouchTargetSizeCheck" />
 
     <EditText
-        android:id="@+id/editTextTextPersonName4"
+        android:id="@+id/insert_correo_receptor"
         android:layout_width="227dp"
         android:layout_height="49dp"
         android:ems="10"
@@ -75,7 +75,7 @@
         tools:ignore="SpeakableTextPresentCheck,TouchTargetSizeCheck" />
 
     <EditText
-        android:id="@+id/editTextTextPersonName6"
+        android:id="@+id/insert_correo_mensaje"
         android:layout_width="227dp"
         android:layout_height="49dp"
         android:ems="10"
@@ -88,7 +88,7 @@
         tools:ignore="SpeakableTextPresentCheck,TouchTargetSizeCheck" />
 
     <Button
-        android:id="@+id/button"
+        android:id="@+id/insert_correo_btn_enviar"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="Enviar"
