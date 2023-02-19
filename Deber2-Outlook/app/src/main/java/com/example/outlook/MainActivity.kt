@@ -34,11 +34,13 @@ class MainActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
 
-        database= Room.databaseBuilder(
+        database =AppDataBase.getInstance(this)
+
+            /*Room.databaseBuilder(
             application, AppDataBase::class.java, AppDataBase.DATABASE_NAME)
             .allowMainThreadQueries()
             .fallbackToDestructiveMigration()
-            .build()
+            .build()*/
 
 
         secciones = database.seccionDao.getAll().toMutableList()
@@ -72,6 +74,8 @@ class MainActivity : AppCompatActivity() {
         //Toast.makeText(this, seccion.nameseccion, Toast.LENGTH_SHORT).show()
         val intent = Intent(this, ViewSeccion::class.java)
         intent.putExtra("seccion", seccion)
+
+
         startActivity(intent)
     }
 
