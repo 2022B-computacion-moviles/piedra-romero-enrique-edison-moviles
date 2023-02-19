@@ -4,6 +4,7 @@ import android.app.AlertDialog
 import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import android.widget.Button
 import android.widget.TextView
 import android.widget.Toast
 import androidx.recyclerview.widget.DividerItemDecoration
@@ -159,6 +160,12 @@ class ViewSeccion : AppCompatActivity() {
         val recyclerViewCorreos = findViewById<RecyclerView>(R.id.rv_correos)
         initializeRecyclerView(correos,recyclerViewCorreos)
 
+
+        val create_correo=findViewById<Button>(R.id.view_seccion_crear_correo)
+        create_correo.setOnClickListener {
+            irActividad(InsertCorreo::class.java)
+        }
+
     }
 
     private fun initializeRecyclerView(list: List<Correo>, recyclerView: RecyclerView) {
@@ -187,6 +194,11 @@ class ViewSeccion : AppCompatActivity() {
         Toast.makeText(this, "Correo movido a ${seccion.nameseccion}", Toast.LENGTH_SHORT).show()
         recreate()
         
+    }
+
+    fun irActividad(clase:Class<*>){
+        val intent= Intent(this, clase)
+        startActivity(intent)
     }
 
 
