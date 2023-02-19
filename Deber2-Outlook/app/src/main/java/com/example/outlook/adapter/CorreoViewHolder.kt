@@ -1,5 +1,6 @@
 package com.example.outlook.adapter
 
+import android.view.SubMenu
 import android.view.View
 import android.widget.ImageView
 import android.widget.TextView
@@ -35,12 +36,19 @@ class CorreoViewHolder (view: View) : RecyclerView.ViewHolder(view) {
         val popupMenu = PopupMenu(itemView.context, menuIcon)
         popupMenu.menuInflater.inflate(R.menu.menu_correo, popupMenu.menu)
 
+        //SUBMENÚ
+        val userList = listOf("Usuario 1", "Usuario 2", "Usuario 3")
+        val subMenu = popupMenu.menu.addSubMenu("Mover a")
+        userList.forEach { user ->
+            subMenu.add(user).setOnMenuItemClickListener {
+                Toast.makeText(itemView.context, "Usuario seleccionado: $user", Toast.LENGTH_SHORT).show()
+                true
+            }
+        }
+
+
         popupMenu.setOnMenuItemClickListener { menuItem ->
             when (menuItem.itemId) {
-                R.id.menu_correo_mover -> {
-                    emisor.text = "movido"
-                    return@setOnMenuItemClickListener true
-                }
                 R.id.menu_correo_eliminar -> {
                     emisor.text = "eliminado"
                     return@setOnMenuItemClickListener true
@@ -56,4 +64,6 @@ class CorreoViewHolder (view: View) : RecyclerView.ViewHolder(view) {
 
 
     }
+
+
 }
