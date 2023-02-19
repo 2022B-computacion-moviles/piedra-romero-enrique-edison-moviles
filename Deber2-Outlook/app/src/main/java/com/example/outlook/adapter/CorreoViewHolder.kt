@@ -28,7 +28,8 @@ class CorreoViewHolder (view: View) : RecyclerView.ViewHolder(view) {
 
     fun render(
         correoModel: Correo,
-        onClickListener: (Correo) -> Unit
+        onClickListener: (Correo) -> Unit,
+        onClickListenerSeccion: (Seccion) -> Unit
     ) {
         emisor.text = correoModel.emisor
         receptor.text = correoModel.receptor
@@ -49,6 +50,7 @@ class CorreoViewHolder (view: View) : RecyclerView.ViewHolder(view) {
                 correoModel.idseccion=seccion.id
                 database.correoDao.update(correoModel)
 
+                onClickListenerSeccion(seccion)
                 true
             }
         }
@@ -57,7 +59,7 @@ class CorreoViewHolder (view: View) : RecyclerView.ViewHolder(view) {
         popupMenu.setOnMenuItemClickListener { menuItem ->
             when (menuItem.itemId) {
                 R.id.menu_correo_eliminar -> {
-                    emisor.text = "eliminado"
+                    //emisor.text = "eliminado"
                     return@setOnMenuItemClickListener true
                 }
                 else -> return@setOnMenuItemClickListener false

@@ -167,18 +167,22 @@ class ViewSeccion : AppCompatActivity() {
 
         recyclerView.itemAnimator = androidx.recyclerview.widget.DefaultItemAnimator()
         recyclerView.layoutManager = manager
-        recyclerView.adapter= CorreoAdapter(list) {onItemSelected(it)}
+        //recyclerView.adapter = CorreoAdapter(list) { correo, seccion -> onItemSelected(correo, seccion) }
+        recyclerView.adapter = CorreoAdapter(list, { correo -> onCorreoSelected(correo) }, { seccion -> onSeccionSelected(seccion) })
         recyclerView.addItemDecoration(decoration)
     }
 
-    private fun onItemSelected(correo: Correo) {
-        //Toast.makeText(this, seccion.nameseccion, Toast.LENGTH_SHORT).show()
-        //val intent = Intent(this, ViewSeccion::class.java)
-        //intent.putExtra("seccion", seccion)
+    private fun onCorreoSelected(correo: Correo) {
+        // Manejar evento de selección de correo
+        Toast.makeText(this, "seccion seleccionado: ${correo.emisor}", Toast.LENGTH_SHORT).show()
 
-        //startActivity(intent)
     }
-    
+
+    private fun onSeccionSelected(seccion: Seccion) {
+        // Manejar evento de selección de sección
+        Toast.makeText(this, "seccion seleccionado: ${seccion.nameseccion}", Toast.LENGTH_SHORT).show()
+    }
+
 
 
 }
