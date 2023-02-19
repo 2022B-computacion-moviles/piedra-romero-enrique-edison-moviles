@@ -42,11 +42,13 @@ class CorreoViewHolder (view: View) : RecyclerView.ViewHolder(view) {
 
         //SUBMENÚ
         secciones = database.seccionDao.getAll().toMutableList()
-        //val userList = listOf("Usuario 1", "Usuario 2", "Usuario 3")
         val subMenu = popupMenu.menu.addSubMenu("Mover a")
         secciones.forEach { seccion ->
             subMenu.add(seccion.nameseccion).setOnMenuItemClickListener {
-                Toast.makeText(itemView.context, "Usuario seleccionado: ${seccion.id} ${seccion.nameseccion}", Toast.LENGTH_SHORT).show()
+                //Toast.makeText(itemView.context, "Usuario seleccionado: ${seccion.id} ${seccion.nameseccion} ${correoModel.emisor}", Toast.LENGTH_SHORT).show()
+                correoModel.idseccion=seccion.id
+                database.correoDao.update(correoModel)
+
                 true
             }
         }

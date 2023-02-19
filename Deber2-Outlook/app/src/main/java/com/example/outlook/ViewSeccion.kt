@@ -176,9 +176,9 @@ class ViewSeccion : AppCompatActivity() {
         //val intent = Intent(this, ViewSeccion::class.java)
         //intent.putExtra("seccion", seccion)
 
-
         //startActivity(intent)
     }
+    
 
 
 }
