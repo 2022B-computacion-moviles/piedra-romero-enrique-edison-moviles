@@ -1,11 +1,17 @@
 package com.example.outlook
 
 import android.app.AlertDialog
+import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.widget.TextView
 import android.widget.Toast
+import androidx.recyclerview.widget.DividerItemDecoration
+import androidx.recyclerview.widget.LinearLayoutManager
+import androidx.recyclerview.widget.RecyclerView
 import androidx.room.Room
+import com.example.outlook.adapter.CorreoAdapter
+import com.example.outlook.adapter.SeccionAdapter
 
 class ViewSeccion : AppCompatActivity() {
     lateinit var seccion: Seccion
@@ -150,22 +156,29 @@ class ViewSeccion : AppCompatActivity() {
         }
 
 
-        AlertDialog.Builder(this)
-            .setTitle("Agregado  ${correos.size}")
-            .setMessage("Con Éxito")
-            .setPositiveButton("Aceptar") { dialog, which ->
-                // acción cuando se presiona Aceptar
-            }
-            .setNegativeButton("Cancelar") { dialog, which ->
-                // acción cuando se presiona Cancelar
-            }
-            .create()
-            .show()
-
-
-
-
-        //Toast.makeText(this, correos.size, Toast.LENGTH_SHORT).show()
+        val recyclerViewCorreos = findViewById<RecyclerView>(R.id.rv_correos)
+        initializeRecyclerView(correos,recyclerViewCorreos)
 
     }
+
+    private fun initializeRecyclerView(list: List<Correo>, recyclerView: RecyclerView) {
+        val manager= LinearLayoutManager(this)
+        val decoration= DividerItemDecoration(this, manager.orientation)
+
+        recyclerView.itemAnimator = androidx.recyclerview.widget.DefaultItemAnimator()
+        recyclerView.layoutManager = manager
+        recyclerView.adapter= CorreoAdapter(list) {onItemSelected(it)}
+        recyclerView.addItemDecoration(decoration)
+    }
+
+    private fun onItemSelected(correo: Correo) {
+        //Toast.makeText(this, seccion.nameseccion, Toast.LENGTH_SHORT).show()
+        //val intent = Intent(this, ViewSeccion::class.java)
+        //intent.putExtra("seccion", seccion)
+
+
+        //startActivity(intent)
+    }
+
+
 }
