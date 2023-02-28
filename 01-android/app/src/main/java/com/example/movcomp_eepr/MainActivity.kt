@@ -1,7 +1,6 @@
 package com.example.movcomp_eepr
 
 import android.app.Activity
-import android.app.Instrumentation.ActivityResult
 import android.content.Intent
 import android.net.Uri
 import androidx.appcompat.app.AppCompatActivity
@@ -119,6 +118,18 @@ class MainActivity : AppCompatActivity() {
             .setOnClickListener {
                 irActividad(IFirebaseUIAuth::class.java)
             }
+
+
+
+        //Boton para FIREBASE AUTH
+        val botonFirestore=findViewById<Button>(R.id.btn_intent_firestore)
+        botonFirestore
+            .setOnClickListener {
+                irActividad(JFirebaseFirestore::class.java)
+            }
+
+
+
     }
 
     fun abrirActividadConParametros(clase: Class<*>){
