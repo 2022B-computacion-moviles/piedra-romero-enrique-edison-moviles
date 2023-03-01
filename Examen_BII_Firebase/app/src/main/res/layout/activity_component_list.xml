@@ -1,0 +1,85 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".ComponentList">
+
+    <TextView
+        android:id="@+id/tv_component_list_title"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="25dp"
+        android:textStyle="bold"
+        android:textSize="25sp"
+        android:text="@string/component_list"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <Button
+        android:id="@+id/btn_create_component"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="25dp"
+        android:text="@string/create_a_new_component"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/tv_component_parent_name" />
+
+    <TextView
+        android:id="@+id/tv_component_parent_code"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="20dp"
+        android:layout_marginTop="25dp"
+        android:textStyle="bold"
+        android:textColor="@color/black"
+        android:text="@string/parent_device_code"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/tv_component_list_title" />
+
+    <TextView
+        android:id="@+id/tv_component_parent_name"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="20dp"
+        android:layout_marginTop="20dp"
+        android:textStyle="bold"
+        android:textColor="@color/black"
+        android:text="@string/parent_device_name"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/tv_component_parent_code" />
+
+    <TextView
+        android:id="@+id/tv_parent_component_code"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="15dp"
+        android:textColor="@color/black"
+        app:layout_constraintBottom_toBottomOf="@+id/tv_component_parent_code"
+        app:layout_constraintStart_toEndOf="@+id/tv_component_parent_code"
+        app:layout_constraintTop_toTopOf="@+id/tv_component_parent_code" />
+
+    <TextView
+        android:id="@+id/tv_parent_component_name"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="15dp"
+        android:textColor="@color/black"
+        app:layout_constraintBottom_toBottomOf="@+id/tv_component_parent_name"
+        app:layout_constraintStart_toEndOf="@+id/tv_component_parent_name"
+        app:layout_constraintTop_toTopOf="@+id/tv_component_parent_name" />
+
+    <androidx.recyclerview.widget.RecyclerView
+        android:id="@+id/rv_component"
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_marginTop="25dp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/btn_create_component" />
+
+</androidx.constraintlayout.widget.ConstraintLayout>

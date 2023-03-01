@@ -1,0 +1,188 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".ComponentEdition">
+
+    <TextView
+        android:id="@+id/tv_component_edition_title"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="25dp"
+        android:text="@string/component_edition"
+        android:textSize="25sp"
+        android:textStyle="bold"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <TextView
+        android:id="@+id/tv_component_code_label"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="20dp"
+        android:layout_marginTop="60dp"
+        android:text="@string/code"
+        android:textColor="@color/black"
+        android:textStyle="bold"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/tv_component_edition_title" />
+
+    <TextView
+        android:id="@+id/tv_device_edition_category_label"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="20dp"
+        android:layout_marginTop="60dp"
+        android:text="@string/category"
+        android:textColor="@color/black"
+        android:textStyle="bold"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/tv_component_code_label" />
+
+    <TextView
+        android:id="@+id/tv_device_category_edition_label"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="20dp"
+        android:layout_marginTop="60dp"
+        android:text="@string/description"
+        android:textColor="@color/black"
+        android:textStyle="bold"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/tv_device_edition_category_label" />
+
+    <TextView
+        android:id="@+id/tv_device_discontinued_edition_label"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="20dp"
+        android:layout_marginTop="60dp"
+        android:text="@string/discontinued"
+        android:textColor="@color/black"
+        android:textStyle="bold"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/tv_device_category_edition_label" />
+
+    <TextView
+        android:id="@+id/tv_component_device_code_label"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="20dp"
+        android:layout_marginTop="60dp"
+        android:text="@string/parent_device_code"
+        android:textColor="@color/black"
+        android:textStyle="bold"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/tv_device_discontinued_edition_label" />
+
+    <EditText
+        android:id="@+id/pl_component_code"
+        android:layout_width="0dp"
+        android:layout_height="50dp"
+        android:layout_marginStart="15dp"
+        android:layout_marginEnd="20dp"
+        android:autofillHints=""
+        android:ems="10"
+        android:enabled="false"
+        android:hint="@string/component_code"
+        android:inputType="none"
+        android:textColor="@color/black"
+        android:textColorHint="#757575"
+        app:layout_constraintBottom_toBottomOf="@+id/tv_component_code_label"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toEndOf="@+id/tv_component_code_label"
+        app:layout_constraintTop_toTopOf="@+id/tv_component_code_label" />
+
+    <EditText
+        android:id="@+id/pl_component_category"
+        android:layout_width="0dp"
+        android:layout_height="50dp"
+        android:layout_marginStart="15dp"
+        android:layout_marginEnd="20dp"
+        android:autofillHints=""
+        android:ems="10"
+        android:hint="@string/component_category"
+        android:inputType="textPersonName"
+        android:textColor="@color/black"
+        android:textColorHint="#757575"
+        app:layout_constraintBottom_toBottomOf="@+id/tv_device_edition_category_label"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toEndOf="@+id/tv_device_edition_category_label"
+        app:layout_constraintTop_toTopOf="@+id/tv_device_edition_category_label" />
+
+    <EditText
+        android:id="@+id/pl_component_description"
+        android:layout_width="0dp"
+        android:layout_height="50dp"
+        android:layout_marginStart="15dp"
+        android:layout_marginEnd="20dp"
+        android:autofillHints=""
+        android:ems="10"
+        android:hint="@string/component_description"
+        android:inputType="textPersonName"
+        android:textColor="@color/black"
+        android:textColorHint="#757575"
+        app:layout_constraintBottom_toBottomOf="@+id/tv_device_category_edition_label"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toEndOf="@+id/tv_device_category_edition_label"
+        app:layout_constraintTop_toTopOf="@+id/tv_device_category_edition_label" />
+
+    <EditText
+        android:id="@+id/pl_component_discontinued"
+        android:layout_width="0dp"
+        android:layout_height="50dp"
+        android:layout_marginStart="15dp"
+        android:layout_marginEnd="20dp"
+        android:autofillHints=""
+        android:ems="10"
+        android:hint="@string/component_discontinued"
+        android:inputType="textPersonName"
+        android:textColor="@color/black"
+        android:textColorHint="#757575"
+        app:layout_constraintBottom_toBottomOf="@+id/tv_device_discontinued_edition_label"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toEndOf="@+id/tv_device_discontinued_edition_label"
+        app:layout_constraintTop_toTopOf="@+id/tv_device_discontinued_edition_label" />
+
+    <EditText
+        android:id="@+id/pl_component_parent_code"
+        android:layout_width="0dp"
+        android:layout_height="50dp"
+        android:layout_marginStart="15dp"
+        android:layout_marginEnd="20dp"
+        android:autofillHints=""
+        android:ems="10"
+        android:hint="@string/component_parent_device_code"
+        android:enabled="false"
+        android:inputType="numberDecimal"
+        android:textColor="@color/black"
+        android:textColorHint="#757575"
+        app:layout_constraintBottom_toBottomOf="@+id/tv_component_device_code_label"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toEndOf="@+id/tv_component_device_code_label"
+        app:layout_constraintTop_toTopOf="@+id/tv_component_device_code_label" />
+
+    <Button
+        android:id="@+id/btn_confirm_component_edition"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="60dp"
+        android:text="@string/edit_component"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/tv_component_device_code_label" />
+
+    <Button
+        android:id="@+id/btn_cancel_edition"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="20dp"
+        android:text="@string/cancel"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/btn_confirm_component_edition" />
+
+</androidx.constraintlayout.widget.ConstraintLayout>
