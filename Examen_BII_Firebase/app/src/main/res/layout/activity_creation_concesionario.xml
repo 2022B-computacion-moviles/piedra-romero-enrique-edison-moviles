@@ -7,44 +7,31 @@
     tools:context=".CreationConcesionario">
 
 
-    <TextView
-        android:id="@+id/tv_device_creation_title"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="25dp"
-        android:text="@string/device_creation"
-        android:textSize="25sp"
-        android:textStyle="bold"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
-
     <Button
-        android:id="@+id/btn_confirm_device_creation"
+        android:id="@+id/btn_confirm_concesionario_create"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="32dp"
-        android:text="@string/create_device"
+        android:text="Crear"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.498"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/device_create_empleados" />
+        app:layout_constraintTop_toBottomOf="@+id/create_concesionario_empleados" />
 
     <EditText
-        android:id="@+id/device_create_nombre"
+        android:id="@+id/create_concesionario_nombre"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="28dp"
         android:ems="10"
         android:hint="Nombre"
         android:inputType="textPersonName"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.497"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/tv_device_creation_title" />
+        tools:layout_editor_absoluteY="87dp" />
 
     <EditText
-        android:id="@+id/device_create_fecha"
+        android:id="@+id/create_concesionario_fecha"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="20dp"
@@ -54,10 +41,10 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.497"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/device_create_nombre" />
+        app:layout_constraintTop_toBottomOf="@+id/create_concesionario_nombre" />
 
     <EditText
-        android:id="@+id/device_create_porcentaje"
+        android:id="@+id/create_concesionario_porcentaje"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="16dp"
@@ -67,10 +54,10 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.497"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/device_create_fecha" />
+        app:layout_constraintTop_toBottomOf="@+id/create_concesionario_fecha" />
 
     <EditText
-        android:id="@+id/device_create_empleados"
+        android:id="@+id/create_concesionario_empleados"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="20dp"
@@ -80,7 +67,7 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.497"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/device_create_porcentaje" />
+        app:layout_constraintTop_toBottomOf="@+id/create_concesionario_porcentaje" />
 
 
 </androidx.constraintlayout.widget.ConstraintLayout>

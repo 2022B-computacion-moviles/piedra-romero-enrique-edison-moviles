@@ -14,23 +14,23 @@ import com.example.adle_exam_2b.data.dao.DAOFactory
 import com.example.adle_exam_2b.data.entity.Carro
 
 class ListCarro : AppCompatActivity() {
-    private var selectedComponentCode: Int? = null
-    private var componentParentCode: Int? = null
+    private var selectedCarroCode: Int? = null
+    private var concesionarioParentCode: Int? = null
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        setContentView(R.layout.activity_component_list)
+        setContentView(R.layout.activity_list_carro)
 
-        componentParentCode = intent.getIntExtra("selectedDeviceCode", 0)
+        concesionarioParentCode = intent.getIntExtra("selectedDeviceCode", 0)
 
-        val componentRecyclerView = findViewById<RecyclerView>(R.id.rv_component)
-        val deviceCodeTextView = findViewById<TextView>(R.id.tv_parent_component_code)
-        val deviceNameTextView = findViewById<TextView>(R.id.tv_parent_component_name)
-        val creationButton = findViewById<Button>(R.id.btn_create_component)
+        val componentRecyclerView = findViewById<RecyclerView>(R.id.rv_carro)
+        val deviceCodeTextView = findViewById<TextView>(R.id.tv_parent_concesionario_code)
+        val deviceNameTextView = findViewById<TextView>(R.id.tv_parent_concesionario_nombre)
+        val creationButton = findViewById<Button>(R.id.btn_create_carro)
 
         // Setting component device code when it is ready
         DAOFactory.factory.getConcesionarioDAO().read(
-            componentParentCode!!,
+            concesionarioParentCode!!,
             onSuccess = { device ->
                 deviceCodeTextView.text = device.code.toString()
                 deviceNameTextView.text = device.nombre
@@ -39,7 +39,7 @@ class ListCarro : AppCompatActivity() {
 
         // Setting the Recycler View when the data is ready
         DAOFactory.factory.getCarroDAO().getAllCarrosByCodeCar(
-            componentParentCode!!,
+            concesionarioParentCode!!,
             onSuccess = { components ->
                 initializeRecyclerView(components, componentRecyclerView)
                 registerForContextMenu(componentRecyclerView)
@@ -48,7 +48,7 @@ class ListCarro : AppCompatActivity() {
 
         creationButton.setOnClickListener {
             val intent = Intent(this, CreationCarro::class.java)
-            intent.putExtra("componentParentCode", componentParentCode)
+            intent.putExtra("componentParentCode", concesionarioParentCode)
             startActivity(intent)
         }
     }
@@ -70,14 +70,14 @@ class ListCarro : AppCompatActivity() {
 
     override fun onContextItemSelected(item: MenuItem): Boolean {
         return when (item.itemId) {
-            R.id.mi_component_edit -> {
+            R.id.menu_carro_edit -> {
                 val intent = Intent(this, EditionCarro::class.java)
-                intent.putExtra("selectedComponentCode", selectedComponentCode)
+                intent.putExtra("selectedComponentCode", selectedCarroCode)
                 startActivity(intent)
                 return true
             }
 
-            R.id.mi_component_delete -> {
+            R.id.menu_carro_delete -> {
                 openDeleteDialog()
                 return true
             }
@@ -87,7 +87,7 @@ class ListCarro : AppCompatActivity() {
     }
 
     fun setSelectedComponentCode(componentCode: Int) {
-        selectedComponentCode = componentCode
+        selectedCarroCode = componentCode
     }
 
     @SuppressLint("NotifyDataSetChanged")
@@ -98,12 +98,12 @@ class ListCarro : AppCompatActivity() {
 
         builder.setPositiveButton("Yes") { _, _ ->
             DAOFactory.factory.getCarroDAO().delete(
-                selectedComponentCode!!,
+                selectedCarroCode!!,
                 onSuccess = {
                     DAOFactory.factory.getCarroDAO().getAllCarrosByCodeCar(
-                        componentParentCode!!,
+                        concesionarioParentCode!!,
                         onSuccess = { components ->
-                            initializeRecyclerView(components, findViewById(R.id.rv_component))
+                            initializeRecyclerView(components, findViewById(R.id.rv_carro))
                         }
                     )
                 }

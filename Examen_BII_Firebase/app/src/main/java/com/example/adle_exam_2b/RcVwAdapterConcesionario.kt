@@ -19,11 +19,11 @@ class RcVwAdapterConcesionario(
         val cantEmpleadosTextView: TextView
 
         init {
-            codeTextView = view.findViewById(R.id.tv_device_code)
-            nombreTextView = view.findViewById(R.id.tv_device_nombre)
-            fecha_inaguracionTextView = view.findViewById(R.id.tv_device_fecha)
-            porcentajeTextView = view.findViewById(R.id.tv_device_porcentaje)
-            cantEmpleadosTextView = view.findViewById(R.id.tv_device_empleados)
+            codeTextView = view.findViewById(R.id.tv_concesionario_code)
+            nombreTextView = view.findViewById(R.id.tv_concesionario_nombre)
+            fecha_inaguracionTextView = view.findViewById(R.id.tv_concesionario_fecha)
+            porcentajeTextView = view.findViewById(R.id.tv_concesionario_porcentaje)
+            cantEmpleadosTextView = view.findViewById(R.id.tv_concesionario_empleados)
 
             view.setOnCreateContextMenuListener(this)
 
@@ -40,7 +40,7 @@ class RcVwAdapterConcesionario(
         override fun onCreateContextMenu(menu: ContextMenu?, view: View?, menuInfo: ContextMenu.ContextMenuInfo?) {
             if (menu != null) {
                 val inflater = MenuInflater(view?.context)
-                inflater.inflate(R.menu.device_menu, menu)
+                inflater.inflate(R.menu.menu_concesionario, menu)
 
                 parentContext.setSelectedDeviceCode(list[adapterPosition].code)
             }
@@ -51,7 +51,7 @@ class RcVwAdapterConcesionario(
         val itemView = LayoutInflater
             .from(parent.context)
             .inflate(
-                R.layout.recycler_view_device,
+                R.layout.recycler_view_concecionario,
                 parent,
                 false
             )
@@ -60,13 +60,13 @@ class RcVwAdapterConcesionario(
     }
 
     override fun onBindViewHolder(holder: MyViewHolder, position: Int) {
-        val currentDevice = this.list[position]
+        val concesionario = this.list[position]
 
-        holder.codeTextView.text = currentDevice.code.toString()
-        holder.nombreTextView.text = currentDevice.nombre
-        holder.fecha_inaguracionTextView.text = currentDevice.fecha_inaguracion.toString()
-        holder.porcentajeTextView.text = currentDevice.porcentaje_personas_satisfechas.toString()
-        holder.cantEmpleadosTextView.text = currentDevice.cantidad_empleados.toString()
+        holder.codeTextView.text = concesionario.code.toString()
+        holder.nombreTextView.text = concesionario.nombre
+        holder.fecha_inaguracionTextView.text = concesionario.fecha_inaguracion.toString()
+        holder.porcentajeTextView.text = concesionario.porcentaje_personas_satisfechas.toString()
+        holder.cantEmpleadosTextView.text = concesionario.cantidad_empleados.toString()
     }
 
     override fun getItemCount(): Int {

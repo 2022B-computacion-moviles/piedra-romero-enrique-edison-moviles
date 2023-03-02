@@ -6,24 +6,9 @@
     android:layout_height="wrap_content"
     android:padding="15dp">
 
-    <FrameLayout
-        android:id="@+id/fl_component_container"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:background="@drawable/rounded_background"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent">
-
-        <androidx.constraintlayout.widget.ConstraintLayout
-            android:id="@+id/cl_component_container"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:paddingBottom="20dp">
 
             <TextView
-                android:id="@+id/tv_component_device_code_label3"
+                android:id="@+id/text_view12"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginStart="20dp"
@@ -32,10 +17,10 @@
                 android:textColor="@color/black"
                 android:textStyle="bold"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/tv_component_device_code_label2" />
+                app:layout_constraintTop_toBottomOf="@+id/text_view11" />
 
             <TextView
-                android:id="@+id/tv_component_code_label"
+                android:id="@+id/text_view6"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginStart="20dp"
@@ -47,7 +32,7 @@
                 app:layout_constraintTop_toTopOf="parent" />
 
             <TextView
-                android:id="@+id/tv_device_edition_category_label"
+                android:id="@+id/text_view7"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginStart="20dp"
@@ -56,10 +41,10 @@
                 android:textColor="@color/black"
                 android:textStyle="bold"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/tv_component_code_label" />
+                app:layout_constraintTop_toBottomOf="@+id/text_view6" />
 
             <TextView
-                android:id="@+id/tv_device_category_edition_label"
+                android:id="@+id/text_view8"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginStart="20dp"
@@ -68,10 +53,10 @@
                 android:textColor="@color/black"
                 android:textStyle="bold"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/tv_device_edition_category_label" />
+                app:layout_constraintTop_toBottomOf="@+id/text_view7" />
 
             <TextView
-                android:id="@+id/tv_device_discontinued_edition_label"
+                android:id="@+id/text_view9"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginStart="20dp"
@@ -80,10 +65,10 @@
                 android:textColor="@color/black"
                 android:textStyle="bold"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/tv_device_category_edition_label" />
+                app:layout_constraintTop_toBottomOf="@+id/text_view8" />
 
             <TextView
-                android:id="@+id/tv_component_device_code_label"
+                android:id="@+id/text_view10"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginStart="20dp"
@@ -92,10 +77,10 @@
                 android:textColor="@color/black"
                 android:textStyle="bold"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/tv_device_discontinued_edition_label" />
+                app:layout_constraintTop_toBottomOf="@+id/text_view9" />
 
             <TextView
-                android:id="@+id/tv_component_device_code_label2"
+                android:id="@+id/text_view11"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginStart="20dp"
@@ -104,79 +89,78 @@
                 android:textColor="@color/black"
                 android:textStyle="bold"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/tv_component_device_code_label" />
+                app:layout_constraintTop_toBottomOf="@+id/text_view10" />
 
             <TextView
-                android:id="@+id/tv_component_code"
+                android:id="@+id/tv_carro_code"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginStart="15dp"
                 android:textColor="@color/black"
-                app:layout_constraintBottom_toBottomOf="@+id/tv_component_code_label"
-                app:layout_constraintStart_toEndOf="@+id/tv_component_code_label"
-                app:layout_constraintTop_toTopOf="@+id/tv_component_code_label" />
+                app:layout_constraintBottom_toBottomOf="@+id/text_view6"
+                app:layout_constraintStart_toEndOf="@+id/text_view6"
+                app:layout_constraintTop_toTopOf="@+id/text_view6" />
 
             <TextView
-                android:id="@+id/tv_component_device_code"
+                android:id="@+id/tv_carro_concesionario_code"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginStart="15dp"
                 android:textColor="@color/black"
-                app:layout_constraintBottom_toBottomOf="@+id/tv_device_edition_category_label"
-                app:layout_constraintStart_toEndOf="@+id/tv_device_edition_category_label"
-                app:layout_constraintTop_toTopOf="@+id/tv_device_edition_category_label" />
+                app:layout_constraintBottom_toBottomOf="@+id/text_view7"
+                app:layout_constraintStart_toEndOf="@+id/text_view7"
+                app:layout_constraintTop_toTopOf="@+id/text_view7" />
 
             <TextView
-                android:id="@+id/tv_component_marca"
+                android:id="@+id/tv_carro_marca"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginStart="15dp"
                 android:textColor="@color/black"
-                app:layout_constraintBottom_toBottomOf="@+id/tv_device_category_edition_label"
-                app:layout_constraintStart_toEndOf="@+id/tv_device_category_edition_label"
-                app:layout_constraintTop_toTopOf="@+id/tv_device_category_edition_label" />
+                app:layout_constraintBottom_toBottomOf="@+id/text_view8"
+                app:layout_constraintStart_toEndOf="@+id/text_view8"
+                app:layout_constraintTop_toTopOf="@+id/text_view8" />
 
             <TextView
-                android:id="@+id/tv_component_fecha"
+                android:id="@+id/tv_carro_fecha"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginStart="15dp"
                 android:textColor="@color/black"
-                app:layout_constraintBottom_toBottomOf="@+id/tv_device_discontinued_edition_label"
-                app:layout_constraintStart_toEndOf="@+id/tv_device_discontinued_edition_label"
-                app:layout_constraintTop_toTopOf="@+id/tv_device_discontinued_edition_label" />
+                app:layout_constraintBottom_toBottomOf="@+id/text_view9"
+                app:layout_constraintStart_toEndOf="@+id/text_view9"
+                app:layout_constraintTop_toTopOf="@+id/text_view9" />
 
             <TextView
-                android:id="@+id/tv_component_precio"
+                android:id="@+id/tv_carro_precio"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginStart="15dp"
                 android:textColor="@color/black"
-                app:layout_constraintBottom_toBottomOf="@+id/tv_component_device_code_label"
-                app:layout_constraintStart_toEndOf="@+id/tv_component_device_code_label"
-                app:layout_constraintTop_toTopOf="@+id/tv_component_device_code_label" />
+                app:layout_constraintBottom_toBottomOf="@+id/text_view10"
+                app:layout_constraintStart_toEndOf="@+id/text_view10"
+                app:layout_constraintTop_toTopOf="@+id/text_view10" />
 
             <TextView
-                android:id="@+id/tv_component_color"
+                android:id="@+id/tv_carro_color"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginStart="16dp"
                 android:textColor="@color/black"
-                app:layout_constraintBottom_toBottomOf="@+id/tv_component_device_code_label2"
-                app:layout_constraintStart_toEndOf="@+id/tv_component_device_code_label2"
-                app:layout_constraintTop_toTopOf="@+id/tv_component_device_code_label2"
+                app:layout_constraintBottom_toBottomOf="@+id/text_view11"
+                app:layout_constraintStart_toEndOf="@+id/text_view11"
+                app:layout_constraintTop_toTopOf="@+id/text_view11"
                 app:layout_constraintVertical_bias="1.0" />
 
             <TextView
-                android:id="@+id/tv_component_meses"
+                android:id="@+id/tv_carro_meses"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginStart="16dp"
                 android:textColor="@color/black"
-                app:layout_constraintBottom_toBottomOf="@+id/tv_component_device_code_label3"
-                app:layout_constraintStart_toEndOf="@+id/tv_component_device_code_label3"
-                app:layout_constraintTop_toTopOf="@+id/tv_component_device_code_label3" />
-        </androidx.constraintlayout.widget.ConstraintLayout>
-    </FrameLayout>
+                app:layout_constraintBottom_toBottomOf="@+id/text_view12"
+                app:layout_constraintStart_toEndOf="@+id/text_view12"
+                app:layout_constraintTop_toTopOf="@+id/text_view12" />
+
 
 </androidx.constraintlayout.widget.ConstraintLayout>

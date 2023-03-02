@@ -7,28 +7,15 @@
     tools:context=".EditionConcesionario">
 
     <TextView
-        android:id="@+id/tv_device_edition_title"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="25dp"
-        android:text="@string/device_edition"
-        android:textSize="25sp"
-        android:textStyle="bold"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
-
-    <TextView
         android:id="@+id/tv_device_edition_code_label"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginStart="20dp"
-        android:layout_marginTop="60dp"
-        android:textColor="@color/black"
         android:text="@string/code"
+        android:textColor="@color/black"
         android:textStyle="bold"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/tv_device_edition_title" />
+        tools:layout_editor_absoluteY="119dp" />
 
     <TextView
         android:id="@+id/tv_device_edition_name_label"
@@ -43,7 +30,7 @@
         app:layout_constraintTop_toBottomOf="@+id/tv_device_edition_code_label" />
 
     <TextView
-        android:id="@+id/tv_device_category_edition_label"
+        android:id="@+id/text_view8"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginStart="20dp"
@@ -55,7 +42,7 @@
         app:layout_constraintTop_toBottomOf="@+id/tv_device_edition_name_label" />
 
     <TextView
-        android:id="@+id/tv_device_discontinued_edition_label"
+        android:id="@+id/text_view9"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginStart="20dp"
@@ -64,10 +51,10 @@
         android:textColor="@color/black"
         android:textStyle="bold"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/tv_device_category_edition_label" />
+        app:layout_constraintTop_toBottomOf="@+id/text_view8" />
 
     <TextView
-        android:id="@+id/tv_component_device_code_label"
+        android:id="@+id/text_view10"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginStart="20dp"
@@ -76,10 +63,10 @@
         android:textColor="@color/black"
         android:textStyle="bold"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/tv_device_discontinued_edition_label" />
+        app:layout_constraintTop_toBottomOf="@+id/text_view9" />
 
     <EditText
-        android:id="@+id/edit_device_code"
+        android:id="@+id/edit_concesionario_code"
         android:layout_width="189dp"
         android:layout_height="56dp"
         android:layout_marginStart="15dp"
@@ -98,7 +85,7 @@
         app:layout_constraintVertical_bias="0.516" />
 
     <EditText
-        android:id="@+id/edit_device_nombre"
+        android:id="@+id/edit_concesionario_nombre"
         android:layout_width="195dp"
         android:layout_height="55dp"
         android:layout_marginStart="15dp"
@@ -116,7 +103,7 @@
         app:layout_constraintVertical_bias="0.527" />
 
     <EditText
-        android:id="@+id/edit_device_fecha"
+        android:id="@+id/edit_concesionario_fecha"
         android:layout_width="196dp"
         android:layout_height="52dp"
         android:layout_marginStart="15dp"
@@ -126,15 +113,15 @@
         android:inputType="textPersonName"
         android:textColor="@color/black"
         android:textColorHint="#757575"
-        app:layout_constraintBottom_toBottomOf="@+id/tv_device_category_edition_label"
+        app:layout_constraintBottom_toBottomOf="@+id/text_view8"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.627"
-        app:layout_constraintStart_toEndOf="@+id/tv_device_category_edition_label"
-        app:layout_constraintTop_toTopOf="@+id/tv_device_category_edition_label"
+        app:layout_constraintStart_toEndOf="@+id/text_view8"
+        app:layout_constraintTop_toTopOf="@+id/text_view8"
         app:layout_constraintVertical_bias="0.484" />
 
     <EditText
-        android:id="@+id/edit_device_porcentaje"
+        android:id="@+id/edit_concesionario_porcentaje"
         android:layout_width="194dp"
         android:layout_height="51dp"
         android:layout_marginStart="15dp"
@@ -144,13 +131,13 @@
         android:inputType="date"
         android:textColor="@color/black"
         android:textColorHint="#757575"
-        app:layout_constraintBottom_toBottomOf="@+id/tv_device_discontinued_edition_label"
+        app:layout_constraintBottom_toBottomOf="@+id/text_view9"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toEndOf="@+id/tv_device_discontinued_edition_label"
-        app:layout_constraintTop_toTopOf="@+id/tv_device_discontinued_edition_label" />
+        app:layout_constraintStart_toEndOf="@+id/text_view9"
+        app:layout_constraintTop_toTopOf="@+id/text_view9" />
 
     <EditText
-        android:id="@+id/edit_device_empleados"
+        android:id="@+id/edit_concesionario_empleados"
         android:layout_width="195dp"
         android:layout_height="52dp"
         android:layout_marginStart="15dp"
@@ -160,29 +147,19 @@
         android:inputType="numberDecimal"
         android:textColor="@color/black"
         android:textColorHint="#757575"
-        app:layout_constraintBottom_toBottomOf="@+id/tv_component_device_code_label"
+        app:layout_constraintBottom_toBottomOf="@+id/text_view10"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toEndOf="@+id/tv_component_device_code_label"
-        app:layout_constraintTop_toTopOf="@+id/tv_component_device_code_label" />
+        app:layout_constraintStart_toEndOf="@+id/text_view10"
+        app:layout_constraintTop_toTopOf="@+id/text_view10" />
 
     <Button
-        android:id="@+id/btn_confirm_device_edition"
+        android:id="@+id/btn_confirm_concesionario_edition"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="60dp"
-        android:text="@string/edit_device"
+        android:text="Editar"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/tv_component_device_code_label" />
-
-    <Button
-        android:id="@+id/btn_cancel_creation"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="20dp"
-        android:text="@string/cancel"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/btn_confirm_device_edition" />
+        app:layout_constraintTop_toBottomOf="@+id/text_view10" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

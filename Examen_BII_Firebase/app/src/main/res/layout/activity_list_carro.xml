@@ -6,80 +6,67 @@
     android:layout_height="match_parent"
     tools:context=".ListCarro">
 
-    <TextView
-        android:id="@+id/tv_component_list_title"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="25dp"
-        android:textStyle="bold"
-        android:textSize="25sp"
-        android:text="@string/component_list"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
-
     <Button
-        android:id="@+id/btn_create_component"
+        android:id="@+id/btn_create_carro"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="25dp"
-        android:text="@string/create_a_new_component"
+        android:text="Crear Carro"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/tv_component_parent_name" />
+        app:layout_constraintTop_toBottomOf="@+id/tv_2" />
 
     <TextView
-        android:id="@+id/tv_component_parent_code"
+        android:id="@+id/tv_1"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginStart="20dp"
-        android:layout_marginTop="25dp"
-        android:textStyle="bold"
+        android:text="Code Concesionario:"
         android:textColor="@color/black"
-        android:text="@string/parent_device_code"
+        android:textStyle="bold"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/tv_component_list_title" />
+        tools:layout_editor_absoluteY="84dp" />
 
     <TextView
-        android:id="@+id/tv_component_parent_name"
+        android:id="@+id/tv_2"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginStart="20dp"
         android:layout_marginTop="20dp"
+        android:text="Nombre Concesionario:"
+        android:textColor="@color/black"
         android:textStyle="bold"
-        android:textColor="@color/black"
-        android:text="@string/parent_device_name"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/tv_component_parent_code" />
+        app:layout_constraintTop_toBottomOf="@+id/tv_1" />
 
     <TextView
-        android:id="@+id/tv_parent_component_code"
+        android:id="@+id/tv_parent_concesionario_code"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginStart="15dp"
         android:textColor="@color/black"
-        app:layout_constraintBottom_toBottomOf="@+id/tv_component_parent_code"
-        app:layout_constraintStart_toEndOf="@+id/tv_component_parent_code"
-        app:layout_constraintTop_toTopOf="@+id/tv_component_parent_code" />
+        app:layout_constraintBottom_toBottomOf="@+id/tv_1"
+        app:layout_constraintStart_toEndOf="@+id/tv_1"
+        app:layout_constraintTop_toTopOf="@+id/tv_1" />
 
     <TextView
-        android:id="@+id/tv_parent_component_name"
+        android:id="@+id/tv_parent_concesionario_nombre"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginStart="15dp"
         android:textColor="@color/black"
-        app:layout_constraintBottom_toBottomOf="@+id/tv_component_parent_name"
-        app:layout_constraintStart_toEndOf="@+id/tv_component_parent_name"
-        app:layout_constraintTop_toTopOf="@+id/tv_component_parent_name" />
+        app:layout_constraintBottom_toBottomOf="@+id/tv_2"
+        app:layout_constraintStart_toEndOf="@+id/tv_2"
+        app:layout_constraintTop_toTopOf="@+id/tv_2" />
 
     <androidx.recyclerview.widget.RecyclerView
-        android:id="@+id/rv_component"
+        android:id="@+id/rv_carro"
         android:layout_width="match_parent"
         android:layout_height="0dp"
         android:layout_marginTop="25dp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/btn_create_component" />
+        app:layout_constraintTop_toBottomOf="@+id/btn_create_carro" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

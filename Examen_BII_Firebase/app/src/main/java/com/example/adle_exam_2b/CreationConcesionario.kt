@@ -17,14 +17,14 @@ class CreationConcesionario : AppCompatActivity() {
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        setContentView(R.layout.activity_device_creation)
+        setContentView(R.layout.activity_creation_concesionario)
 
-        val nombrePlainText = findViewById<EditText>(R.id.device_create_nombre)
-        val fecha_inaguracionPlainText = findViewById<EditText>(R.id.device_create_fecha)
-        val porcentajePlainText = findViewById<EditText>(R.id.device_create_porcentaje)
-        val cantEmpleadosPlainText = findViewById<EditText>(R.id.device_create_empleados)
+        val nombrePlainText = findViewById<EditText>(R.id.create_concesionario_nombre)
+        val fecha_inaguracionPlainText = findViewById<EditText>(R.id.create_concesionario_fecha)
+        val porcentajePlainText = findViewById<EditText>(R.id.create_concesionario_porcentaje)
+        val cantEmpleadosPlainText = findViewById<EditText>(R.id.create_concesionario_empleados)
 
-        val createButton = findViewById<Button>(R.id.btn_confirm_device_creation)
+        val createButton = findViewById<Button>(R.id.btn_confirm_concesionario_create)
 
 
 

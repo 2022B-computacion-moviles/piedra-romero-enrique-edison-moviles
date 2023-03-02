@@ -24,14 +24,14 @@ class RcVwAdapterCarro(
 
 
         init {
-            codeTextView = view.findViewById(R.id.tv_component_code)
-            parentCodeTextView = view.findViewById(R.id.tv_component_device_code)
+            codeTextView = view.findViewById(R.id.tv_carro_code)
+            parentCodeTextView = view.findViewById(R.id.tv_carro_concesionario_code)
 
-            marcaTextView = view.findViewById(R.id.tv_component_marca)
-            fecha_elaboracionTextView = view.findViewById(R.id.tv_component_fecha)
-            precioTextView = view.findViewById(R.id.tv_component_precio)
-            colorTextView = view.findViewById(R.id.tv_component_color)
-            mesesTextView = view.findViewById(R.id.tv_component_meses)
+            marcaTextView = view.findViewById(R.id.tv_carro_marca)
+            fecha_elaboracionTextView = view.findViewById(R.id.tv_carro_fecha)
+            precioTextView = view.findViewById(R.id.tv_carro_precio)
+            colorTextView = view.findViewById(R.id.tv_carro_color)
+            mesesTextView = view.findViewById(R.id.tv_carro_meses)
 
             view.setOnCreateContextMenuListener(this)
 
@@ -48,7 +48,7 @@ class RcVwAdapterCarro(
         override fun onCreateContextMenu(menu: ContextMenu?, view: View?, menuInfo: ContextMenu.ContextMenuInfo?) {
             if (menu != null) {
                 val inflater = MenuInflater(view?.context)
-                inflater.inflate(R.menu.component_menu, menu)
+                inflater.inflate(R.menu.menu_carro, menu)
 
                 parentContext.setSelectedComponentCode(list[adapterPosition].code)
             }
@@ -59,7 +59,7 @@ class RcVwAdapterCarro(
         val itemView = LayoutInflater
             .from(parent.context)
             .inflate(
-                R.layout.recycler_view_component,
+                R.layout.recycler_view_carro,
                 parent,
                 false
             )
@@ -68,16 +68,16 @@ class RcVwAdapterCarro(
     }
 
     override fun onBindViewHolder(holder: MyViewHolder, position: Int) {
-        val currentComponent = this.list[position]
+        val carro = this.list[position]
 
-        holder.codeTextView.text = currentComponent.code.toString()
-        holder.parentCodeTextView.text = currentComponent.deviceCode.toString()
+        holder.codeTextView.text = carro.code.toString()
+        holder.parentCodeTextView.text = carro.deviceCode.toString()
 
-        holder.marcaTextView.text = currentComponent.marca
-        holder.fecha_elaboracionTextView.text = currentComponent.fecha_elaboracion.toString()
-        holder.precioTextView.text = currentComponent.precio.toString()
-        holder.colorTextView.text = currentComponent.color_subjetivo.toString()
-        holder.mesesTextView.text = currentComponent.meses_plazo_pagar.toString()
+        holder.marcaTextView.text = carro.marca
+        holder.fecha_elaboracionTextView.text = carro.fecha_elaboracion.toString()
+        holder.precioTextView.text = carro.precio.toString()
+        holder.colorTextView.text = carro.color_subjetivo.toString()
+        holder.mesesTextView.text = carro.meses_plazo_pagar.toString()
 
     }
 

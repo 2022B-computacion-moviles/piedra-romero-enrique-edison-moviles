@@ -7,7 +7,7 @@
     tools:context=".CreationCarro">
 
     <EditText
-        android:id="@+id/creation_car_code_concesionario"
+        android:id="@+id/create_car_code_concesionario"
         android:layout_width="115dp"
         android:layout_height="30dp"
         android:autofillHints=""
@@ -23,7 +23,7 @@
         app:layout_constraintVertical_bias="1.0" />
 
     <EditText
-        android:id="@+id/creation_car_marca"
+        android:id="@+id/create_car_marca"
         android:layout_width="265dp"
         android:layout_height="38dp"
         android:layout_marginTop="44dp"
@@ -35,10 +35,10 @@
         android:textColorHint="#757575"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/creation_car_code_concesionario" />
+        app:layout_constraintTop_toBottomOf="@+id/create_car_code_concesionario" />
 
     <EditText
-        android:id="@+id/creation_car_precio"
+        android:id="@+id/create_car_precio"
         android:layout_width="265dp"
         android:layout_height="38dp"
         android:layout_marginTop="12dp"
@@ -50,10 +50,10 @@
         android:textColorHint="#757575"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/creation_car_fecha" />
+        app:layout_constraintTop_toBottomOf="@+id/create_car_fecha" />
 
     <EditText
-        android:id="@+id/creation_car_meses"
+        android:id="@+id/create_car_meses"
         android:layout_width="265dp"
         android:layout_height="38dp"
         android:layout_marginTop="12dp"
@@ -65,10 +65,10 @@
         android:textColorHint="#757575"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/creation_car_color" />
+        app:layout_constraintTop_toBottomOf="@+id/create_car_color" />
 
     <EditText
-        android:id="@+id/creation_car_color"
+        android:id="@+id/create_car_color"
         android:layout_width="265dp"
         android:layout_height="38dp"
         android:layout_marginTop="16dp"
@@ -80,10 +80,10 @@
         android:textColorHint="#757575"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/creation_car_precio" />
+        app:layout_constraintTop_toBottomOf="@+id/create_car_precio" />
 
     <EditText
-        android:id="@+id/creation_car_fecha"
+        android:id="@+id/create_car_fecha"
         android:layout_width="265dp"
         android:layout_height="38dp"
         android:layout_marginTop="8dp"
@@ -95,17 +95,17 @@
         android:textColorHint="#757575"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/creation_car_marca" />
+        app:layout_constraintTop_toBottomOf="@+id/create_car_marca" />
 
     <Button
-        android:id="@+id/btn_confirm_car_creation"
+        android:id="@+id/btn_confirm_car_create"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="28dp"
-        android:text="Crear Carro"
+        android:text="Crear"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/creation_car_meses" />
+        app:layout_constraintTop_toBottomOf="@+id/create_car_meses" />
 
     <TextView
         android:id="@+id/textView"

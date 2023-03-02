@@ -18,18 +18,18 @@ class EditionCarro : AppCompatActivity() {
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        setContentView(R.layout.activity_component_edition)
+        setContentView(R.layout.activity_edition_carro)
 
-        val codePlainText = findViewById<EditText>(R.id.edit_component_code)
-        val parentDevicePlainText = findViewById<EditText>(R.id.edit_component_device_code)
+        val codePlainText = findViewById<EditText>(R.id.edit_carro_code)
+        val parentDevicePlainText = findViewById<EditText>(R.id.edit_carro_concesionario_code)
 
-        val marcaPlainText = findViewById<EditText>(R.id.edit_component_marca)
-        val fecha_elaboracionPlainText = findViewById<EditText>(R.id.edit_component_fecha)
-        val precioPlainText = findViewById<EditText>(R.id.edit_component_precio)
-        val colorPlainText = findViewById<EditText>(R.id.edit_component_color)
-        val mesesPlainText = findViewById<EditText>(R.id.edit_component_meses)
+        val marcaPlainText = findViewById<EditText>(R.id.edit_carro_marca)
+        val fecha_elaboracionPlainText = findViewById<EditText>(R.id.edit_carro_fecha)
+        val precioPlainText = findViewById<EditText>(R.id.edit_carro_precio)
+        val colorPlainText = findViewById<EditText>(R.id.edit_carro_color)
+        val mesesPlainText = findViewById<EditText>(R.id.edit_carro_meses)
 
-        val editButton = findViewById<Button>(R.id.btn_confirm_component_edition)
+        val editButton = findViewById<Button>(R.id.btn_confirm_carro_edition)
 
         var selectedComponent: Carro? = null
         selectedComponentCode = intent.getIntExtra("selectedComponentCode", 0)

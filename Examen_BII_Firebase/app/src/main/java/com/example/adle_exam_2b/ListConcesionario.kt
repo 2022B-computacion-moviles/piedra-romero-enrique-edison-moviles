@@ -13,20 +13,20 @@ import com.example.adle_exam_2b.data.entity.Concesionario
 import kotlinx.coroutines.*
 
 class ListConcesionario : AppCompatActivity() {
-    private var selectedDeviceCode: Int? = null
+    private var selectedConcesionarioCode: Int? = null
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        setContentView(R.layout.activity_device_list)
+        setContentView(R.layout.activity_list_concesionario)
 
-        val deviceRecyclerView = findViewById<RecyclerView>(R.id.rv_device)
-        val creationButton = findViewById<Button>(R.id.btn_create_device)
+        val concesionarioRecyclerView = findViewById<RecyclerView>(R.id.rv_concesionario)
+        val creationButton = findViewById<Button>(R.id.btn_create_concesionario)
 
 
         DAOFactory.factory.getConcesionarioDAO().getAllConcesionarios(
-            onSuccess = { devices ->
-                initializeRecyclerView(devices, deviceRecyclerView)
-                registerForContextMenu(deviceRecyclerView)
+            onSuccess = { concesionarios ->
+                initializeRecyclerView(concesionarios, concesionarioRecyclerView)
+                registerForContextMenu(concesionarioRecyclerView)
                 /*android.app.AlertDialog.Builder(this)
                     .setTitle("Modificado")
                     .setMessage("Con Éxito ${devices.size}")
@@ -51,21 +51,21 @@ class ListConcesionario : AppCompatActivity() {
 
     override fun onContextItemSelected(item: MenuItem): Boolean {
         return when (item.itemId) {
-            R.id.mi_device_see_components -> {
+            R.id.menu_concesionario_ver -> {
                 val intent = Intent(this, ListCarro::class.java)
-                intent.putExtra("selectedDeviceCode", selectedDeviceCode)
+                intent.putExtra("selectedDeviceCode", selectedConcesionarioCode)
                 startActivity(intent)
                 return true
             }
 
-            R.id.mi_device_edit -> {
+            R.id.menu_concesionario_edit -> {
                 val intent = Intent(this, EditionConcesionario::class.java)
-                intent.putExtra("selectedDeviceCode", selectedDeviceCode)
+                intent.putExtra("selectedDeviceCode", selectedConcesionarioCode)
                 startActivity(intent)
                 return true
             }
 
-            R.id.mi_device_delete -> {
+            R.id.menu_concesionario_delete -> {
                 openDeleteDialog()
                 return true
             }
@@ -74,22 +74,22 @@ class ListConcesionario : AppCompatActivity() {
         }
     }
 
-    fun setSelectedDeviceCode(deviceCode: Int) {
-        selectedDeviceCode = deviceCode
+    fun setSelectedDeviceCode(concesionarioCode: Int) {
+        selectedConcesionarioCode = concesionarioCode
     }
 
     private fun openDeleteDialog() {
         val builder = AlertDialog.Builder(this)
-        builder.setTitle("Delete device")
-        builder.setMessage("Are you sure you want to delete the device?")
+        builder.setTitle("Eliminar")
+        builder.setMessage("Estas seguro de eliminar?")
 
-        builder.setPositiveButton("Yes") { _, _ ->
+        builder.setPositiveButton("Si") { _, _ ->
             DAOFactory.factory.getConcesionarioDAO().delete(
-                selectedDeviceCode!!,
+                selectedConcesionarioCode!!,
                 onSuccess = {
                     DAOFactory.factory.getConcesionarioDAO().getAllConcesionarios(
-                        onSuccess = { devices ->
-                            initializeRecyclerView(devices, findViewById(R.id.rv_device))
+                        onSuccess = { concesionarios ->
+                            initializeRecyclerView(concesionarios, findViewById(R.id.rv_concesionario))
                         }
                     )
                 }

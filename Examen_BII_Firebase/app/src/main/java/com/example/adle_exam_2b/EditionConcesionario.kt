@@ -17,15 +17,15 @@ class EditionConcesionario : AppCompatActivity() {
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        setContentView(R.layout.activity_device_edition)
+        setContentView(R.layout.activity_edition_concesionario)
 
-        val codePlainText = findViewById<EditText>(R.id.edit_device_code)
-        val nombrePlainText = findViewById<EditText>(R.id.edit_device_nombre)
-        val fecha_inaguracionPlainText = findViewById<EditText>(R.id.edit_device_fecha)
-        val porcentajePlainText= findViewById<EditText>(R.id.edit_device_porcentaje)
-        val cantEmpleadosPlainText = findViewById<EditText>(R.id.edit_device_empleados)
-        val editButton = findViewById<Button>(R.id.btn_confirm_device_edition)
-        val cancelButton = findViewById<Button>(R.id.btn_cancel_creation)
+        val codePlainText = findViewById<EditText>(R.id.edit_concesionario_code)
+        val nombrePlainText = findViewById<EditText>(R.id.edit_concesionario_nombre)
+        val fecha_inaguracionPlainText = findViewById<EditText>(R.id.edit_concesionario_fecha)
+        val porcentajePlainText= findViewById<EditText>(R.id.edit_concesionario_porcentaje)
+        val cantEmpleadosPlainText = findViewById<EditText>(R.id.edit_concesionario_empleados)
+        val editButton = findViewById<Button>(R.id.btn_confirm_concesionario_edition)
+
 
         val selectedDeviceCode = intent.getIntExtra("selectedDeviceCode", 0)
 
@@ -53,9 +53,7 @@ class EditionConcesionario : AppCompatActivity() {
             )
         }
 
-        cancelButton.setOnClickListener {
-            openActivity(ListConcesionario::class.java)
-        }
+
     }
 
     override fun onCreateOptionsMenu(menu: Menu): Boolean {

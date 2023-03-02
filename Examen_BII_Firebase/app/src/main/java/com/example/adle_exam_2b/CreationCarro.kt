@@ -18,19 +18,19 @@ class CreationCarro : AppCompatActivity() {
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        setContentView(R.layout.activity_component_creation)
+        setContentView(R.layout.activity_creation_carro)
 
         componentParentCode = intent.getIntExtra("componentParentCode", 0)
 
-        val codeConcesionarioPlainText = findViewById<EditText>(R.id.creation_car_code_concesionario)
+        val codeConcesionarioPlainText = findViewById<EditText>(R.id.create_car_code_concesionario)
 
-        val marcaPlainText = findViewById<EditText>(R.id.creation_car_marca)
-        val fecha_elaboracionPlainText = findViewById<EditText>(R.id.creation_car_fecha)
-        val precioPlainText = findViewById<EditText>(R.id.creation_car_precio)
-        val colorPlainText = findViewById<EditText>(R.id.creation_car_color)
-        val mesesPlainText = findViewById<EditText>(R.id.creation_car_meses)
+        val marcaPlainText = findViewById<EditText>(R.id.create_car_marca)
+        val fecha_elaboracionPlainText = findViewById<EditText>(R.id.create_car_fecha)
+        val precioPlainText = findViewById<EditText>(R.id.create_car_precio)
+        val colorPlainText = findViewById<EditText>(R.id.create_car_color)
+        val mesesPlainText = findViewById<EditText>(R.id.create_car_meses)
 
-        val createButton = findViewById<Button>(R.id.btn_confirm_car_creation)
+        val createButton = findViewById<Button>(R.id.btn_confirm_car_create)
 
         codeConcesionarioPlainText.setText(componentParentCode.toString())
 
