@@ -32,7 +32,7 @@ class FirebaseComponentDAO: ComponentDAO {
                             fecha_elaboracion = LocalDate.parse(document.getString("fecha_elaboracion")!!),
                             precio = document.getDouble("precio")!!,
                             color_subjetivo = document.getBoolean("color_subjetivo")!!,
-                            meses_plazo_pagar = document.getString("meses_plazo_pagar")!!.toInt()
+                            meses_plazo_pagar = document.getDouble("meses_plazo_pagar")!!.toInt()
                         )
                     )
                 }

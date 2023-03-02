@@ -6,24 +6,32 @@ import android.widget.TextView
 import androidx.recyclerview.widget.RecyclerView
 import com.example.adle_exam_2b.data.entity.ComponentEntity
 
-class ComponentRecyclerViewAdapter{/*(
+class ComponentRecyclerViewAdapter(
     private val parentContext: ComponentList,
     private val list: ArrayList<ComponentEntity>
 ): RecyclerView.Adapter<ComponentRecyclerViewAdapter.MyViewHolder>() {
 
     inner class MyViewHolder(view: View): RecyclerView.ViewHolder(view), View.OnCreateContextMenuListener {
         val codeTextView: TextView
-        val categoryTextView: TextView
-        val descriptionTextView: TextView
-        val discontinuedTextView: TextView
         val parentCodeTextView: TextView
+
+        val marcaTextView: TextView
+        val fecha_elaboracionTextView: TextView
+        val precioTextView: TextView
+        val colorTextView: TextView
+        val mesesTextView: TextView
+
+
 
         init {
             codeTextView = view.findViewById(R.id.tv_component_code)
-            categoryTextView = view.findViewById(R.id.tv_component_category)
-            descriptionTextView = view.findViewById(R.id.tv_component_description)
-            discontinuedTextView = view.findViewById(R.id.tv_component_discontinued)
             parentCodeTextView = view.findViewById(R.id.tv_component_device_code)
+
+            marcaTextView = view.findViewById(R.id.tv_component_marca)
+            fecha_elaboracionTextView = view.findViewById(R.id.tv_component_fecha)
+            precioTextView = view.findViewById(R.id.tv_component_precio)
+            colorTextView = view.findViewById(R.id.tv_component_color)
+            mesesTextView = view.findViewById(R.id.tv_component_meses)
 
             view.setOnCreateContextMenuListener(this)
 
@@ -63,13 +71,17 @@ class ComponentRecyclerViewAdapter{/*(
         val currentComponent = this.list[position]
 
         holder.codeTextView.text = currentComponent.code.toString()
-        holder.categoryTextView.text = currentComponent.category
-        holder.descriptionTextView.text = currentComponent.description
-        holder.discontinuedTextView.text = currentComponent.discontinued.toString()
         holder.parentCodeTextView.text = currentComponent.deviceCode.toString()
+
+        holder.marcaTextView.text = currentComponent.marca
+        holder.fecha_elaboracionTextView.text = currentComponent.fecha_elaboracion.toString()
+        holder.precioTextView.text = currentComponent.precio.toString()
+        holder.colorTextView.text = currentComponent.color_subjetivo.toString()
+        holder.mesesTextView.text = currentComponent.meses_plazo_pagar.toString()
+
     }
 
     override fun getItemCount(): Int {
         return this.list.size
-    }*/
+    }
 }
