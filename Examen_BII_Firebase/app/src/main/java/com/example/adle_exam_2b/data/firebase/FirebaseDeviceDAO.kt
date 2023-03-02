@@ -17,6 +17,7 @@ class FirebaseDeviceDAO: DeviceDAO {
             .addOnSuccessListener { documents ->
                 val devices = ArrayList<DeviceEntity>()
 
+
                 for (document in documents) {
                     devices.add(
                         DeviceEntity(
@@ -24,8 +25,9 @@ class FirebaseDeviceDAO: DeviceDAO {
                             nombre = document.getString("nombre")!!,
                             fecha_inaguracion = LocalDate.parse(document.getString("fecha_inaguracion")!!),
                             porcentaje_personas_satisfechas = document.getDouble("porcentaje_personas_satisfechas")!!,
-                            cantidad_empleados = 11
+                            cantidad_empleados =  document.getDouble("cantidad_empleados")!!.toInt()
                         )
+
                     )
                 }
 

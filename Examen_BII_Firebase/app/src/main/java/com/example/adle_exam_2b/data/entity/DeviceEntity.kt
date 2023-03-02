@@ -9,5 +9,5 @@ class DeviceEntity(
     var nombre: String,
     var fecha_inaguracion: LocalDate,
     var porcentaje_personas_satisfechas: Double,
-    var cantidad_empleados: Int,
+    var cantidad_empleados: Int
 )
