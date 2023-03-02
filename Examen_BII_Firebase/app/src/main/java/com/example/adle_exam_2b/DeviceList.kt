@@ -27,7 +27,21 @@ class DeviceList : AppCompatActivity() {
             onSuccess = { devices ->
                 initializeRecyclerView(devices, deviceRecyclerView)
                 registerForContextMenu(deviceRecyclerView)
+                /*android.app.AlertDialog.Builder(this)
+                    .setTitle("Modificado")
+                    .setMessage("Con Éxito ${devices.size}")
+                    .setPositiveButton("Aceptar") { dialog, which ->
+                        // acción cuando se presiona Aceptar
+                    }
+                    .setNegativeButton("Cancelar") { dialog, which ->
+                        // acción cuando se presiona Cancelar
+                    }
+                    .create()
+                    .show()*/
+
             }
+
+
         )
 
         creationButton.setOnClickListener {

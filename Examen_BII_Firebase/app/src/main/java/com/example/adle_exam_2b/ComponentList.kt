@@ -14,7 +14,7 @@ import com.example.adle_exam_2b.data.dao.DAOFactory
 import com.example.adle_exam_2b.data.entity.ComponentEntity
 
 class ComponentList : AppCompatActivity() {
-    private var selectedComponentCode: Int? = null
+    /*private var selectedComponentCode: Int? = null
     private var componentParentCode: Int? = null
 
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -132,5 +132,5 @@ class ComponentList : AppCompatActivity() {
     private fun openActivity(activityClass: Class<*>) {
         val intent = Intent(this, activityClass)
         startActivity(intent)
-    }
+    }*/
 }

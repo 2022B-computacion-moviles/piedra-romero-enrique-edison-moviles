@@ -6,7 +6,7 @@ import android.widget.TextView
 import androidx.recyclerview.widget.RecyclerView
 import com.example.adle_exam_2b.data.entity.ComponentEntity
 
-class ComponentRecyclerViewAdapter(
+class ComponentRecyclerViewAdapter{/*(
     private val parentContext: ComponentList,
     private val list: ArrayList<ComponentEntity>
 ): RecyclerView.Adapter<ComponentRecyclerViewAdapter.MyViewHolder>() {
@@ -71,5 +71,5 @@ class ComponentRecyclerViewAdapter(
 
     override fun getItemCount(): Int {
         return this.list.size
-    }
+    }*/
 }

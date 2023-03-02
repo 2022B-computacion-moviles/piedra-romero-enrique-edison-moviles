@@ -11,25 +11,17 @@ class DeviceData {
         init {
             deviceEntityData.add(
                 DeviceEntity(
-                    1, "TV NEO 4K", "Video", LocalDate.parse("2022-02-21"), 2385.53
+                    1, "Concesionario1",  LocalDate.parse("2022-02-21"), 59.4,45982
                 )
             )
 
             deviceEntityData.add(
                 DeviceEntity(
-                    2, "Wireless Speaker", "Audio", LocalDate.parse("2022-04-12"), 499.99
+                    2, "Concesionario2",  LocalDate.parse("2022-01-21"), 59.4,45982
                 )
             )
 
-            deviceEntityData.add(
-                DeviceEntity(
-                    3, "TV Samsung UHD", "Video", LocalDate.parse("2019-10-21"), 274.49
-                )
-            )
 
-            deviceEntityData.add(
-                DeviceEntity(4, "Samsung Galaxy S4", "Cellphone", LocalDate.parse("2014-07-10"), 355.69)
-            )
         }
     }
 

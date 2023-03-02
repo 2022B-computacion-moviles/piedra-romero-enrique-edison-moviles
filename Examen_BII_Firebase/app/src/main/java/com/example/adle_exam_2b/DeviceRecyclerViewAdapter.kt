@@ -13,17 +13,17 @@ class DeviceRecyclerViewAdapter(
 
     inner class MyViewHolder(view: View): RecyclerView.ViewHolder(view), View.OnCreateContextMenuListener {
         val codeTextView: TextView
-        val nameTextView: TextView
-        val categoryTextView: TextView
-        val dateTextView: TextView
-        val priceTextView: TextView
+        val nombreTextView: TextView
+        val fecha_inaguracionTextView: TextView
+        val porcentajeTextView: TextView
+        val cantEmpleadosTextView: TextView
 
         init {
             codeTextView = view.findViewById(R.id.tv_device_code)
-            nameTextView = view.findViewById(R.id.tv_device_name)
-            categoryTextView = view.findViewById(R.id.tv_device_category)
-            dateTextView = view.findViewById(R.id.tv_device_date)
-            priceTextView = view.findViewById(R.id.tv_device_price)
+            nombreTextView = view.findViewById(R.id.tv_device_nombre)
+            fecha_inaguracionTextView = view.findViewById(R.id.tv_device_fecha)
+            porcentajeTextView = view.findViewById(R.id.tv_device_porcentaje)
+            cantEmpleadosTextView = view.findViewById(R.id.tv_device_empleados)
 
             view.setOnCreateContextMenuListener(this)
 
@@ -63,10 +63,10 @@ class DeviceRecyclerViewAdapter(
         val currentDevice = this.list[position]
 
         holder.codeTextView.text = currentDevice.code.toString()
-        holder.nameTextView.text = currentDevice.name
-        holder.categoryTextView.text = currentDevice.category
-        holder.dateTextView.text = currentDevice.releaseDate.toString()
-        holder.priceTextView.text = currentDevice.price.toString()
+        holder.nombreTextView.text = currentDevice.nombre
+        holder.fecha_inaguracionTextView.text = currentDevice.fecha_inaguracion.toString()
+        holder.porcentajeTextView.text = currentDevice.porcentaje_personas_satisfechas.toString()
+        holder.cantEmpleadosTextView.text = currentDevice.cantidad_empleados.toString()
     }
 
     override fun getItemCount(): Int {

@@ -21,10 +21,10 @@ class FirebaseDeviceDAO: DeviceDAO {
                     devices.add(
                         DeviceEntity(
                             code = document.id.split("/").last().toInt(),
-                            name = document.getString("name")!!,
-                            category = document.getString("category")!!,
-                            releaseDate = LocalDate.parse(document.getString("release_date")!!),
-                            price = document.getDouble("price")!!
+                            nombre = document.getString("nombre")!!,
+                            fecha_inaguracion = LocalDate.parse(document.getString("fecha_inaguracion")!!),
+                            porcentaje_personas_satisfechas = document.getDouble("porcentaje_personas_satisfechas")!!,
+                            cantidad_empleados = 11
                         )
                     )
                 }
@@ -35,10 +35,10 @@ class FirebaseDeviceDAO: DeviceDAO {
 
     override fun create(entity: DeviceEntity) {
         val device = hashMapOf(
-            "name" to entity.name,
-            "category" to entity.category,
-            "release_date" to entity.releaseDate.toString(),
-            "price" to entity.price
+            "nombre" to entity.nombre,
+            "fecha_inaguracion" to entity.fecha_inaguracion.toString(),
+            "porcentaje_personas_satisfechas" to entity.porcentaje_personas_satisfechas,
+            "cantidad_empleados" to entity.cantidad_empleados
         )
 
         devicesCollectionReference.document(entity.code.toString()).set(device)
@@ -53,10 +53,10 @@ class FirebaseDeviceDAO: DeviceDAO {
                 if (document.exists()) {
                     val device = DeviceEntity(
                         code,
-                        document.data!!["name"].toString(),
-                        document.data!!["category"].toString(),
-                        LocalDate.parse(document.data!!["release_date"].toString()),
-                        document.data!!["price"].toString().toDouble()
+                        document.data!!["nombre"].toString(),
+                        LocalDate.parse(document.data!!["fecha_inaguracion"].toString()),
+                        document.data!!["porcentaje_personas_satisfechas"].toString().toDouble(),
+                        document.data!!["cantidad_empleados"].toString().toInt()
                     )
 
                     onSuccess(device)
@@ -66,10 +66,10 @@ class FirebaseDeviceDAO: DeviceDAO {
 
     override fun update(entity: DeviceEntity) {
         val device = hashMapOf(
-            "name" to entity.name,
-            "category" to entity.category,
-            "release_date" to entity.releaseDate.toString(),
-            "price" to entity.price
+            "nombre" to entity.nombre,
+            "fecha_inaguracion" to entity.fecha_inaguracion.toString(),
+            "porcentaje_personas_satisfechas" to entity.porcentaje_personas_satisfechas,
+            "cantidad_empleados" to entity.cantidad_empleados
         )
 
         devicesCollectionReference.document(entity.code.toString()).set(device)

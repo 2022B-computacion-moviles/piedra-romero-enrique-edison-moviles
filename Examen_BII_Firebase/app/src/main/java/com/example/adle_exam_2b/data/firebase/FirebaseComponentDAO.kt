@@ -5,6 +5,7 @@ import com.example.adle_exam_2b.data.dao.DAOFactory
 import com.example.adle_exam_2b.data.entity.ComponentEntity
 import com.google.firebase.firestore.ktx.firestore
 import com.google.firebase.ktx.Firebase
+import java.time.LocalDate
 
 class FirebaseComponentDAO: ComponentDAO {
 
@@ -26,10 +27,12 @@ class FirebaseComponentDAO: ComponentDAO {
                     components.add(
                         ComponentEntity(
                             code = document.id.split("/").last().toInt(),
-                            category = document.getString("category")!!,
-                            description = document.getString("description")!!,
-                            discontinued = document.getBoolean("discontinued")!!,
-                            deviceCode = deviceCode
+                            deviceCode = deviceCode,
+                            marca = document.getString("marca")!!,
+                            fecha_elaboracion = LocalDate.parse(document.getString("fecha_elaboracion")!!),
+                            precio = document.getDouble("precio")!!,
+                            color_subjetivo = document.getBoolean("color_subjetivo")!!,
+                            meses_plazo_pagar = document.getString("meses_plazo_pagar")!!.toInt()
                         )
                     )
                 }
@@ -40,9 +43,11 @@ class FirebaseComponentDAO: ComponentDAO {
 
     override fun create(entity: ComponentEntity) {
         val component = hashMapOf(
-            "category" to entity.category,
-            "description" to entity.description,
-            "discontinued" to entity.discontinued
+            "marca" to entity.marca,
+            "fecha_elaboracion" to  entity.fecha_elaboracion.toString(),
+            "precio" to entity.precio,
+            "color_subjetivo" to entity.color_subjetivo,
+            "meses_plazo_pagar" to entity.meses_plazo_pagar,
         )
 
         devicesCollectionReference
@@ -67,10 +72,12 @@ class FirebaseComponentDAO: ComponentDAO {
                                 onSuccess(
                                     ComponentEntity(
                                         component.id.toInt(),
-                                        component.getString("category")!!,
-                                        component.getString("description")!!,
-                                        component.getBoolean("discontinued")!!,
-                                        device.code
+                                        device.code,
+                                        component.getString("marca")!!,
+                                        LocalDate.parse(component.data!!["fecha_elaboracion"].toString()),
+                                        component.getDouble("precio")!!,
+                                        component.getBoolean("color_subjetivo")!!,
+                                        component.getString("meses_plazo_pagar")!!.toInt(),
                                     )
                                 )
                             }
@@ -82,9 +89,11 @@ class FirebaseComponentDAO: ComponentDAO {
 
     override fun update(entity: ComponentEntity) {
         val component = hashMapOf(
-            "category" to entity.category,
-            "description" to entity.description,
-            "discontinued" to entity.discontinued
+            "marca" to entity.marca,
+            "fecha_elaboracion" to  entity.fecha_elaboracion.toString(),
+            "precio" to entity.precio,
+            "color_subjetivo" to entity.color_subjetivo,
+            "meses_plazo_pagar" to entity.meses_plazo_pagar,
         )
 
         devicesCollectionReference

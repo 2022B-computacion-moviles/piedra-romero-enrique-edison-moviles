@@ -13,7 +13,7 @@ import com.example.adle_exam_2b.data.dao.DAOFactory
 import com.example.adle_exam_2b.data.entity.ComponentEntity
 
 class ComponentCreation : AppCompatActivity() {
-    private var componentParentCode: Int? = null
+    /*private var componentParentCode: Int? = null
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -94,5 +94,5 @@ class ComponentCreation : AppCompatActivity() {
         val intent = Intent(this, ComponentList::class.java)
         intent.putExtra("selectedDeviceCode", componentParentCode!!)
         startActivity(intent)
-    }
+    }*/
 }

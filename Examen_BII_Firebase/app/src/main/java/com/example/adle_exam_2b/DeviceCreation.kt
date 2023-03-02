@@ -14,6 +14,7 @@ import com.example.adle_exam_2b.data.entity.DeviceEntity
 import java.time.LocalDate
 
 class DeviceCreation : AppCompatActivity() {
+    /*
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_device_creation)
@@ -82,5 +83,5 @@ class DeviceCreation : AppCompatActivity() {
     private fun openActivity(activityClass: Class<*>) {
         val intent = Intent(this, activityClass)
         startActivity(intent)
-    }
+    }*/
 }

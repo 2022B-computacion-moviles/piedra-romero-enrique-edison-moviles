@@ -13,7 +13,7 @@ import com.example.adle_exam_2b.data.dao.DAOFactory
 import com.example.adle_exam_2b.data.entity.ComponentEntity
 
 class ComponentEdition : AppCompatActivity() {
-    private var selectedComponentCode: Int? = null
+    /*private var selectedComponentCode: Int? = null
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -108,5 +108,5 @@ class ComponentEdition : AppCompatActivity() {
                 startActivity(intent)
             }
         )
-    }
+    }*/
 }
