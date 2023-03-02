@@ -10,10 +10,10 @@ import android.widget.Button
 import android.widget.EditText
 import androidx.appcompat.app.AlertDialog
 import com.example.adle_exam_2b.data.dao.DAOFactory
-import com.example.adle_exam_2b.data.entity.ComponentEntity
+import com.example.adle_exam_2b.data.entity.Carro
 import java.time.LocalDate
 
-class ComponentEdition : AppCompatActivity() {
+class EditionCarro : AppCompatActivity() {
     private var selectedComponentCode: Int? = null
 
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -31,7 +31,7 @@ class ComponentEdition : AppCompatActivity() {
 
         val editButton = findViewById<Button>(R.id.btn_confirm_component_edition)
 
-        var selectedComponent: ComponentEntity? = null
+        var selectedComponent: Carro? = null
         selectedComponentCode = intent.getIntExtra("selectedComponentCode", 0)
 
         // Setting component data when it is ready
@@ -56,7 +56,7 @@ class ComponentEdition : AppCompatActivity() {
 
         editButton.setOnClickListener {
             openEditionDialog(
-                ComponentEntity(
+                Carro(
                     selectedComponentCode!!,
                     selectedComponent!!.deviceCode,
                     marcaPlainText.text.toString(),
@@ -88,7 +88,7 @@ class ComponentEdition : AppCompatActivity() {
     }
 
     @SuppressLint("NotifyDataSetChanged")
-    private fun openEditionDialog(editedComponent: ComponentEntity, componentParentCode: Int) {
+    private fun openEditionDialog(editedComponent: Carro, componentParentCode: Int) {
         val builder = AlertDialog.Builder(this)
         builder.setTitle("Edit component")
         builder.setMessage("Are you sure you want to edit the component?")
@@ -96,7 +96,7 @@ class ComponentEdition : AppCompatActivity() {
         builder.setPositiveButton("Yes") { _, _ ->
             DAOFactory.factory.getComponentDAO().update(editedComponent)
 
-            val intent = Intent(this, ComponentList::class.java)
+            val intent = Intent(this, ListCarro::class.java)
             intent.putExtra("selectedDeviceCode", componentParentCode)
             startActivity(intent)
         }
@@ -111,7 +111,7 @@ class ComponentEdition : AppCompatActivity() {
         DAOFactory.factory.getComponentDAO().read(
             selectedComponentCode!!,
             onSuccess = { component ->
-                val intent = Intent(this, ComponentList::class.java)
+                val intent = Intent(this, ListCarro::class.java)
                 intent.putExtra("selectedDeviceCode", component.deviceCode)
                 startActivity(intent)
             }

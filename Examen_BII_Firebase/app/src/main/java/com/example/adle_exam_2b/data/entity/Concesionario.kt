@@ -3,7 +3,7 @@ package com.example.adle_exam_2b.data.entity
 import java.time.LocalDate
 
 
-class DeviceEntity(
+class Concesionario(
     val code: Int, //La id de clase principal (Concesionario)
 
     var nombre: String,

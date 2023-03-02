@@ -2,7 +2,7 @@ package com.example.adle_exam_2b.data.entity
 
 import java.time.LocalDate
 
-class ComponentEntity(
+class Carro(
     val code: Int, //La id de clase secundaria (carro)
     val deviceCode: Int, //La id de clase principal (Concesionario)
 

@@ -10,10 +10,10 @@ import android.widget.Button
 import android.widget.EditText
 import androidx.appcompat.app.AlertDialog
 import com.example.adle_exam_2b.data.dao.DAOFactory
-import com.example.adle_exam_2b.data.entity.ComponentEntity
+import com.example.adle_exam_2b.data.entity.Carro
 import java.time.LocalDate
 
-class ComponentCreation : AppCompatActivity() {
+class CreationCarro : AppCompatActivity() {
     private var componentParentCode: Int? = null
 
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -39,7 +39,7 @@ class ComponentCreation : AppCompatActivity() {
             DAOFactory.factory.getComponentDAO().getNextCode(
                 onSuccess = { code ->
                     openCreationDialog(
-                        ComponentEntity(
+                        Carro(
                             code,
                             componentParentCode!!,
                             marcaPlainText.text.toString(),
@@ -72,7 +72,7 @@ class ComponentCreation : AppCompatActivity() {
     }
 
     @SuppressLint("NotifyDataSetChanged")
-    private fun openCreationDialog(createdComponent: ComponentEntity, componentParentCode: Int) {
+    private fun openCreationDialog(createdComponent: Carro, componentParentCode: Int) {
         val builder = AlertDialog.Builder(this)
         builder.setTitle("Create component")
         builder.setMessage("Are you sure you want to create the component?")
@@ -80,7 +80,7 @@ class ComponentCreation : AppCompatActivity() {
         builder.setPositiveButton("Yes") { _, _ ->
             DAOFactory.factory.getComponentDAO().create(createdComponent)
 
-            val intent = Intent(this, ComponentList::class.java)
+            val intent = Intent(this, ListCarro::class.java)
             intent.putExtra("selectedDeviceCode", componentParentCode)
             startActivity(intent)
         }
@@ -92,7 +92,7 @@ class ComponentCreation : AppCompatActivity() {
     }
 
     private fun openActivityWithParameter() {
-        val intent = Intent(this, ComponentList::class.java)
+        val intent = Intent(this, ListCarro::class.java)
         intent.putExtra("selectedDeviceCode", componentParentCode!!)
         startActivity(intent)
     }

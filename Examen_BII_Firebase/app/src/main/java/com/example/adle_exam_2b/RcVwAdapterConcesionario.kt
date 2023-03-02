@@ -4,12 +4,12 @@ import android.util.TypedValue
 import android.view.*
 import android.widget.TextView
 import androidx.recyclerview.widget.RecyclerView
-import com.example.adle_exam_2b.data.entity.DeviceEntity
+import com.example.adle_exam_2b.data.entity.Concesionario
 
-class DeviceRecyclerViewAdapter(
-    private val parentContext: DeviceList,
-    private val list: ArrayList<DeviceEntity>
-): RecyclerView.Adapter<DeviceRecyclerViewAdapter.MyViewHolder>() {
+class RcVwAdapterConcesionario(
+    private val parentContext: ListConcesionario,
+    private val list: ArrayList<Concesionario>
+): RecyclerView.Adapter<RcVwAdapterConcesionario.MyViewHolder>() {
 
     inner class MyViewHolder(view: View): RecyclerView.ViewHolder(view), View.OnCreateContextMenuListener {
         val codeTextView: TextView

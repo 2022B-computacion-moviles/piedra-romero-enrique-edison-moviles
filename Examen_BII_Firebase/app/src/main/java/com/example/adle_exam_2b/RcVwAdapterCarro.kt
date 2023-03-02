@@ -4,12 +4,12 @@ import android.util.TypedValue
 import android.view.*
 import android.widget.TextView
 import androidx.recyclerview.widget.RecyclerView
-import com.example.adle_exam_2b.data.entity.ComponentEntity
+import com.example.adle_exam_2b.data.entity.Carro
 
-class ComponentRecyclerViewAdapter(
-    private val parentContext: ComponentList,
-    private val list: ArrayList<ComponentEntity>
-): RecyclerView.Adapter<ComponentRecyclerViewAdapter.MyViewHolder>() {
+class RcVwAdapterCarro(
+    private val parentContext: ListCarro,
+    private val list: ArrayList<Carro>
+): RecyclerView.Adapter<RcVwAdapterCarro.MyViewHolder>() {
 
     inner class MyViewHolder(view: View): RecyclerView.ViewHolder(view), View.OnCreateContextMenuListener {
         val codeTextView: TextView

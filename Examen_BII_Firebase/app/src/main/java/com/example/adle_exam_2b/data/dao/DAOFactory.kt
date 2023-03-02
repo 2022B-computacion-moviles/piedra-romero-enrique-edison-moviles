@@ -8,7 +8,7 @@ abstract class DAOFactory {
         var factory: DAOFactory = FirebaseDAOFactory()
     }
 
-    abstract fun getDeviceDAO(): DeviceDAO
-    abstract fun getComponentDAO(): ComponentDAO
+    abstract fun getDeviceDAO(): ConcesionarioDAO
+    abstract fun getComponentDAO(): CarroDAO
 
 }

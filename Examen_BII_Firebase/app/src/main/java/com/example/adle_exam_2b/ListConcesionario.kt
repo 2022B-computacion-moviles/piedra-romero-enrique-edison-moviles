@@ -9,10 +9,10 @@ import android.widget.Button
 import androidx.appcompat.app.AlertDialog
 import androidx.recyclerview.widget.RecyclerView
 import com.example.adle_exam_2b.data.dao.DAOFactory
-import com.example.adle_exam_2b.data.entity.DeviceEntity
+import com.example.adle_exam_2b.data.entity.Concesionario
 import kotlinx.coroutines.*
 
-class DeviceList : AppCompatActivity() {
+class ListConcesionario : AppCompatActivity() {
     private var selectedDeviceCode: Int? = null
 
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -23,7 +23,7 @@ class DeviceList : AppCompatActivity() {
         val creationButton = findViewById<Button>(R.id.btn_create_device)
 
 
-        DAOFactory.factory.getDeviceDAO().getAllDevices(
+        DAOFactory.factory.getDeviceDAO().getAllConcesionarios(
             onSuccess = { devices ->
                 initializeRecyclerView(devices, deviceRecyclerView)
                 registerForContextMenu(deviceRecyclerView)
@@ -45,21 +45,21 @@ class DeviceList : AppCompatActivity() {
         )
 
         creationButton.setOnClickListener {
-            openActivity(DeviceCreation::class.java)
+            openActivity(CreationConcesionario::class.java)
         }
     }
 
     override fun onContextItemSelected(item: MenuItem): Boolean {
         return when (item.itemId) {
             R.id.mi_device_see_components -> {
-                val intent = Intent(this, ComponentList::class.java)
+                val intent = Intent(this, ListCarro::class.java)
                 intent.putExtra("selectedDeviceCode", selectedDeviceCode)
                 startActivity(intent)
                 return true
             }
 
             R.id.mi_device_edit -> {
-                val intent = Intent(this, DeviceEdition::class.java)
+                val intent = Intent(this, EditionConcesionario::class.java)
                 intent.putExtra("selectedDeviceCode", selectedDeviceCode)
                 startActivity(intent)
                 return true
@@ -87,7 +87,7 @@ class DeviceList : AppCompatActivity() {
             DAOFactory.factory.getDeviceDAO().delete(
                 selectedDeviceCode!!,
                 onSuccess = {
-                    DAOFactory.factory.getDeviceDAO().getAllDevices(
+                    DAOFactory.factory.getDeviceDAO().getAllConcesionarios(
                         onSuccess = { devices ->
                             initializeRecyclerView(devices, findViewById(R.id.rv_device))
                         }
@@ -104,10 +104,10 @@ class DeviceList : AppCompatActivity() {
 
     @SuppressLint("NotifyDataSetChanged")
     private fun initializeRecyclerView(
-        list: ArrayList<DeviceEntity>,
+        list: ArrayList<Concesionario>,
         recyclerView: RecyclerView
     ) {
-        val adapter = DeviceRecyclerViewAdapter(this, list)
+        val adapter = RcVwAdapterConcesionario(this, list)
 
         recyclerView.adapter = adapter
         recyclerView.itemAnimator = androidx.recyclerview.widget.DefaultItemAnimator()

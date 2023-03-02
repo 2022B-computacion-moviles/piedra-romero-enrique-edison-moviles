@@ -11,9 +11,9 @@ import android.widget.TextView
 import androidx.appcompat.app.AlertDialog
 import androidx.recyclerview.widget.RecyclerView
 import com.example.adle_exam_2b.data.dao.DAOFactory
-import com.example.adle_exam_2b.data.entity.ComponentEntity
+import com.example.adle_exam_2b.data.entity.Carro
 
-class ComponentList : AppCompatActivity() {
+class ListCarro : AppCompatActivity() {
     private var selectedComponentCode: Int? = null
     private var componentParentCode: Int? = null
 
@@ -38,7 +38,7 @@ class ComponentList : AppCompatActivity() {
         )
 
         // Setting the Recycler View when the data is ready
-        DAOFactory.factory.getComponentDAO().getAllComponentsByDeviceCode(
+        DAOFactory.factory.getComponentDAO().getAllCarrosByCodeCar(
             componentParentCode!!,
             onSuccess = { components ->
                 initializeRecyclerView(components, componentRecyclerView)
@@ -47,7 +47,7 @@ class ComponentList : AppCompatActivity() {
         )
 
         creationButton.setOnClickListener {
-            val intent = Intent(this, ComponentCreation::class.java)
+            val intent = Intent(this, CreationCarro::class.java)
             intent.putExtra("componentParentCode", componentParentCode)
             startActivity(intent)
         }
@@ -61,7 +61,7 @@ class ComponentList : AppCompatActivity() {
     override fun onOptionsItemSelected(item: MenuItem): Boolean {
         return when (item.itemId) {
             R.id.back_button -> {
-                openActivity(DeviceList::class.java)
+                openActivity(ListConcesionario::class.java)
                 true
             }
             else -> super.onOptionsItemSelected(item)
@@ -71,7 +71,7 @@ class ComponentList : AppCompatActivity() {
     override fun onContextItemSelected(item: MenuItem): Boolean {
         return when (item.itemId) {
             R.id.mi_component_edit -> {
-                val intent = Intent(this, ComponentEdition::class.java)
+                val intent = Intent(this, EditionCarro::class.java)
                 intent.putExtra("selectedComponentCode", selectedComponentCode)
                 startActivity(intent)
                 return true
@@ -100,7 +100,7 @@ class ComponentList : AppCompatActivity() {
             DAOFactory.factory.getComponentDAO().delete(
                 selectedComponentCode!!,
                 onSuccess = {
-                    DAOFactory.factory.getComponentDAO().getAllComponentsByDeviceCode(
+                    DAOFactory.factory.getComponentDAO().getAllCarrosByCodeCar(
                         componentParentCode!!,
                         onSuccess = { components ->
                             initializeRecyclerView(components, findViewById(R.id.rv_component))
@@ -118,10 +118,10 @@ class ComponentList : AppCompatActivity() {
 
     @SuppressLint("NotifyDataSetChanged")
     private fun initializeRecyclerView(
-        list: ArrayList<ComponentEntity>,
+        list: ArrayList<Carro>,
         recyclerView: RecyclerView
     ) {
-        val adapter = ComponentRecyclerViewAdapter(this, list)
+        val adapter = RcVwAdapterCarro(this, list)
 
         recyclerView.adapter = adapter
         recyclerView.itemAnimator = androidx.recyclerview.widget.DefaultItemAnimator()

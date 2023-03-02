@@ -5,8 +5,8 @@ import android.os.Bundle
 import android.widget.Button
 import androidx.appcompat.app.AppCompatActivity
 import com.example.adle_exam_2b.data.dao.DAOFactory
-import com.example.adle_exam_2b.data.util.ComponentData
-import com.example.adle_exam_2b.data.util.DeviceData
+import com.example.adle_exam_2b.data.util.DataCarro
+import com.example.adle_exam_2b.data.util.DataConcesionario
 
 class MainActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -21,7 +21,7 @@ class MainActivity : AppCompatActivity() {
         }
 
         startButton.setOnClickListener {
-            openActivity(DeviceList::class.java)
+            openActivity(ListConcesionario::class.java)
         }
     }
 
@@ -31,11 +31,11 @@ class MainActivity : AppCompatActivity() {
     }
 
     private fun createInitialData() {
-        for (device in DeviceData.deviceEntityData) {
+        for (device in DataConcesionario.deviceEntityData) {
             DAOFactory.factory.getDeviceDAO().create(device)
         }
 
-        for (component in ComponentData.componentEntityData) {
+        for (component in DataCarro.componentEntityData) {
             DAOFactory.factory.getComponentDAO().create(component)
         }
     }

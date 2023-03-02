@@ -10,10 +10,10 @@ import android.widget.Button
 import android.widget.EditText
 import androidx.appcompat.app.AlertDialog
 import com.example.adle_exam_2b.data.dao.DAOFactory
-import com.example.adle_exam_2b.data.entity.DeviceEntity
+import com.example.adle_exam_2b.data.entity.Concesionario
 import java.time.LocalDate
 
-class DeviceEdition : AppCompatActivity() {
+class EditionConcesionario : AppCompatActivity() {
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -43,7 +43,7 @@ class DeviceEdition : AppCompatActivity() {
 
         editButton.setOnClickListener {
             openEditionDialog(
-                DeviceEntity(
+                Concesionario(
                     selectedDeviceCode,
                     nombrePlainText.text.toString(),
                     LocalDate.parse(fecha_inaguracionPlainText.text.toString()),
@@ -54,7 +54,7 @@ class DeviceEdition : AppCompatActivity() {
         }
 
         cancelButton.setOnClickListener {
-            openActivity(DeviceList::class.java)
+            openActivity(ListConcesionario::class.java)
         }
     }
 
@@ -66,7 +66,7 @@ class DeviceEdition : AppCompatActivity() {
     override fun onOptionsItemSelected(item: MenuItem): Boolean {
         return when (item.itemId) {
             R.id.back_button -> {
-                openActivity(DeviceList::class.java)
+                openActivity(ListConcesionario::class.java)
                 true
             }
             else -> super.onOptionsItemSelected(item)
@@ -74,14 +74,14 @@ class DeviceEdition : AppCompatActivity() {
     }
 
     @SuppressLint("NotifyDataSetChanged")
-    private fun openEditionDialog(editedDevice: DeviceEntity) {
+    private fun openEditionDialog(editedDevice: Concesionario) {
         val builder = AlertDialog.Builder(this)
         builder.setTitle("Edit device")
         builder.setMessage("Are you sure you want to edit the device?")
 
         builder.setPositiveButton("Yes") { _, _ ->
             DAOFactory.factory.getDeviceDAO().update(editedDevice)
-            openActivity(DeviceList::class.java)
+            openActivity(ListConcesionario::class.java)
         }
 
         builder.setNegativeButton("No") { _, _ -> }

@@ -1,26 +1,26 @@
 package com.example.adle_exam_2b.data.firebase
 
-import com.example.adle_exam_2b.data.dao.DeviceDAO
-import com.example.adle_exam_2b.data.entity.DeviceEntity
+import com.example.adle_exam_2b.data.dao.ConcesionarioDAO
+import com.example.adle_exam_2b.data.entity.Concesionario
 import com.google.firebase.firestore.ktx.firestore
 import com.google.firebase.ktx.Firebase
 import java.time.LocalDate
 
-class FirebaseDeviceDAO: DeviceDAO {
+class FirebaseConcesionarioDAO: ConcesionarioDAO {
 
     private val db = Firebase.firestore
     private val devicesCollectionReference = db.collection("concesionarios")
 
-    override fun getAllDevices(onSuccess: (ArrayList<DeviceEntity>) -> Unit) {
+    override fun getAllConcesionarios(onSuccess: (ArrayList<Concesionario>) -> Unit) {
         devicesCollectionReference
             .get()
             .addOnSuccessListener { documents ->
-                val devices = ArrayList<DeviceEntity>()
+                val devices = ArrayList<Concesionario>()
 
 
                 for (document in documents) {
                     devices.add(
-                        DeviceEntity(
+                        Concesionario(
                             code = document.id.split("/").last().toInt(),
                             nombre = document.getString("nombre")!!,
                             fecha_inaguracion = LocalDate.parse(document.getString("fecha_inaguracion")!!),
@@ -35,7 +35,7 @@ class FirebaseDeviceDAO: DeviceDAO {
             }
     }
 
-    override fun create(entity: DeviceEntity) {
+    override fun create(entity: Concesionario) {
         val device = hashMapOf(
             "nombre" to entity.nombre,
             "fecha_inaguracion" to entity.fecha_inaguracion.toString(),
@@ -46,14 +46,14 @@ class FirebaseDeviceDAO: DeviceDAO {
         devicesCollectionReference.document(entity.code.toString()).set(device)
     }
 
-    override fun read(code: Int, onSuccess: (DeviceEntity) -> Unit) {
+    override fun read(code: Int, onSuccess: (Concesionario) -> Unit) {
         val deviceReference = devicesCollectionReference.document(code.toString())
 
         deviceReference
             .get()
             .addOnSuccessListener { document ->
                 if (document.exists()) {
-                    val device = DeviceEntity(
+                    val device = Concesionario(
                         code,
                         document.data!!["nombre"].toString(),
                         LocalDate.parse(document.data!!["fecha_inaguracion"].toString()),
@@ -66,7 +66,7 @@ class FirebaseDeviceDAO: DeviceDAO {
             }
     }
 
-    override fun update(entity: DeviceEntity) {
+    override fun update(entity: Concesionario) {
         val device = hashMapOf(
             "nombre" to entity.nombre,
             "fecha_inaguracion" to entity.fecha_inaguracion.toString(),
@@ -88,7 +88,7 @@ class FirebaseDeviceDAO: DeviceDAO {
     override fun getNextCode(onSuccess: (Int) -> Unit) {
         var nextCode = 0
 
-        getAllDevices { devices ->
+        getAllConcesionarios { devices ->
             for (device in devices) {
                 if (device.code > nextCode)
                     nextCode = device.code

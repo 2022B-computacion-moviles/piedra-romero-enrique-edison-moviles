@@ -10,10 +10,10 @@ import android.widget.Button
 import android.widget.EditText
 import androidx.appcompat.app.AlertDialog
 import com.example.adle_exam_2b.data.dao.DAOFactory
-import com.example.adle_exam_2b.data.entity.DeviceEntity
+import com.example.adle_exam_2b.data.entity.Concesionario
 import java.time.LocalDate
 
-class DeviceCreation : AppCompatActivity() {
+class CreationConcesionario : AppCompatActivity() {
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -33,7 +33,7 @@ class DeviceCreation : AppCompatActivity() {
             DAOFactory.factory.getDeviceDAO().getNextCode(
                 onSuccess = { code ->
                     openCreationDialog(
-                        DeviceEntity(
+                        Concesionario(
                             code,
                             nombrePlainText.text.toString(),
                             LocalDate.parse(fecha_inaguracionPlainText.text.toString()),
@@ -54,7 +54,7 @@ class DeviceCreation : AppCompatActivity() {
     override fun onOptionsItemSelected(item: MenuItem): Boolean {
         return when (item.itemId) {
             R.id.back_button -> {
-                openActivity(DeviceList::class.java)
+                openActivity(ListConcesionario::class.java)
                 true
             }
             else -> super.onOptionsItemSelected(item)
@@ -62,14 +62,14 @@ class DeviceCreation : AppCompatActivity() {
     }
 
     @SuppressLint("NotifyDataSetChanged")
-    private fun openCreationDialog(createdDevice: DeviceEntity) {
+    private fun openCreationDialog(createdDevice: Concesionario) {
         val builder = AlertDialog.Builder(this)
         builder.setTitle("Create device")
         builder.setMessage("Are you sure you want to create the device?")
 
         builder.setPositiveButton("Yes") { _, _ ->
             DAOFactory.factory.getDeviceDAO().create(createdDevice)
-            openActivity(DeviceList::class.java)
+            openActivity(ListConcesionario::class.java)
         }
 
         builder.setNegativeButton("No") { _, _ -> }

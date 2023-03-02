@@ -1,22 +1,22 @@
 package com.example.adle_exam_2b.data.util
 
-import com.example.adle_exam_2b.data.entity.DeviceEntity
+import com.example.adle_exam_2b.data.entity.Concesionario
 import java.time.LocalDate
 
-class DeviceData {
+class DataConcesionario {
 
     companion object {
-        var deviceEntityData = ArrayList<DeviceEntity>()
+        var deviceEntityData = ArrayList<Concesionario>()
 
         init {
             deviceEntityData.add(
-                DeviceEntity(
+                Concesionario(
                     1, "Concesionario1",  LocalDate.parse("2022-02-21"), 59.4,45982
                 )
             )
 
             deviceEntityData.add(
-                DeviceEntity(
+                Concesionario(
                     2, "Concesionario2",  LocalDate.parse("2022-01-21"), 59.4,45982
                 )
             )

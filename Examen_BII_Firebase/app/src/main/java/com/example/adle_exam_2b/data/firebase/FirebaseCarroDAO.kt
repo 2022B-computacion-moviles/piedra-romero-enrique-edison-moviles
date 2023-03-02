@@ -1,31 +1,31 @@
 package com.example.adle_exam_2b.data.firebase
 
-import com.example.adle_exam_2b.data.dao.ComponentDAO
+import com.example.adle_exam_2b.data.dao.CarroDAO
 import com.example.adle_exam_2b.data.dao.DAOFactory
-import com.example.adle_exam_2b.data.entity.ComponentEntity
+import com.example.adle_exam_2b.data.entity.Carro
 import com.google.firebase.firestore.ktx.firestore
 import com.google.firebase.ktx.Firebase
 import java.time.LocalDate
 
-class FirebaseComponentDAO: ComponentDAO {
+class FirebaseCarroDAO: CarroDAO {
 
     private val db = Firebase.firestore
     private val devicesCollectionReference = db.collection("concesionarios")
 
-    override fun getAllComponentsByDeviceCode(
+    override fun getAllCarrosByCodeCar(
         deviceCode: Int,
-        onSuccess: (ArrayList<ComponentEntity>) -> Unit
+        onSuccess: (ArrayList<Carro>) -> Unit
     ) {
         devicesCollectionReference
             .document(deviceCode.toString())
             .collection("carros")
             .get()
             .addOnSuccessListener { documents ->
-                val components = ArrayList<ComponentEntity>()
+                val components = ArrayList<Carro>()
 
                 for (document in documents) {
                     components.add(
-                        ComponentEntity(
+                        Carro(
                             code = document.id.split("/").last().toInt(),
                             deviceCode = deviceCode,
                             marca = document.getString("marca")!!,
@@ -41,7 +41,7 @@ class FirebaseComponentDAO: ComponentDAO {
             }
     }
 
-    override fun create(entity: ComponentEntity) {
+    override fun create(entity: Carro) {
         val component = hashMapOf(
             "marca" to entity.marca,
             "fecha_elaboracion" to  entity.fecha_elaboracion.toString(),
@@ -56,8 +56,8 @@ class FirebaseComponentDAO: ComponentDAO {
             .document(entity.code.toString()).set(component)
     }
 
-    override fun read(code: Int, onSuccess: (ComponentEntity) -> Unit) {
-        DAOFactory.factory.getDeviceDAO().getAllDevices { devices ->
+    override fun read(code: Int, onSuccess: (Carro) -> Unit) {
+        DAOFactory.factory.getDeviceDAO().getAllConcesionarios { devices ->
             for (device in devices) {
                 val db = Firebase.firestore
                 val componentsCollectionReference = db.collection(
@@ -70,7 +70,7 @@ class FirebaseComponentDAO: ComponentDAO {
                         for (component in components) {
                             if (component.id.toInt() == code) {
                                 onSuccess(
-                                    ComponentEntity(
+                                    Carro(
                                         component.id.toInt(),
                                         device.code,
                                         component.getString("marca")!!,
@@ -87,7 +87,7 @@ class FirebaseComponentDAO: ComponentDAO {
         }
     }
 
-    override fun update(entity: ComponentEntity) {
+    override fun update(entity: Carro) {
         val component = hashMapOf(
             "marca" to entity.marca,
             "fecha_elaboracion" to  entity.fecha_elaboracion.toString(),
@@ -103,7 +103,7 @@ class FirebaseComponentDAO: ComponentDAO {
     }
 
     override fun delete(code: Int, onSuccess: (Unit) -> Unit) {
-        DAOFactory.factory.getDeviceDAO().getAllDevices { devices ->
+        DAOFactory.factory.getDeviceDAO().getAllConcesionarios { devices ->
             for (device in devices) {
                 val db = Firebase.firestore
                 val componentsCollectionReference = db.collection(
@@ -131,7 +131,7 @@ class FirebaseComponentDAO: ComponentDAO {
     override fun getNextCode(onSuccess: (Int) -> Unit) {
         var nextCode = 0
 
-        DAOFactory.factory.getDeviceDAO().getAllDevices { devices ->
+        DAOFactory.factory.getDeviceDAO().getAllConcesionarios { devices ->
             for (device in devices) {
                 val db = Firebase.firestore
                 val componentsCollectionReference = db.collection(

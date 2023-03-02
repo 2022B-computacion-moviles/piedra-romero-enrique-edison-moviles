@@ -13,42 +13,42 @@
         android:theme="@style/Theme.Adleexam2b"
         tools:targetApi="31">
         <activity
-            android:name=".ComponentCreation"
+            android:name=".CreationCarro"
             android:exported="false">
             <meta-data
                 android:name="android.app.lib_name"
                 android:value="" />
         </activity>
         <activity
-            android:name=".ComponentEdition"
+            android:name=".EditionCarro"
             android:exported="false">
             <meta-data
                 android:name="android.app.lib_name"
                 android:value="" />
         </activity>
         <activity
-            android:name=".DeviceCreation"
+            android:name=".CreationConcesionario"
             android:exported="false">
             <meta-data
                 android:name="android.app.lib_name"
                 android:value="" />
         </activity>
         <activity
-            android:name=".DeviceEdition"
+            android:name=".EditionConcesionario"
             android:exported="false">
             <meta-data
                 android:name="android.app.lib_name"
                 android:value="" />
         </activity>
         <activity
-            android:name=".ComponentList"
+            android:name=".ListCarro"
             android:exported="false">
             <meta-data
                 android:name="android.app.lib_name"
                 android:value="" />
         </activity>
         <activity
-            android:name=".DeviceList"
+            android:name=".ListConcesionario"
             android:exported="false">
             <meta-data
                 android:name="android.app.lib_name"
