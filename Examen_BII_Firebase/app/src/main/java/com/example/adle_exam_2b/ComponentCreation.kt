@@ -11,9 +11,10 @@ import android.widget.EditText
 import androidx.appcompat.app.AlertDialog
 import com.example.adle_exam_2b.data.dao.DAOFactory
 import com.example.adle_exam_2b.data.entity.ComponentEntity
+import java.time.LocalDate
 
 class ComponentCreation : AppCompatActivity() {
-    /*private var componentParentCode: Int? = null
+    private var componentParentCode: Int? = null
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -21,14 +22,17 @@ class ComponentCreation : AppCompatActivity() {
 
         componentParentCode = intent.getIntExtra("componentParentCode", 0)
 
-        val categoryPlainText = findViewById<EditText>(R.id.pl_component_creation_category)
-        val descriptionPlainText = findViewById<EditText>(R.id.pl_component_creation_description)
-        val discontinuedPlainText = findViewById<EditText>(R.id.pl_component_creation_discontinued)
-        val parentCodePlainText = findViewById<EditText>(R.id.pl_component_creation_parent_code)
-        val createButton = findViewById<Button>(R.id.btn_confirm_component_creation)
-        val cancelButton = findViewById<Button>(R.id.btn_cancel_component_creation)
+        val codeConcesionarioPlainText = findViewById<EditText>(R.id.creation_car_code_concesionario)
 
-        parentCodePlainText.setText(componentParentCode.toString())
+        val marcaPlainText = findViewById<EditText>(R.id.creation_car_marca)
+        val fecha_elaboracionPlainText = findViewById<EditText>(R.id.creation_car_fecha)
+        val precioPlainText = findViewById<EditText>(R.id.creation_car_precio)
+        val colorPlainText = findViewById<EditText>(R.id.creation_car_color)
+        val mesesPlainText = findViewById<EditText>(R.id.creation_car_meses)
+
+        val createButton = findViewById<Button>(R.id.btn_confirm_car_creation)
+
+        codeConcesionarioPlainText.setText(componentParentCode.toString())
 
         // Opening creation dialog when next code is here
         createButton.setOnClickListener {
@@ -37,10 +41,12 @@ class ComponentCreation : AppCompatActivity() {
                     openCreationDialog(
                         ComponentEntity(
                             code,
-                            categoryPlainText.text.toString(),
-                            descriptionPlainText.text.toString(),
-                            discontinuedPlainText.text.toString().toBoolean(),
-                            componentParentCode!!
+                            componentParentCode!!,
+                            marcaPlainText.text.toString(),
+                            LocalDate.parse(fecha_elaboracionPlainText.text.toString()),
+                            precioPlainText.text.toString().toDouble(),
+                            colorPlainText.text.toString().toBoolean(),
+                            mesesPlainText.text.toString().toInt()
                         ),
                         componentParentCode!!
                     )
@@ -48,11 +54,6 @@ class ComponentCreation : AppCompatActivity() {
             )
         }
 
-        cancelButton.setOnClickListener {
-            val intent = Intent(this, ComponentList::class.java)
-            intent.putExtra("selectedDeviceCode", componentParentCode)
-            startActivity(intent)
-        }
     }
 
     override fun onCreateOptionsMenu(menu: Menu): Boolean {
@@ -94,5 +95,5 @@ class ComponentCreation : AppCompatActivity() {
         val intent = Intent(this, ComponentList::class.java)
         intent.putExtra("selectedDeviceCode", componentParentCode!!)
         startActivity(intent)
-    }*/
+    }
 }
