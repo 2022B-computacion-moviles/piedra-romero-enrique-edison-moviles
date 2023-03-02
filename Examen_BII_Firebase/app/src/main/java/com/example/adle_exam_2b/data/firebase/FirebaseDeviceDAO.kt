@@ -58,7 +58,7 @@ class FirebaseDeviceDAO: DeviceDAO {
                         document.data!!["nombre"].toString(),
                         LocalDate.parse(document.data!!["fecha_inaguracion"].toString()),
                         document.data!!["porcentaje_personas_satisfechas"].toString().toDouble(),
-                        document.data!!["cantidad_empleados"].toString().toInt()
+                        document.data!!["cantidad_empleados"].toString().toDouble().toInt()
                     )
 
                     onSuccess(device)

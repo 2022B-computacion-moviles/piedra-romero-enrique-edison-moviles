@@ -11,21 +11,25 @@ import android.widget.EditText
 import androidx.appcompat.app.AlertDialog
 import com.example.adle_exam_2b.data.dao.DAOFactory
 import com.example.adle_exam_2b.data.entity.ComponentEntity
+import java.time.LocalDate
 
 class ComponentEdition : AppCompatActivity() {
-    /*private var selectedComponentCode: Int? = null
+    private var selectedComponentCode: Int? = null
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_component_edition)
 
-        val codePlainText = findViewById<EditText>(R.id.pl_component_code)
-        val categoryPlainText = findViewById<EditText>(R.id.pl_component_category)
-        val descriptionPlainText = findViewById<EditText>(R.id.pl_component_description)
-        val discontinuedPlainText = findViewById<EditText>(R.id.pl_component_discontinued)
-        val parentCodePlainText = findViewById<EditText>(R.id.pl_component_parent_code)
+        val codePlainText = findViewById<EditText>(R.id.edit_component_code)
+        val parentDevicePlainText = findViewById<EditText>(R.id.edit_component_device_code)
+
+        val marcaPlainText = findViewById<EditText>(R.id.edit_component_marca)
+        val fecha_elaboracionPlainText = findViewById<EditText>(R.id.edit_component_fecha)
+        val precioPlainText = findViewById<EditText>(R.id.edit_component_precio)
+        val colorPlainText = findViewById<EditText>(R.id.edit_component_color)
+        val mesesPlainText = findViewById<EditText>(R.id.edit_component_meses)
+
         val editButton = findViewById<Button>(R.id.btn_confirm_component_edition)
-        val cancelButton = findViewById<Button>(R.id.btn_cancel_edition)
 
         var selectedComponent: ComponentEntity? = null
         selectedComponentCode = intent.getIntExtra("selectedComponentCode", 0)
@@ -37,10 +41,16 @@ class ComponentEdition : AppCompatActivity() {
                 selectedComponent = component
 
                 codePlainText.setText(selectedComponent!!.code.toString())
-                categoryPlainText.setText(selectedComponent!!.category)
-                descriptionPlainText.setText(selectedComponent!!.description)
-                discontinuedPlainText.setText(selectedComponent!!.discontinued.toString())
-                parentCodePlainText.setText(selectedComponent!!.deviceCode.toString())
+                parentDevicePlainText.setText(selectedComponent!!.deviceCode.toString())
+
+                marcaPlainText.setText(selectedComponent!!.marca)
+                fecha_elaboracionPlainText.setText(selectedComponent!!.fecha_elaboracion.toString())
+                precioPlainText.setText(selectedComponent!!.precio.toString())
+                colorPlainText.setText(selectedComponent!!.color_subjetivo.toString())
+                mesesPlainText.setText(selectedComponent!!.meses_plazo_pagar.toString())
+
+                /* RECOGE ALGO?*/
+
             }
         )
 
@@ -48,20 +58,18 @@ class ComponentEdition : AppCompatActivity() {
             openEditionDialog(
                 ComponentEntity(
                     selectedComponentCode!!,
-                    categoryPlainText.text.toString(),
-                    descriptionPlainText.text.toString(),
-                    discontinuedPlainText.text.toString().toBoolean(),
-                    selectedComponent!!.deviceCode
+                    selectedComponent!!.deviceCode,
+                    marcaPlainText.text.toString(),
+                    LocalDate.parse(fecha_elaboracionPlainText.text.toString()),
+                    precioPlainText.text.toString().toDouble(),
+                    colorPlainText.text.toString().toBoolean(),
+                    mesesPlainText.text.toString().toInt()
                 ),
                 selectedComponent!!.deviceCode
             )
         }
 
-        cancelButton.setOnClickListener {
-            val intent = Intent(this, ComponentList::class.java)
-            intent.putExtra("selectedDeviceCode", selectedComponent!!.deviceCode)
-            startActivity(intent)
-        }
+
     }
 
     override fun onCreateOptionsMenu(menu: Menu): Boolean {
@@ -108,5 +116,5 @@ class ComponentEdition : AppCompatActivity() {
                 startActivity(intent)
             }
         )
-    }*/
+    }
 }

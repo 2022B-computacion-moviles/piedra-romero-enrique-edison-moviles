@@ -77,7 +77,7 @@ class FirebaseComponentDAO: ComponentDAO {
                                         LocalDate.parse(component.data!!["fecha_elaboracion"].toString()),
                                         component.getDouble("precio")!!,
                                         component.getBoolean("color_subjetivo")!!,
-                                        component.getString("meses_plazo_pagar")!!.toInt(),
+                                        component.getDouble("meses_plazo_pagar")!!.toInt()
                                     )
                                 )
                             }
