@@ -14,17 +14,19 @@ import com.example.adle_exam_2b.data.entity.DeviceEntity
 import java.time.LocalDate
 
 class DeviceCreation : AppCompatActivity() {
-    /*
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_device_creation)
 
-        val namePlainText = findViewById<EditText>(R.id.pl_device_name)
-        val categoryPlainText = findViewById<EditText>(R.id.pl_device_category)
-        val datePlainText = findViewById<EditText>(R.id.pl_device_date)
-        val pricePlainText = findViewById<EditText>(R.id.pl_device_price)
+        val nombrePlainText = findViewById<EditText>(R.id.device_create_nombre)
+        val fecha_inaguracionPlainText = findViewById<EditText>(R.id.device_create_fecha)
+        val porcentajePlainText = findViewById<EditText>(R.id.device_create_porcentaje)
+        val cantEmpleadosPlainText = findViewById<EditText>(R.id.device_create_empleados)
+
         val createButton = findViewById<Button>(R.id.btn_confirm_device_creation)
-        val cancelButton = findViewById<Button>(R.id.btn_cancel_creation)
+
+
 
         // Opening creation dialog when next code is ready
         createButton.setOnClickListener {
@@ -33,18 +35,14 @@ class DeviceCreation : AppCompatActivity() {
                     openCreationDialog(
                         DeviceEntity(
                             code,
-                            namePlainText.text.toString(),
-                            categoryPlainText.text.toString(),
-                            LocalDate.parse(datePlainText.text.toString()),
-                            pricePlainText.text.toString().toDouble()
+                            nombrePlainText.text.toString(),
+                            LocalDate.parse(fecha_inaguracionPlainText.text.toString()),
+                            porcentajePlainText.text.toString().toDouble(),
+                            cantEmpleadosPlainText.text.toString().toInt()
                         )
                     )
                 }
             )
-        }
-
-        cancelButton.setOnClickListener {
-            openActivity(DeviceList::class.java)
         }
     }
 
@@ -83,5 +81,5 @@ class DeviceCreation : AppCompatActivity() {
     private fun openActivity(activityClass: Class<*>) {
         val intent = Intent(this, activityClass)
         startActivity(intent)
-    }*/
+    }
 }

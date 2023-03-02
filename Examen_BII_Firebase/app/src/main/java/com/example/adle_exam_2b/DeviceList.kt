@@ -22,7 +22,7 @@ class DeviceList : AppCompatActivity() {
         val deviceRecyclerView = findViewById<RecyclerView>(R.id.rv_device)
         val creationButton = findViewById<Button>(R.id.btn_create_device)
 
-        // Initialize Recycler View when the data is ready
+
         DAOFactory.factory.getDeviceDAO().getAllDevices(
             onSuccess = { devices ->
                 initializeRecyclerView(devices, deviceRecyclerView)
