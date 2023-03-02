@@ -10,7 +10,7 @@ import java.time.LocalDate
 class FirebaseComponentDAO: ComponentDAO {
 
     private val db = Firebase.firestore
-    private val devicesCollectionReference = db.collection("devices")
+    private val devicesCollectionReference = db.collection("concesionarios")
 
     override fun getAllComponentsByDeviceCode(
         deviceCode: Int,
@@ -18,7 +18,7 @@ class FirebaseComponentDAO: ComponentDAO {
     ) {
         devicesCollectionReference
             .document(deviceCode.toString())
-            .collection("components")
+            .collection("carros")
             .get()
             .addOnSuccessListener { documents ->
                 val components = ArrayList<ComponentEntity>()
@@ -52,7 +52,7 @@ class FirebaseComponentDAO: ComponentDAO {
 
         devicesCollectionReference
             .document(entity.deviceCode.toString())
-            .collection("components")
+            .collection("carros")
             .document(entity.code.toString()).set(component)
     }
 
@@ -61,7 +61,7 @@ class FirebaseComponentDAO: ComponentDAO {
             for (device in devices) {
                 val db = Firebase.firestore
                 val componentsCollectionReference = db.collection(
-                    "devices/${device.code}/components"
+                    "concesionarios/${device.code}/carros"
                 )
 
                 componentsCollectionReference
@@ -98,7 +98,7 @@ class FirebaseComponentDAO: ComponentDAO {
 
         devicesCollectionReference
             .document(entity.deviceCode.toString())
-            .collection("components")
+            .collection("carros")
             .document(entity.code.toString()).set(component)
     }
 
@@ -107,7 +107,7 @@ class FirebaseComponentDAO: ComponentDAO {
             for (device in devices) {
                 val db = Firebase.firestore
                 val componentsCollectionReference = db.collection(
-                    "devices/${device.code}/components"
+                    "concesionarios/${device.code}/carros"
                 )
 
                 componentsCollectionReference
@@ -135,7 +135,7 @@ class FirebaseComponentDAO: ComponentDAO {
             for (device in devices) {
                 val db = Firebase.firestore
                 val componentsCollectionReference = db.collection(
-                    "devices/${device.code}/components"
+                    "concesionarios/${device.code}/carros"
                 )
 
                 componentsCollectionReference

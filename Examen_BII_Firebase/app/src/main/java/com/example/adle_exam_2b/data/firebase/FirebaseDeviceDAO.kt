@@ -9,7 +9,7 @@ import java.time.LocalDate
 class FirebaseDeviceDAO: DeviceDAO {
 
     private val db = Firebase.firestore
-    private val devicesCollectionReference = db.collection("devices")
+    private val devicesCollectionReference = db.collection("concesionarios")
 
     override fun getAllDevices(onSuccess: (ArrayList<DeviceEntity>) -> Unit) {
         devicesCollectionReference
