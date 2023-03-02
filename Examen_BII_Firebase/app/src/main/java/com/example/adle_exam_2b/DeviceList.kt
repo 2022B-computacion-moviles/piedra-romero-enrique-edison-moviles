@@ -51,6 +51,13 @@ class DeviceList : AppCompatActivity() {
 
     override fun onContextItemSelected(item: MenuItem): Boolean {
         return when (item.itemId) {
+            R.id.mi_device_see_components -> {
+                val intent = Intent(this, ComponentList::class.java)
+                intent.putExtra("selectedDeviceCode", selectedDeviceCode)
+                startActivity(intent)
+                return true
+            }
+
             R.id.mi_device_edit -> {
                 val intent = Intent(this, DeviceEdition::class.java)
                 intent.putExtra("selectedDeviceCode", selectedDeviceCode)
@@ -60,13 +67,6 @@ class DeviceList : AppCompatActivity() {
 
             R.id.mi_device_delete -> {
                 openDeleteDialog()
-                return true
-            }
-
-            R.id.mi_device_see_components -> {
-                val intent = Intent(this, ComponentList::class.java)
-                intent.putExtra("selectedDeviceCode", selectedDeviceCode)
-                startActivity(intent)
                 return true
             }
 

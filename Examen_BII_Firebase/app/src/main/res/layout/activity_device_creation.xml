@@ -68,7 +68,7 @@
         app:layout_constraintTop_toBottomOf="@+id/tv_device_discontinued_edition_label" />
 
     <EditText
-        android:id="@+id/pl_device_name"
+        android:id="@+id/edit_device_nombre"
         android:layout_width="0dp"
         android:layout_height="50dp"
         android:layout_marginStart="15dp"
@@ -85,7 +85,7 @@
         app:layout_constraintTop_toTopOf="@+id/tv_device_edition_category_label" />
 
     <EditText
-        android:id="@+id/pl_device_category"
+        android:id="@+id/edit_device_fecha"
         android:layout_width="0dp"
         android:layout_height="50dp"
         android:layout_marginStart="15dp"
@@ -102,7 +102,7 @@
         app:layout_constraintTop_toTopOf="@+id/tv_device_category_edition_label" />
 
     <EditText
-        android:id="@+id/pl_device_date"
+        android:id="@+id/edit_device_porcentaje"
         android:layout_width="0dp"
         android:layout_height="50dp"
         android:layout_marginStart="15dp"
@@ -119,7 +119,7 @@
         app:layout_constraintTop_toTopOf="@+id/tv_device_discontinued_edition_label" />
 
     <EditText
-        android:id="@+id/pl_device_price"
+        android:id="@+id/edit_device_empleados"
         android:layout_width="0dp"
         android:layout_height="50dp"
         android:layout_marginStart="15dp"
