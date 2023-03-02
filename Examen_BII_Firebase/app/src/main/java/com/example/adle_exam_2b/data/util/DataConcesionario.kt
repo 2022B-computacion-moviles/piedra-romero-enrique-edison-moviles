@@ -6,16 +6,16 @@ import java.time.LocalDate
 class DataConcesionario {
 
     companion object {
-        var deviceEntityData = ArrayList<Concesionario>()
+        var concesionariosData = ArrayList<Concesionario>()
 
         init {
-            deviceEntityData.add(
+            concesionariosData.add(
                 Concesionario(
                     1, "Concesionario1",  LocalDate.parse("2022-02-21"), 59.4,45982
                 )
             )
 
-            deviceEntityData.add(
+            concesionariosData.add(
                 Concesionario(
                     2, "Concesionario2",  LocalDate.parse("2022-01-21"), 59.4,45982
                 )

@@ -35,7 +35,7 @@ class EditionCarro : AppCompatActivity() {
         selectedComponentCode = intent.getIntExtra("selectedComponentCode", 0)
 
         // Setting component data when it is ready
-        DAOFactory.factory.getComponentDAO().read(
+        DAOFactory.factory.getCarroDAO().read(
             selectedComponentCode!!,
             onSuccess = { component ->
                 selectedComponent = component
@@ -94,7 +94,7 @@ class EditionCarro : AppCompatActivity() {
         builder.setMessage("Are you sure you want to edit the component?")
 
         builder.setPositiveButton("Yes") { _, _ ->
-            DAOFactory.factory.getComponentDAO().update(editedComponent)
+            DAOFactory.factory.getCarroDAO().update(editedComponent)
 
             val intent = Intent(this, ListCarro::class.java)
             intent.putExtra("selectedDeviceCode", componentParentCode)
@@ -108,7 +108,7 @@ class EditionCarro : AppCompatActivity() {
     }
 
     private fun openActivityWithParameter() {
-        DAOFactory.factory.getComponentDAO().read(
+        DAOFactory.factory.getCarroDAO().read(
             selectedComponentCode!!,
             onSuccess = { component ->
                 val intent = Intent(this, ListCarro::class.java)

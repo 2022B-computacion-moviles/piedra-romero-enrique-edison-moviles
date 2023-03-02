@@ -36,7 +36,7 @@ class CreationCarro : AppCompatActivity() {
 
         // Opening creation dialog when next code is here
         createButton.setOnClickListener {
-            DAOFactory.factory.getComponentDAO().getNextCode(
+            DAOFactory.factory.getCarroDAO().getNextCode(
                 onSuccess = { code ->
                     openCreationDialog(
                         Carro(
@@ -78,7 +78,7 @@ class CreationCarro : AppCompatActivity() {
         builder.setMessage("Are you sure you want to create the component?")
 
         builder.setPositiveButton("Yes") { _, _ ->
-            DAOFactory.factory.getComponentDAO().create(createdComponent)
+            DAOFactory.factory.getCarroDAO().create(createdComponent)
 
             val intent = Intent(this, ListCarro::class.java)
             intent.putExtra("selectedDeviceCode", componentParentCode)

@@ -10,24 +10,24 @@ import java.time.LocalDate
 class FirebaseCarroDAO: CarroDAO {
 
     private val db = Firebase.firestore
-    private val devicesCollectionReference = db.collection("concesionarios")
+    private val concesionarioCollectionReference = db.collection("concesionarios")
 
     override fun getAllCarrosByCodeCar(
-        deviceCode: Int,
+        concesionarioCode: Int,
         onSuccess: (ArrayList<Carro>) -> Unit
     ) {
-        devicesCollectionReference
-            .document(deviceCode.toString())
+        concesionarioCollectionReference
+            .document(concesionarioCode.toString())
             .collection("carros")
             .get()
             .addOnSuccessListener { documents ->
-                val components = ArrayList<Carro>()
+                val carros = ArrayList<Carro>()
 
                 for (document in documents) {
-                    components.add(
+                    carros.add(
                         Carro(
                             code = document.id.split("/").last().toInt(),
-                            deviceCode = deviceCode,
+                            deviceCode = concesionarioCode,
                             marca = document.getString("marca")!!,
                             fecha_elaboracion = LocalDate.parse(document.getString("fecha_elaboracion")!!),
                             precio = document.getDouble("precio")!!,
@@ -37,12 +37,12 @@ class FirebaseCarroDAO: CarroDAO {
                     )
                 }
 
-                onSuccess(components)
+                onSuccess(carros)
             }
     }
 
     override fun create(entity: Carro) {
-        val component = hashMapOf(
+        val carro = hashMapOf(
             "marca" to entity.marca,
             "fecha_elaboracion" to  entity.fecha_elaboracion.toString(),
             "precio" to entity.precio,
@@ -50,34 +50,34 @@ class FirebaseCarroDAO: CarroDAO {
             "meses_plazo_pagar" to entity.meses_plazo_pagar,
         )
 
-        devicesCollectionReference
+        concesionarioCollectionReference
             .document(entity.deviceCode.toString())
             .collection("carros")
-            .document(entity.code.toString()).set(component)
+            .document(entity.code.toString()).set(carro)
     }
 
     override fun read(code: Int, onSuccess: (Carro) -> Unit) {
-        DAOFactory.factory.getDeviceDAO().getAllConcesionarios { devices ->
-            for (device in devices) {
+        DAOFactory.factory.getConcesionarioDAO().getAllConcesionarios { documents ->
+            for (document in documents) {
                 val db = Firebase.firestore
-                val componentsCollectionReference = db.collection(
-                    "concesionarios/${device.code}/carros"
+                val carroCollectionReference = db.collection(
+                    "concesionarios/${document.code}/carros"
                 )
 
-                componentsCollectionReference
+                carroCollectionReference
                     .get()
-                    .addOnSuccessListener { components ->
-                        for (component in components) {
-                            if (component.id.toInt() == code) {
+                    .addOnSuccessListener { documentsCarros ->
+                        for (documentCarro in documentsCarros) {
+                            if (documentCarro.id.toInt() == code) {
                                 onSuccess(
                                     Carro(
-                                        component.id.toInt(),
-                                        device.code,
-                                        component.getString("marca")!!,
-                                        LocalDate.parse(component.data!!["fecha_elaboracion"].toString()),
-                                        component.getDouble("precio")!!,
-                                        component.getBoolean("color_subjetivo")!!,
-                                        component.getDouble("meses_plazo_pagar")!!.toInt()
+                                        documentCarro.id.toInt(),
+                                        document.code,
+                                        documentCarro.getString("marca")!!,
+                                        LocalDate.parse(documentCarro.data!!["fecha_elaboracion"].toString()),
+                                        documentCarro.getDouble("precio")!!,
+                                        documentCarro.getBoolean("color_subjetivo")!!,
+                                        documentCarro.getDouble("meses_plazo_pagar")!!.toInt()
                                     )
                                 )
                             }
@@ -88,7 +88,7 @@ class FirebaseCarroDAO: CarroDAO {
     }
 
     override fun update(entity: Carro) {
-        val component = hashMapOf(
+        val carro = hashMapOf(
             "marca" to entity.marca,
             "fecha_elaboracion" to  entity.fecha_elaboracion.toString(),
             "precio" to entity.precio,
@@ -96,29 +96,29 @@ class FirebaseCarroDAO: CarroDAO {
             "meses_plazo_pagar" to entity.meses_plazo_pagar,
         )
 
-        devicesCollectionReference
+        concesionarioCollectionReference
             .document(entity.deviceCode.toString())
             .collection("carros")
-            .document(entity.code.toString()).set(component)
+            .document(entity.code.toString()).set(carro)
     }
 
     override fun delete(code: Int, onSuccess: (Unit) -> Unit) {
-        DAOFactory.factory.getDeviceDAO().getAllConcesionarios { devices ->
-            for (device in devices) {
+        DAOFactory.factory.getConcesionarioDAO().getAllConcesionarios { documents ->
+            for (document in documents) {
                 val db = Firebase.firestore
-                val componentsCollectionReference = db.collection(
-                    "concesionarios/${device.code}/carros"
+                val carroCollectionReference = db.collection(
+                    "concesionarios/${document.code}/carros"
                 )
 
-                componentsCollectionReference
+                carroCollectionReference
                     .get()
-                    .addOnSuccessListener { components ->
-                        for (component in components) {
-                            if (component.id.toInt() == code) {
-                                val componentReference = componentsCollectionReference
+                    .addOnSuccessListener { documentsCarros ->
+                        for (documentCarro in documentsCarros) {
+                            if (documentCarro.id.toInt() == code) {
+                                val carroReference = carroCollectionReference
                                     .document(code.toString())
 
-                                componentReference.delete().addOnSuccessListener {
+                                carroReference.delete().addOnSuccessListener {
                                     onSuccess(Unit)
                                 }
                             }
@@ -131,19 +131,19 @@ class FirebaseCarroDAO: CarroDAO {
     override fun getNextCode(onSuccess: (Int) -> Unit) {
         var nextCode = 0
 
-        DAOFactory.factory.getDeviceDAO().getAllConcesionarios { devices ->
-            for (device in devices) {
+        DAOFactory.factory.getConcesionarioDAO().getAllConcesionarios { documents ->
+            for (document in documents) {
                 val db = Firebase.firestore
-                val componentsCollectionReference = db.collection(
-                    "concesionarios/${device.code}/carros"
+                val carroCollectionReference = db.collection(
+                    "concesionarios/${document.code}/carros"
                 )
 
-                componentsCollectionReference
+                carroCollectionReference
                     .get()
-                    .addOnSuccessListener { components ->
-                        for (component in components) {
-                            if (component.id.toInt() > nextCode)
-                                nextCode = component.id.toInt()
+                    .addOnSuccessListener { documentsCarros ->
+                        for (documentCarro in documentsCarros) {
+                            if (documentCarro.id.toInt() > nextCode)
+                                nextCode = documentCarro.id.toInt()
                         }
 
                         onSuccess(nextCode + 1)

@@ -31,12 +31,12 @@ class MainActivity : AppCompatActivity() {
     }
 
     private fun createInitialData() {
-        for (device in DataConcesionario.deviceEntityData) {
-            DAOFactory.factory.getDeviceDAO().create(device)
+        for (concesionario in DataConcesionario.concesionariosData) {
+            DAOFactory.factory.getConcesionarioDAO().create(concesionario)
         }
 
-        for (component in DataCarro.componentEntityData) {
-            DAOFactory.factory.getComponentDAO().create(component)
+        for (carro in DataCarro.carroData) {
+            DAOFactory.factory.getCarroDAO().create(carro)
         }
     }
 }

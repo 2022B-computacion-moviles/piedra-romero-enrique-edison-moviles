@@ -6,22 +6,22 @@ import java.time.LocalDate
 class DataCarro {
 
     companion object {
-        var componentEntityData = ArrayList<Carro>()
+        var carroData = ArrayList<Carro>()
 
         init {
-            componentEntityData.add(
+            carroData.add(
                 Carro(
                     1, 1,"Car1",  LocalDate.parse("2022-02-21"),10993.2, false, 4
                 )
             )
 
-            componentEntityData.add(
+            carroData.add(
                 Carro(
                     2, 1,"Car2",  LocalDate.parse("2022-02-21"),10993.2, false, 4
                 )
             )
 
-            componentEntityData.add(
+            carroData.add(
                 Carro(
                     3, 2,"Car2",  LocalDate.parse("2022-02-21"),10993.2, false, 4
                 )

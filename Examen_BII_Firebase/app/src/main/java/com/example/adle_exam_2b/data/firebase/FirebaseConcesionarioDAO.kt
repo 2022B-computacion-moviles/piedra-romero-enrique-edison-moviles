@@ -9,17 +9,17 @@ import java.time.LocalDate
 class FirebaseConcesionarioDAO: ConcesionarioDAO {
 
     private val db = Firebase.firestore
-    private val devicesCollectionReference = db.collection("concesionarios")
+    private val concesionariosCollectionReference = db.collection("concesionarios")
 
     override fun getAllConcesionarios(onSuccess: (ArrayList<Concesionario>) -> Unit) {
-        devicesCollectionReference
+        concesionariosCollectionReference
             .get()
             .addOnSuccessListener { documents ->
-                val devices = ArrayList<Concesionario>()
+                val concesionarios = ArrayList<Concesionario>()
 
 
                 for (document in documents) {
-                    devices.add(
+                    concesionarios.add(
                         Concesionario(
                             code = document.id.split("/").last().toInt(),
                             nombre = document.getString("nombre")!!,
@@ -31,29 +31,29 @@ class FirebaseConcesionarioDAO: ConcesionarioDAO {
                     )
                 }
 
-                onSuccess(devices)
+                onSuccess(concesionarios)
             }
     }
 
     override fun create(entity: Concesionario) {
-        val device = hashMapOf(
+        val concesionario = hashMapOf(
             "nombre" to entity.nombre,
             "fecha_inaguracion" to entity.fecha_inaguracion.toString(),
             "porcentaje_personas_satisfechas" to entity.porcentaje_personas_satisfechas,
             "cantidad_empleados" to entity.cantidad_empleados
         )
 
-        devicesCollectionReference.document(entity.code.toString()).set(device)
+        concesionariosCollectionReference.document(entity.code.toString()).set(concesionario)
     }
 
     override fun read(code: Int, onSuccess: (Concesionario) -> Unit) {
-        val deviceReference = devicesCollectionReference.document(code.toString())
+        val concesionarioReference = concesionariosCollectionReference.document(code.toString())
 
-        deviceReference
+        concesionarioReference
             .get()
             .addOnSuccessListener { document ->
                 if (document.exists()) {
-                    val device = Concesionario(
+                    val concesionario = Concesionario(
                         code,
                         document.data!!["nombre"].toString(),
                         LocalDate.parse(document.data!!["fecha_inaguracion"].toString()),
@@ -61,26 +61,26 @@ class FirebaseConcesionarioDAO: ConcesionarioDAO {
                         document.data!!["cantidad_empleados"].toString().toDouble().toInt()
                     )
 
-                    onSuccess(device)
+                    onSuccess(concesionario)
                 }
             }
     }
 
     override fun update(entity: Concesionario) {
-        val device = hashMapOf(
+        val concesionario = hashMapOf(
             "nombre" to entity.nombre,
             "fecha_inaguracion" to entity.fecha_inaguracion.toString(),
             "porcentaje_personas_satisfechas" to entity.porcentaje_personas_satisfechas,
             "cantidad_empleados" to entity.cantidad_empleados
         )
 
-        devicesCollectionReference.document(entity.code.toString()).set(device)
+        concesionariosCollectionReference.document(entity.code.toString()).set(concesionario)
     }
 
     override fun delete(code: Int, onSuccess: (Unit) -> Unit) {
-        val deviceReference = devicesCollectionReference.document(code.toString())
+        val concesionarioReference = concesionariosCollectionReference.document(code.toString())
 
-        deviceReference.delete().addOnSuccessListener {
+        concesionarioReference.delete().addOnSuccessListener {
             onSuccess(Unit)
         }
     }
@@ -88,10 +88,10 @@ class FirebaseConcesionarioDAO: ConcesionarioDAO {
     override fun getNextCode(onSuccess: (Int) -> Unit) {
         var nextCode = 0
 
-        getAllConcesionarios { devices ->
-            for (device in devices) {
-                if (device.code > nextCode)
-                    nextCode = device.code
+        getAllConcesionarios { documents ->
+            for (document in documents) {
+                if (document.code > nextCode)
+                    nextCode = document.code
             }
 
             onSuccess(nextCode + 1)

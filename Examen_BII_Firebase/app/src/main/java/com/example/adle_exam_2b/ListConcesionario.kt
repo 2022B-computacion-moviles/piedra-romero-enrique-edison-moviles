@@ -23,7 +23,7 @@ class ListConcesionario : AppCompatActivity() {
         val creationButton = findViewById<Button>(R.id.btn_create_device)
 
 
-        DAOFactory.factory.getDeviceDAO().getAllConcesionarios(
+        DAOFactory.factory.getConcesionarioDAO().getAllConcesionarios(
             onSuccess = { devices ->
                 initializeRecyclerView(devices, deviceRecyclerView)
                 registerForContextMenu(deviceRecyclerView)
@@ -84,10 +84,10 @@ class ListConcesionario : AppCompatActivity() {
         builder.setMessage("Are you sure you want to delete the device?")
 
         builder.setPositiveButton("Yes") { _, _ ->
-            DAOFactory.factory.getDeviceDAO().delete(
+            DAOFactory.factory.getConcesionarioDAO().delete(
                 selectedDeviceCode!!,
                 onSuccess = {
-                    DAOFactory.factory.getDeviceDAO().getAllConcesionarios(
+                    DAOFactory.factory.getConcesionarioDAO().getAllConcesionarios(
                         onSuccess = { devices ->
                             initializeRecyclerView(devices, findViewById(R.id.rv_device))
                         }

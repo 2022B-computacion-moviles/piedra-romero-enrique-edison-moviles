@@ -29,7 +29,7 @@ class ListCarro : AppCompatActivity() {
         val creationButton = findViewById<Button>(R.id.btn_create_component)
 
         // Setting component device code when it is ready
-        DAOFactory.factory.getDeviceDAO().read(
+        DAOFactory.factory.getConcesionarioDAO().read(
             componentParentCode!!,
             onSuccess = { device ->
                 deviceCodeTextView.text = device.code.toString()
@@ -38,7 +38,7 @@ class ListCarro : AppCompatActivity() {
         )
 
         // Setting the Recycler View when the data is ready
-        DAOFactory.factory.getComponentDAO().getAllCarrosByCodeCar(
+        DAOFactory.factory.getCarroDAO().getAllCarrosByCodeCar(
             componentParentCode!!,
             onSuccess = { components ->
                 initializeRecyclerView(components, componentRecyclerView)
@@ -97,10 +97,10 @@ class ListCarro : AppCompatActivity() {
         builder.setMessage("Are you sure you want to delete the component?")
 
         builder.setPositiveButton("Yes") { _, _ ->
-            DAOFactory.factory.getComponentDAO().delete(
+            DAOFactory.factory.getCarroDAO().delete(
                 selectedComponentCode!!,
                 onSuccess = {
-                    DAOFactory.factory.getComponentDAO().getAllCarrosByCodeCar(
+                    DAOFactory.factory.getCarroDAO().getAllCarrosByCodeCar(
                         componentParentCode!!,
                         onSuccess = { components ->
                             initializeRecyclerView(components, findViewById(R.id.rv_component))

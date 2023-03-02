@@ -30,7 +30,7 @@ class CreationConcesionario : AppCompatActivity() {
 
         // Opening creation dialog when next code is ready
         createButton.setOnClickListener {
-            DAOFactory.factory.getDeviceDAO().getNextCode(
+            DAOFactory.factory.getConcesionarioDAO().getNextCode(
                 onSuccess = { code ->
                     openCreationDialog(
                         Concesionario(
@@ -68,7 +68,7 @@ class CreationConcesionario : AppCompatActivity() {
         builder.setMessage("Are you sure you want to create the device?")
 
         builder.setPositiveButton("Yes") { _, _ ->
-            DAOFactory.factory.getDeviceDAO().create(createdDevice)
+            DAOFactory.factory.getConcesionarioDAO().create(createdDevice)
             openActivity(ListConcesionario::class.java)
         }
 

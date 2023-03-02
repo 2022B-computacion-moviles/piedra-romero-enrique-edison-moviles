@@ -6,11 +6,11 @@ import com.example.adle_exam_2b.data.dao.ConcesionarioDAO
 
 class FirebaseDAOFactory: DAOFactory() {
 
-    override fun getDeviceDAO(): ConcesionarioDAO {
+    override fun getConcesionarioDAO(): ConcesionarioDAO {
         return FirebaseConcesionarioDAO()
     }
 
-    override fun getComponentDAO(): CarroDAO {
+    override fun getCarroDAO(): CarroDAO {
         return FirebaseCarroDAO()
     }
 

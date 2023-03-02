@@ -30,7 +30,7 @@ class EditionConcesionario : AppCompatActivity() {
         val selectedDeviceCode = intent.getIntExtra("selectedDeviceCode", 0)
 
         // Setting device data when it is ready
-        DAOFactory.factory.getDeviceDAO().read(
+        DAOFactory.factory.getConcesionarioDAO().read(
             selectedDeviceCode,
             onSuccess = { device ->
                 codePlainText.setText(device.code.toString())
@@ -80,7 +80,7 @@ class EditionConcesionario : AppCompatActivity() {
         builder.setMessage("Are you sure you want to edit the device?")
 
         builder.setPositiveButton("Yes") { _, _ ->
-            DAOFactory.factory.getDeviceDAO().update(editedDevice)
+            DAOFactory.factory.getConcesionarioDAO().update(editedDevice)
             openActivity(ListConcesionario::class.java)
         }
 
