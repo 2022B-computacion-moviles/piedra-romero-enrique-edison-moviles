@@ -8,6 +8,8 @@ import android.view.Menu
 import android.view.MenuItem
 import android.widget.Button
 import android.widget.EditText
+import android.widget.TextView
+import android.widget.Toast
 import androidx.appcompat.app.AlertDialog
 import com.example.adle_exam_2b.data.dao.DAOFactory
 import com.example.adle_exam_2b.data.entity.Carro
@@ -20,8 +22,8 @@ class EditionCarro : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_edition_carro)
 
-        val codePlainText = findViewById<EditText>(R.id.edit_carro_code)
-        val parentDevicePlainText = findViewById<EditText>(R.id.edit_carro_concesionario_code)
+        val codePlainText = findViewById<TextView>(R.id.edit_carro_code)
+        val parentDevicePlainText = findViewById<TextView>(R.id.edit_carro_concesionario_code)
 
         val marcaPlainText = findViewById<EditText>(R.id.edit_carro_marca)
         val fecha_elaboracionPlainText = findViewById<EditText>(R.id.edit_carro_fecha)
@@ -72,30 +74,15 @@ class EditionCarro : AppCompatActivity() {
 
     }
 
-    override fun onCreateOptionsMenu(menu: Menu): Boolean {
-        menuInflater.inflate(R.menu.toolbar_menu, menu)
-        return true
-    }
-
-    override fun onOptionsItemSelected(item: MenuItem): Boolean {
-        return when (item.itemId) {
-            R.id.back_button -> {
-                openActivityWithParameter()
-                true
-            }
-            else -> super.onOptionsItemSelected(item)
-        }
-    }
-
     @SuppressLint("NotifyDataSetChanged")
     private fun openEditionDialog(editedComponent: Carro, componentParentCode: Int) {
         val builder = AlertDialog.Builder(this)
-        builder.setTitle("Edit component")
-        builder.setMessage("Are you sure you want to edit the component?")
+        builder.setTitle("Editar")
+        builder.setMessage("Estas seguro de editar este Carro?")
 
-        builder.setPositiveButton("Yes") { _, _ ->
+        builder.setPositiveButton("Si") { _, _ ->
             DAOFactory.factory.getCarroDAO().update(editedComponent)
-
+            Toast.makeText(this, "Carro Editado", Toast.LENGTH_SHORT).show()
             val intent = Intent(this, ListCarro::class.java)
             intent.putExtra("selectedDeviceCode", componentParentCode)
             startActivity(intent)

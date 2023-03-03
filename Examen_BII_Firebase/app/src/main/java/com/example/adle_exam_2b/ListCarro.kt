@@ -8,6 +8,7 @@ import android.view.Menu
 import android.view.MenuItem
 import android.widget.Button
 import android.widget.TextView
+import android.widget.Toast
 import androidx.appcompat.app.AlertDialog
 import androidx.recyclerview.widget.RecyclerView
 import com.example.adle_exam_2b.data.dao.DAOFactory
@@ -53,20 +54,6 @@ class ListCarro : AppCompatActivity() {
         }
     }
 
-    override fun onCreateOptionsMenu(menu: Menu): Boolean {
-        menuInflater.inflate(R.menu.toolbar_menu, menu)
-        return true
-    }
-
-    override fun onOptionsItemSelected(item: MenuItem): Boolean {
-        return when (item.itemId) {
-            R.id.back_button -> {
-                openActivity(ListConcesionario::class.java)
-                true
-            }
-            else -> super.onOptionsItemSelected(item)
-        }
-    }
 
     override fun onContextItemSelected(item: MenuItem): Boolean {
         return when (item.itemId) {
@@ -93,8 +80,8 @@ class ListCarro : AppCompatActivity() {
     @SuppressLint("NotifyDataSetChanged")
     private fun openDeleteDialog() {
         val builder = AlertDialog.Builder(this)
-        builder.setTitle("Delete component")
-        builder.setMessage("Are you sure you want to delete the component?")
+        builder.setTitle("Eliminar")
+        builder.setMessage("Estas seguro de eliminar este Carro?")
 
         builder.setPositiveButton("Yes") { _, _ ->
             DAOFactory.factory.getCarroDAO().delete(
@@ -108,6 +95,7 @@ class ListCarro : AppCompatActivity() {
                     )
                 }
             )
+            Toast.makeText(this, "Carro Eliminado", Toast.LENGTH_SHORT).show()
         }
 
         builder.setNegativeButton("No") { _, _ -> }

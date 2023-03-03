@@ -4,10 +4,9 @@ import android.annotation.SuppressLint
 import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
-import android.view.Menu
-import android.view.MenuItem
 import android.widget.Button
 import android.widget.EditText
+import android.widget.Toast
 import androidx.appcompat.app.AlertDialog
 import com.example.adle_exam_2b.data.dao.DAOFactory
 import com.example.adle_exam_2b.data.entity.Concesionario
@@ -46,36 +45,13 @@ class CreationConcesionario : AppCompatActivity() {
         }
     }
 
-    override fun onCreateOptionsMenu(menu: Menu): Boolean {
-        menuInflater.inflate(R.menu.toolbar_menu, menu)
-        return true
-    }
-
-    override fun onOptionsItemSelected(item: MenuItem): Boolean {
-        return when (item.itemId) {
-            R.id.back_button -> {
-                openActivity(ListConcesionario::class.java)
-                true
-            }
-            else -> super.onOptionsItemSelected(item)
-        }
-    }
 
     @SuppressLint("NotifyDataSetChanged")
-    private fun openCreationDialog(createdDevice: Concesionario) {
-        val builder = AlertDialog.Builder(this)
-        builder.setTitle("Create device")
-        builder.setMessage("Are you sure you want to create the device?")
+    private fun openCreationDialog(newConcesionario: Concesionario) {
+        DAOFactory.factory.getConcesionarioDAO().create(newConcesionario)
+        Toast.makeText(this, "Concesionario Creado", Toast.LENGTH_SHORT).show()
+        openActivity(ListConcesionario::class.java)
 
-        builder.setPositiveButton("Yes") { _, _ ->
-            DAOFactory.factory.getConcesionarioDAO().create(createdDevice)
-            openActivity(ListConcesionario::class.java)
-        }
-
-        builder.setNegativeButton("No") { _, _ -> }
-
-        val dialog = builder.create()
-        dialog.show()
     }
 
     private fun openActivity(activityClass: Class<*>) {

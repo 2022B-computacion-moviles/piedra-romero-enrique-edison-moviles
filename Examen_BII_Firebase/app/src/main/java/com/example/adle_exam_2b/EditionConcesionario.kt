@@ -8,6 +8,8 @@ import android.view.Menu
 import android.view.MenuItem
 import android.widget.Button
 import android.widget.EditText
+import android.widget.TextView
+import android.widget.Toast
 import androidx.appcompat.app.AlertDialog
 import com.example.adle_exam_2b.data.dao.DAOFactory
 import com.example.adle_exam_2b.data.entity.Concesionario
@@ -19,7 +21,7 @@ class EditionConcesionario : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_edition_concesionario)
 
-        val codePlainText = findViewById<EditText>(R.id.edit_concesionario_code)
+        val codePlainText = findViewById<TextView>(R.id.edit_concesionario_code)
         val nombrePlainText = findViewById<EditText>(R.id.edit_concesionario_nombre)
         val fecha_inaguracionPlainText = findViewById<EditText>(R.id.edit_concesionario_fecha)
         val porcentajePlainText= findViewById<EditText>(R.id.edit_concesionario_porcentaje)
@@ -56,29 +58,16 @@ class EditionConcesionario : AppCompatActivity() {
 
     }
 
-    override fun onCreateOptionsMenu(menu: Menu): Boolean {
-        menuInflater.inflate(R.menu.toolbar_menu, menu)
-        return true
-    }
-
-    override fun onOptionsItemSelected(item: MenuItem): Boolean {
-        return when (item.itemId) {
-            R.id.back_button -> {
-                openActivity(ListConcesionario::class.java)
-                true
-            }
-            else -> super.onOptionsItemSelected(item)
-        }
-    }
 
     @SuppressLint("NotifyDataSetChanged")
     private fun openEditionDialog(editedDevice: Concesionario) {
         val builder = AlertDialog.Builder(this)
-        builder.setTitle("Edit device")
-        builder.setMessage("Are you sure you want to edit the device?")
+        builder.setTitle("Editar")
+        builder.setMessage("Estas seguro de editar este Concesionario?")
 
-        builder.setPositiveButton("Yes") { _, _ ->
+        builder.setPositiveButton("Si") { _, _ ->
             DAOFactory.factory.getConcesionarioDAO().update(editedDevice)
+            Toast.makeText(this, "Concesionario Editado", Toast.LENGTH_SHORT).show()
             openActivity(ListConcesionario::class.java)
         }
 

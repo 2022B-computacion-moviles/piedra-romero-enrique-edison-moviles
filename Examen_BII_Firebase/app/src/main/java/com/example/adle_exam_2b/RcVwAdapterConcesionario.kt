@@ -51,7 +51,7 @@ class RcVwAdapterConcesionario(
         val itemView = LayoutInflater
             .from(parent.context)
             .inflate(
-                R.layout.recycler_view_concecionario,
+                R.layout.recycler_view_concesionario,
                 parent,
                 false
             )

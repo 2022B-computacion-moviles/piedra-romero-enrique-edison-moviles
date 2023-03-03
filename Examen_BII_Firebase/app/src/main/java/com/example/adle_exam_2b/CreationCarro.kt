@@ -4,10 +4,10 @@ import android.annotation.SuppressLint
 import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
-import android.view.Menu
-import android.view.MenuItem
 import android.widget.Button
 import android.widget.EditText
+import android.widget.TextView
+import android.widget.Toast
 import androidx.appcompat.app.AlertDialog
 import com.example.adle_exam_2b.data.dao.DAOFactory
 import com.example.adle_exam_2b.data.entity.Carro
@@ -22,7 +22,7 @@ class CreationCarro : AppCompatActivity() {
 
         componentParentCode = intent.getIntExtra("componentParentCode", 0)
 
-        val codeConcesionarioPlainText = findViewById<EditText>(R.id.create_car_code_concesionario)
+        val codeConcesionarioPlainText = findViewById<TextView>(R.id.create_car_code_concesionario)
 
         val marcaPlainText = findViewById<EditText>(R.id.create_car_marca)
         val fecha_elaboracionPlainText = findViewById<EditText>(R.id.create_car_fecha)
@@ -56,44 +56,15 @@ class CreationCarro : AppCompatActivity() {
 
     }
 
-    override fun onCreateOptionsMenu(menu: Menu): Boolean {
-        menuInflater.inflate(R.menu.toolbar_menu, menu)
-        return true
-    }
-
-    override fun onOptionsItemSelected(item: MenuItem): Boolean {
-        return when (item.itemId) {
-            R.id.back_button -> {
-                openActivityWithParameter()
-                true
-            }
-            else -> super.onOptionsItemSelected(item)
-        }
-    }
 
     @SuppressLint("NotifyDataSetChanged")
-    private fun openCreationDialog(createdComponent: Carro, componentParentCode: Int) {
-        val builder = AlertDialog.Builder(this)
-        builder.setTitle("Create component")
-        builder.setMessage("Are you sure you want to create the component?")
-
-        builder.setPositiveButton("Yes") { _, _ ->
-            DAOFactory.factory.getCarroDAO().create(createdComponent)
-
-            val intent = Intent(this, ListCarro::class.java)
-            intent.putExtra("selectedDeviceCode", componentParentCode)
-            startActivity(intent)
-        }
-
-        builder.setNegativeButton("No") { _, _ -> }
-
-        val dialog = builder.create()
-        dialog.show()
-    }
-
-    private fun openActivityWithParameter() {
+    private fun openCreationDialog(newCarro: Carro, componentParentCode: Int) {
+        DAOFactory.factory.getCarroDAO().create(newCarro)
+        Toast.makeText(this, "Carro Creado", Toast.LENGTH_SHORT).show()
         val intent = Intent(this, ListCarro::class.java)
-        intent.putExtra("selectedDeviceCode", componentParentCode!!)
+        intent.putExtra("selectedDeviceCode", componentParentCode)
         startActivity(intent)
+
     }
+
 }

@@ -6,6 +6,7 @@ import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.view.MenuItem
 import android.widget.Button
+import android.widget.Toast
 import androidx.appcompat.app.AlertDialog
 import androidx.recyclerview.widget.RecyclerView
 import com.example.adle_exam_2b.data.dao.DAOFactory
@@ -81,7 +82,7 @@ class ListConcesionario : AppCompatActivity() {
     private fun openDeleteDialog() {
         val builder = AlertDialog.Builder(this)
         builder.setTitle("Eliminar")
-        builder.setMessage("Estas seguro de eliminar?")
+        builder.setMessage("Estas seguro de eliminar este Concesionario?")
 
         builder.setPositiveButton("Si") { _, _ ->
             DAOFactory.factory.getConcesionarioDAO().delete(
@@ -94,6 +95,7 @@ class ListConcesionario : AppCompatActivity() {
                     )
                 }
             )
+            Toast.makeText(this, "Concesionario Eliminado", Toast.LENGTH_SHORT).show()
         }
 
         builder.setNegativeButton("No") { _, _ -> }
