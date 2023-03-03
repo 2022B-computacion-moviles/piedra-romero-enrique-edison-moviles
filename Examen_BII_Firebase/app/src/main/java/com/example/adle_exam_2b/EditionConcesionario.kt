@@ -4,8 +4,6 @@ import android.annotation.SuppressLint
 import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
-import android.view.Menu
-import android.view.MenuItem
 import android.widget.Button
 import android.widget.EditText
 import android.widget.TextView
@@ -29,11 +27,11 @@ class EditionConcesionario : AppCompatActivity() {
         val editButton = findViewById<Button>(R.id.btn_confirm_concesionario_edition)
 
 
-        val selectedDeviceCode = intent.getIntExtra("selectedDeviceCode", 0)
+        val selectedConcesionarioCode = intent.getIntExtra("selectedConcesionarioCode", 0)
 
         // Setting device data when it is ready
         DAOFactory.factory.getConcesionarioDAO().read(
-            selectedDeviceCode,
+            selectedConcesionarioCode,
             onSuccess = { device ->
                 codePlainText.setText(device.code.toString())
                 nombrePlainText.setText(device.nombre)
@@ -46,7 +44,7 @@ class EditionConcesionario : AppCompatActivity() {
         editButton.setOnClickListener {
             openEditionDialog(
                 Concesionario(
-                    selectedDeviceCode,
+                    selectedConcesionarioCode,
                     nombrePlainText.text.toString(),
                     LocalDate.parse(fecha_inaguracionPlainText.text.toString()),
                     porcentajePlainText.text.toString().toDouble(),

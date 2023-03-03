@@ -4,7 +4,6 @@ import android.annotation.SuppressLint
 import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
-import android.view.Menu
 import android.view.MenuItem
 import android.widget.Button
 import android.widget.TextView
@@ -16,13 +15,13 @@ import com.example.adle_exam_2b.data.entity.Carro
 
 class ListCarro : AppCompatActivity() {
     private var selectedCarroCode: Int? = null
-    private var concesionarioParentCode: Int? = null
+    private var selectedConcesionarioCode: Int? = null
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_list_carro)
 
-        concesionarioParentCode = intent.getIntExtra("selectedDeviceCode", 0)
+        selectedConcesionarioCode = intent.getIntExtra("selectedConcesionarioCode", 0)
 
         val componentRecyclerView = findViewById<RecyclerView>(R.id.rv_carro)
         val deviceCodeTextView = findViewById<TextView>(R.id.tv_parent_concesionario_code)
@@ -31,7 +30,7 @@ class ListCarro : AppCompatActivity() {
 
         // Setting component device code when it is ready
         DAOFactory.factory.getConcesionarioDAO().read(
-            concesionarioParentCode!!,
+            selectedConcesionarioCode!!,
             onSuccess = { device ->
                 deviceCodeTextView.text = device.code.toString()
                 deviceNameTextView.text = device.nombre
@@ -40,7 +39,7 @@ class ListCarro : AppCompatActivity() {
 
         // Setting the Recycler View when the data is ready
         DAOFactory.factory.getCarroDAO().getAllCarrosByCodeCar(
-            concesionarioParentCode!!,
+            selectedConcesionarioCode!!,
             onSuccess = { components ->
                 initializeRecyclerView(components, componentRecyclerView)
                 registerForContextMenu(componentRecyclerView)
@@ -49,7 +48,7 @@ class ListCarro : AppCompatActivity() {
 
         creationButton.setOnClickListener {
             val intent = Intent(this, CreationCarro::class.java)
-            intent.putExtra("componentParentCode", concesionarioParentCode)
+            intent.putExtra("selectedConcesionarioCode", selectedConcesionarioCode)
             startActivity(intent)
         }
     }
@@ -59,7 +58,7 @@ class ListCarro : AppCompatActivity() {
         return when (item.itemId) {
             R.id.menu_carro_edit -> {
                 val intent = Intent(this, EditionCarro::class.java)
-                intent.putExtra("selectedComponentCode", selectedCarroCode)
+                intent.putExtra("selectedCarroCode", selectedCarroCode)
                 startActivity(intent)
                 return true
             }
@@ -73,8 +72,8 @@ class ListCarro : AppCompatActivity() {
         }
     }
 
-    fun setSelectedComponentCode(componentCode: Int) {
-        selectedCarroCode = componentCode
+    fun setSelectedComponentCode(carroCode: Int) {
+        selectedCarroCode = carroCode
     }
 
     @SuppressLint("NotifyDataSetChanged")
@@ -88,7 +87,7 @@ class ListCarro : AppCompatActivity() {
                 selectedCarroCode!!,
                 onSuccess = {
                     DAOFactory.factory.getCarroDAO().getAllCarrosByCodeCar(
-                        concesionarioParentCode!!,
+                        selectedConcesionarioCode!!,
                         onSuccess = { components ->
                             initializeRecyclerView(components, findViewById(R.id.rv_carro))
                         }

@@ -4,8 +4,6 @@ import android.annotation.SuppressLint
 import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
-import android.view.Menu
-import android.view.MenuItem
 import android.widget.Button
 import android.widget.EditText
 import android.widget.TextView
@@ -16,7 +14,7 @@ import com.example.adle_exam_2b.data.entity.Carro
 import java.time.LocalDate
 
 class EditionCarro : AppCompatActivity() {
-    private var selectedComponentCode: Int? = null
+    private var selectedCarroCode: Int? = null
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -34,11 +32,11 @@ class EditionCarro : AppCompatActivity() {
         val editButton = findViewById<Button>(R.id.btn_confirm_carro_edition)
 
         var selectedComponent: Carro? = null
-        selectedComponentCode = intent.getIntExtra("selectedComponentCode", 0)
+        selectedCarroCode = intent.getIntExtra("selectedCarroCode", 0)
 
         // Setting component data when it is ready
         DAOFactory.factory.getCarroDAO().read(
-            selectedComponentCode!!,
+            selectedCarroCode!!,
             onSuccess = { component ->
                 selectedComponent = component
 
@@ -59,7 +57,7 @@ class EditionCarro : AppCompatActivity() {
         editButton.setOnClickListener {
             openEditionDialog(
                 Carro(
-                    selectedComponentCode!!,
+                    selectedCarroCode!!,
                     selectedComponent!!.deviceCode,
                     marcaPlainText.text.toString(),
                     LocalDate.parse(fecha_elaboracionPlainText.text.toString()),
@@ -75,7 +73,7 @@ class EditionCarro : AppCompatActivity() {
     }
 
     @SuppressLint("NotifyDataSetChanged")
-    private fun openEditionDialog(editedComponent: Carro, componentParentCode: Int) {
+    private fun openEditionDialog(editedComponent: Carro, selectedConcesionarioCode: Int) {
         val builder = AlertDialog.Builder(this)
         builder.setTitle("Editar")
         builder.setMessage("Estas seguro de editar este Carro?")
@@ -84,7 +82,7 @@ class EditionCarro : AppCompatActivity() {
             DAOFactory.factory.getCarroDAO().update(editedComponent)
             Toast.makeText(this, "Carro Editado", Toast.LENGTH_SHORT).show()
             val intent = Intent(this, ListCarro::class.java)
-            intent.putExtra("selectedDeviceCode", componentParentCode)
+            intent.putExtra("selectedConcesionarioCode", selectedConcesionarioCode)
             startActivity(intent)
         }
 
@@ -94,14 +92,4 @@ class EditionCarro : AppCompatActivity() {
         dialog.show()
     }
 
-    private fun openActivityWithParameter() {
-        DAOFactory.factory.getCarroDAO().read(
-            selectedComponentCode!!,
-            onSuccess = { component ->
-                val intent = Intent(this, ListCarro::class.java)
-                intent.putExtra("selectedDeviceCode", component.deviceCode)
-                startActivity(intent)
-            }
-        )
-    }
 }

@@ -14,13 +14,13 @@ import com.example.adle_exam_2b.data.entity.Carro
 import java.time.LocalDate
 
 class CreationCarro : AppCompatActivity() {
-    private var componentParentCode: Int? = null
+    private var selectedConcesionarioCode: Int? = null
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_creation_carro)
 
-        componentParentCode = intent.getIntExtra("componentParentCode", 0)
+        selectedConcesionarioCode = intent.getIntExtra("selectedConcesionarioCode", 0)
 
         val codeConcesionarioPlainText = findViewById<TextView>(R.id.create_car_code_concesionario)
 
@@ -32,7 +32,7 @@ class CreationCarro : AppCompatActivity() {
 
         val createButton = findViewById<Button>(R.id.btn_confirm_car_create)
 
-        codeConcesionarioPlainText.setText(componentParentCode.toString())
+        codeConcesionarioPlainText.setText(selectedConcesionarioCode.toString())
 
         // Opening creation dialog when next code is here
         createButton.setOnClickListener {
@@ -41,14 +41,14 @@ class CreationCarro : AppCompatActivity() {
                     openCreationDialog(
                         Carro(
                             code,
-                            componentParentCode!!,
+                            selectedConcesionarioCode!!,
                             marcaPlainText.text.toString(),
                             LocalDate.parse(fecha_elaboracionPlainText.text.toString()),
                             precioPlainText.text.toString().toDouble(),
                             colorPlainText.text.toString().toBoolean(),
                             mesesPlainText.text.toString().toInt()
                         ),
-                        componentParentCode!!
+                        selectedConcesionarioCode!!
                     )
                 }
             )
@@ -57,13 +57,26 @@ class CreationCarro : AppCompatActivity() {
     }
 
 
+
     @SuppressLint("NotifyDataSetChanged")
-    private fun openCreationDialog(newCarro: Carro, componentParentCode: Int) {
-        DAOFactory.factory.getCarroDAO().create(newCarro)
-        Toast.makeText(this, "Carro Creado", Toast.LENGTH_SHORT).show()
-        val intent = Intent(this, ListCarro::class.java)
-        intent.putExtra("selectedDeviceCode", componentParentCode)
-        startActivity(intent)
+    private fun openCreationDialog(newCarro: Carro, selectedConcesionarioCode: Int) {
+        val builder = AlertDialog.Builder(this)
+        builder.setTitle("Crear")
+        builder.setMessage("Estas seguro de crear este Carro?")
+
+        builder.setPositiveButton("Si") { _, _ ->
+            DAOFactory.factory.getCarroDAO().create(newCarro)
+            Toast.makeText(this, "Carro Creado", Toast.LENGTH_SHORT).show()
+            val intent = Intent(this, ListCarro::class.java)
+            intent.putExtra("selectedConcesionarioCode", selectedConcesionarioCode)
+            startActivity(intent)
+
+        }
+
+        builder.setNegativeButton("No") { _, _ -> }
+
+        val dialog = builder.create()
+        dialog.show()
 
     }
 

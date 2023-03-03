@@ -54,14 +54,14 @@ class ListConcesionario : AppCompatActivity() {
         return when (item.itemId) {
             R.id.menu_concesionario_ver -> {
                 val intent = Intent(this, ListCarro::class.java)
-                intent.putExtra("selectedDeviceCode", selectedConcesionarioCode)
+                intent.putExtra("selectedConcesionarioCode", selectedConcesionarioCode)
                 startActivity(intent)
                 return true
             }
 
             R.id.menu_concesionario_edit -> {
                 val intent = Intent(this, EditionConcesionario::class.java)
-                intent.putExtra("selectedDeviceCode", selectedConcesionarioCode)
+                intent.putExtra("selectedConcesionarioCode", selectedConcesionarioCode)
                 startActivity(intent)
                 return true
             }
