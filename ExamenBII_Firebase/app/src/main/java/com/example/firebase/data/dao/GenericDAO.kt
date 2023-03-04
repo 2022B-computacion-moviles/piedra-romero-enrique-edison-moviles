@@ -6,6 +6,6 @@ interface GenericDAO<T, PK> {
     fun read(code: PK, onSuccess: (T) -> Unit)
     fun update(entity: T)
     fun delete(code: PK, onSuccess: (Unit) -> Unit)
-    fun getNextCode(onSuccess: (PK) -> Unit)
+    fun getRandomCode(onSuccess: (PK) -> Unit)
 
 }

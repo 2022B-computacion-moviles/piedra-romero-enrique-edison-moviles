@@ -6,6 +6,8 @@ import com.example.firebase.data.entity.Carro
 import com.google.firebase.firestore.ktx.firestore
 import com.google.firebase.ktx.Firebase
 import java.time.LocalDate
+import java.util.*
+import kotlin.collections.ArrayList
 
 class FirebaseCarroDAO: CarroDAO {
 
@@ -128,28 +130,12 @@ class FirebaseCarroDAO: CarroDAO {
         }
     }
 
-    override fun getNextCode(onSuccess: (Int) -> Unit) {
-        var nextCode = 0
-
-        DAOFactory.factory.getConcesionarioDAO().getAllConcesionarios { documents ->
-            for (document in documents) {
-                val db = Firebase.firestore
-                val carroCollectionReference = db.collection(
-                    "concesionarios/${document.code}/carros"
-                )
-
-                carroCollectionReference
-                    .get()
-                    .addOnSuccessListener { documentsCarros ->
-                        for (documentCarro in documentsCarros) {
-                            if (documentCarro.id.toInt() > nextCode)
-                                nextCode = documentCarro.id.toInt()
-                        }
-
-                        onSuccess(nextCode + 1)
-                    }
-            }
+    override fun getRandomCode(onSuccess: (Int) -> Unit) {
+        var identificador = Date().time.toInt()
+        if(identificador<0){
+            identificador*=-1
         }
+        onSuccess(identificador)
     }
 
 }

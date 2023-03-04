@@ -28,7 +28,7 @@ class CreationConcesionario : AppCompatActivity() {
 
 
         createButton.setOnClickListener {
-            DAOFactory.factory.getConcesionarioDAO().getNextCode(
+            DAOFactory.factory.getConcesionarioDAO().getRandomCode(
                 onSuccess = { code ->
                     openCreationDialog(
                         Concesionario(

@@ -36,7 +36,7 @@ class CreationCarro : AppCompatActivity() {
 
         // Opening creation dialog when next code is here
         createButton.setOnClickListener {
-            DAOFactory.factory.getCarroDAO().getNextCode(
+            DAOFactory.factory.getCarroDAO().getRandomCode(
                 onSuccess = { code ->
                     openCreationDialog(
                         Carro(

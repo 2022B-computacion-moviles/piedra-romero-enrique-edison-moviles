@@ -5,6 +5,8 @@ import com.example.firebase.data.entity.Concesionario
 import com.google.firebase.firestore.ktx.firestore
 import com.google.firebase.ktx.Firebase
 import java.time.LocalDate
+import java.util.*
+import kotlin.collections.ArrayList
 
 class FirebaseConcesionarioDAO: ConcesionarioDAO {
 
@@ -85,17 +87,12 @@ class FirebaseConcesionarioDAO: ConcesionarioDAO {
         }
     }
 
-    override fun getNextCode(onSuccess: (Int) -> Unit) {
-        var nextCode = 0
-
-        getAllConcesionarios { documents ->
-            for (document in documents) {
-                if (document.code > nextCode)
-                    nextCode = document.code
-            }
-
-            onSuccess(nextCode + 1)
+    override fun getRandomCode(onSuccess: (Int) -> Unit) {
+        var identificador = Date().time.toInt()
+        if(identificador<0){
+            identificador*=-1
         }
+        onSuccess(identificador)
     }
 
 }
