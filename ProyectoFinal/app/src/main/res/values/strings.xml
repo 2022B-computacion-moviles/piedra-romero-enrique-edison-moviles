@@ -1,3 +1,9 @@
 <resources>
     <string name="app_name">Proyecto</string>
+
+    <style name="AppTheme" parent="Theme.AppCompat.Light.NoActionBar">
+        <item name="windowActionBar">false</item>
+        <item name="windowNoTitle">true</item>
+    </style>
+
 </resources>
