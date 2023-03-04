@@ -10,6 +10,8 @@ class DataInstruments {
         init {
             instrumentsData.add(Instrument(1,"Guitarra", "Cuerda","Es una guitarra",12, 450.5,"https://lavictoria.ec/wp-content/uploads/2023/01/GUITARRA-CLASICA-YAMAHA-C80-1-600x600.jpg"))
             instrumentsData.add(Instrument(2,"Guitarra2", "Cuerda","Es una guitarra2",12, 450.5,"https://livansud.vteximg.com.br/arquivos/ids/158399-1000-1000/guitarra-acustica-eko-azul-eckohogar-1.jpg?v=637461695140370000"))
+            instrumentsData.add(Instrument(3,"Guitarra3", "Cuerda","Es una guitarra",12, 450.5,"https://lavictoria.ec/wp-content/uploads/2023/01/GUITARRA-CLASICA-YAMAHA-C80-1-600x600.jpg"))
+            instrumentsData.add(Instrument(4,"Guitarra4", "Cuerda","Es una guitarra2",12, 450.5,"https://livansud.vteximg.com.br/arquivos/ids/158399-1000-1000/guitarra-acustica-eko-azul-eckohogar-1.jpg?v=637461695140370000"))
         }
     }
 }

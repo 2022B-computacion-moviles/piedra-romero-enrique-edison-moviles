@@ -97,7 +97,7 @@ class Home : AppCompatActivity() {
     }
 
 
-    //Forma de obtener un elemento
+    //Formas de obtener un elemento
 
     //1ERA: al mantener pulsado y luego soltar
     fun setSelectedInstrumentCode(instrumentCode: Int) {
@@ -108,6 +108,9 @@ class Home : AppCompatActivity() {
     //2DA: al hacer clic
     fun onIntrumentSelected(instrumentSelected: Instrument) {
         Toast.makeText(this, "Usuario seleccionado: ${instrumentSelected.codeInstrument}", Toast.LENGTH_SHORT).show()
+        startActivity(Intent(this, ViewInstrument::class.java).apply {
+            putExtra("instrumentSelected",instrumentSelected)
+        })
     }
 
 

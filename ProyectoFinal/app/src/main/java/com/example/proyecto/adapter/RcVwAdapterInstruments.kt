@@ -16,20 +16,20 @@ class RcVwAdapterInstruments(
     private val onClickListener: (instrument: Instrument) -> Unit
 ): RecyclerView.Adapter<RcVwAdapterInstruments.MyViewHolder>() {
     inner class MyViewHolder(view: View): RecyclerView.ViewHolder(view), View.OnCreateContextMenuListener {
-        val codeTextView: TextView
+        //val codeTextView: TextView
         val nombreTextView: TextView
         val tipoTextView: TextView
-        val descripcionTextView: TextView
-        val stockTextView: TextView
+        //val descripcionTextView: TextView
+        //val stockTextView: TextView
         val precioTextView: TextView
         val photoImagenView: ImageView
 
         init {
-            codeTextView = view.findViewById(R.id.rv_instrument_code)
+            //codeTextView = view.findViewById(R.id.rv_instrument_code)
             nombreTextView = view.findViewById(R.id.rv_instrument_nombre)
             tipoTextView = view.findViewById(R.id.rv_instrument_tipo)
-            descripcionTextView = view.findViewById(R.id.rv_instrument_descripcion)
-            stockTextView = view.findViewById(R.id.rv_instrument_stock)
+            //descripcionTextView = view.findViewById(R.id.rv_instrument_descripcion)
+            //stockTextView = view.findViewById(R.id.rv_instrument_stock)
             precioTextView = view.findViewById(R.id.rv_instrument_precio)
             photoImagenView = view.findViewById(R.id.rv_instrument_img)
 
@@ -74,12 +74,12 @@ class RcVwAdapterInstruments(
     override fun onBindViewHolder(holder: MyViewHolder, position: Int) {
         val instrument = this.list[position]
 
-        holder.codeTextView.text = instrument.codeInstrument.toString()
+        //holder.codeTextView.text = instrument.codeInstrument.toString()
         holder.nombreTextView.text = instrument.nombre
         holder.tipoTextView.text = instrument.tipo
-        holder.descripcionTextView.text = instrument.descripcion
-        holder.stockTextView.text = instrument.stock.toString()
-        holder.precioTextView.text = instrument.precio.toString()
+        //holder.descripcionTextView.text = instrument.descripcion
+        //holder.stockTextView.text = instrument.stock.toString()
+        holder.precioTextView.text = "$" +instrument.precio.toString()
         //holder.imgTextView.text = instrument.img
         Glide.with(holder.photoImagenView.context).load(instrument.img).into(holder.photoImagenView)
     }

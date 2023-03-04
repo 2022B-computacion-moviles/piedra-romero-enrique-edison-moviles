@@ -1,5 +1,7 @@
 package com.example.proyecto.data.entity
 
+import java.io.Serializable
+
 class Instrument(
     val codeInstrument: Int,
 
@@ -9,4 +11,4 @@ class Instrument(
     var stock: Int,
     var precio: Double,
     var img: String
-)
+): Serializable
