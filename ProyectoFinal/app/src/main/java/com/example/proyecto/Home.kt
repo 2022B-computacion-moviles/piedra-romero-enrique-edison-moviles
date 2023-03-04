@@ -32,8 +32,16 @@ class Home : AppCompatActivity() {
             FirebaseGlobal.firebaseInstruments.create(instrument)
         }
 
+        val text_aux=findViewById<TextView>(R.id.view_instrument)
+        
+        FirebaseGlobal.firebaseInstruments.getAllInstruments { instruments ->
+            var aux=""
+            for (instrument in instruments) {
+                aux+=instrument.nombre +" ";
+            }
 
-
+            text_aux.text=aux
+        }
 
 
 
