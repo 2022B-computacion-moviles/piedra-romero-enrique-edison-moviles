@@ -12,6 +12,7 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.Adleexam2b"
         tools:targetApi="31">
+
         <activity
             android:name=".CreationCarro"
             android:exported="false"
