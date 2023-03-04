@@ -10,6 +10,9 @@ import android.widget.EditText
 import android.widget.TextView
 import android.widget.Toast
 import androidx.activity.OnBackPressedCallback
+import androidx.recyclerview.widget.DividerItemDecoration
+import androidx.recyclerview.widget.GridLayoutManager
+import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.example.proyecto.adapter.RcVwAdapterInstruments
 import com.example.proyecto.data.entity.Instrument
@@ -62,13 +65,17 @@ class Home : AppCompatActivity() {
         list: ArrayList<Instrument>,
         recyclerView: RecyclerView
     ) {
-        val adapter = RcVwAdapterInstruments(this, list, {intrument ->onIntrumentSelected(intrument)})
-        //adapter=CorreoAdapter(list, { correo -> onCorreoSelected(correo) }, { seccion -> onSeccionSelected(seccion) })
+        //val manager= LinearLayoutManager(this)
+        val manager= GridLayoutManager(this,2)
+        val decoration= DividerItemDecoration(this, manager.orientation)
 
+        val adapter = RcVwAdapterInstruments(this, list, {intrument ->onIntrumentSelected(intrument)})
 
         recyclerView.adapter = adapter
         recyclerView.itemAnimator = androidx.recyclerview.widget.DefaultItemAnimator()
-        recyclerView.layoutManager = androidx.recyclerview.widget.LinearLayoutManager(this)
+        recyclerView.layoutManager = manager
+        recyclerView.addItemDecoration(decoration)
+
         adapter.notifyDataSetChanged()
     }
 
