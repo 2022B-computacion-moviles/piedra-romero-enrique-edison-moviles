@@ -6,6 +6,9 @@ import android.widget.Button
 import android.widget.EditText
 import android.widget.TextView
 import androidx.activity.OnBackPressedCallback
+import com.example.proyecto.data.firebase.FirebaseGlobal
+import com.example.proyecto.data.firebase.FirebaseInstruments
+import com.example.proyecto.data.util.DataInstruments
 import com.google.firebase.auth.FirebaseAuth
 
 class Home : AppCompatActivity() {
@@ -23,6 +26,14 @@ class Home : AppCompatActivity() {
             FirebaseAuth.getInstance().signOut()
             onBackPressed()
         }
+
+
+        for (instrument in DataInstruments.instrumentsData) {
+            FirebaseGlobal.firebaseInstruments.create(instrument)
+        }
+
+
+
 
 
 

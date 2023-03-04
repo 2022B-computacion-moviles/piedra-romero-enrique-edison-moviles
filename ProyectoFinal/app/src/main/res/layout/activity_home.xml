@@ -9,25 +9,27 @@
 
   <TextView
       android:id="@+id/home_email"
-      android:layout_width="326dp"
-      android:layout_height="wrap_content"
+      android:layout_width="313dp"
+      android:layout_height="19dp"
       android:ems="10"
       android:hint="Email"
       android:inputType="textPersonName"
       app:layout_constraintBottom_toBottomOf="parent"
       app:layout_constraintEnd_toEndOf="parent"
-      app:layout_constraintHorizontal_bias="0.494"
+      app:layout_constraintHorizontal_bias="0.811"
       app:layout_constraintStart_toStartOf="parent"
       app:layout_constraintTop_toTopOf="parent"
-      app:layout_constraintVertical_bias="0.263" />
+      app:layout_constraintVertical_bias="0.022" />
 
   <Button
       android:id="@+id/btn_home_close"
       android:layout_width="wrap_content"
       android:layout_height="wrap_content"
-      android:layout_marginTop="36dp"
+      android:layout_marginTop="8dp"
       android:text="Cerrar"
       app:layout_constraintEnd_toEndOf="@+id/home_email"
+      app:layout_constraintHorizontal_bias="1.0"
       app:layout_constraintStart_toStartOf="@+id/home_email"
       app:layout_constraintTop_toBottomOf="@+id/home_email" />
+
 </androidx.constraintlayout.widget.ConstraintLayout>
