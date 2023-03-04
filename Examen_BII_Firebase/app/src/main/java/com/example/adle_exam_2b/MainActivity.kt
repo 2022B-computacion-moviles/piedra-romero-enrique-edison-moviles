@@ -13,16 +13,8 @@ class MainActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
 
-        val createButton = findViewById<Button>(R.id.btn_create_initial_data)
-        val startButton = findViewById<Button>(R.id.btn_start_app)
+        openActivity(ListConcesionario::class.java)
 
-        createButton.setOnClickListener {
-            createInitialData()
-        }
-
-        startButton.setOnClickListener {
-            openActivity(ListConcesionario::class.java)
-        }
     }
 
     private fun openActivity(activityClass: Class<*>) {
@@ -30,13 +22,5 @@ class MainActivity : AppCompatActivity() {
         startActivity(intent)
     }
 
-    private fun createInitialData() {
-        for (concesionario in DataConcesionario.concesionariosData) {
-            DAOFactory.factory.getConcesionarioDAO().create(concesionario)
-        }
 
-        for (carro in DataCarro.carroData) {
-            DAOFactory.factory.getCarroDAO().create(carro)
-        }
-    }
 }

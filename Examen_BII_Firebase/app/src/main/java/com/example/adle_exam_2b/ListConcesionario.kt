@@ -11,10 +11,13 @@ import androidx.appcompat.app.AlertDialog
 import androidx.recyclerview.widget.RecyclerView
 import com.example.adle_exam_2b.data.dao.DAOFactory
 import com.example.adle_exam_2b.data.entity.Concesionario
+import com.example.adle_exam_2b.data.util.DataCarro
+import com.example.adle_exam_2b.data.util.DataConcesionario
 import kotlinx.coroutines.*
 
 class ListConcesionario : AppCompatActivity() {
     private var selectedConcesionarioCode: Int? = null
+    var concesionariosList = ArrayList<Concesionario>()
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -23,30 +26,35 @@ class ListConcesionario : AppCompatActivity() {
         val concesionarioRecyclerView = findViewById<RecyclerView>(R.id.rv_concesionario)
         val creationButton = findViewById<Button>(R.id.btn_create_concesionario)
 
-
+        //Obtengo la data solo 1 vez
         DAOFactory.factory.getConcesionarioDAO().getAllConcesionarios(
             onSuccess = { concesionarios ->
-                initializeRecyclerView(concesionarios, concesionarioRecyclerView)
+                concesionariosList=concesionarios
+                if(concesionariosList.isEmpty()){
+                    initData()
+                    openActivity(ListConcesionario::class.java)
+
+                }
+                initializeRecyclerView(concesionariosList, concesionarioRecyclerView)
                 registerForContextMenu(concesionarioRecyclerView)
-                /*android.app.AlertDialog.Builder(this)
-                    .setTitle("Modificado")
-                    .setMessage("Con Éxito ${devices.size}")
-                    .setPositiveButton("Aceptar") { dialog, which ->
-                        // acción cuando se presiona Aceptar
-                    }
-                    .setNegativeButton("Cancelar") { dialog, which ->
-                        // acción cuando se presiona Cancelar
-                    }
-                    .create()
-                    .show()*/
-
             }
-
-
         )
+
+
 
         creationButton.setOnClickListener {
             openActivity(CreationConcesionario::class.java)
+        }
+    }
+
+
+    private fun initData() {
+        for (concesionario in DataConcesionario.concesionariosData) {
+            DAOFactory.factory.getConcesionarioDAO().create(concesionario)
+        }
+
+        for (carro in DataCarro.carroData) {
+            DAOFactory.factory.getCarroDAO().create(carro)
         }
     }
 
