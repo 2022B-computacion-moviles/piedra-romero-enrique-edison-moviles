@@ -78,6 +78,4 @@ class RcVwAdapterInstruments(
     override fun getItemCount(): Int {
         return this.list.size
     }
-
-
 }

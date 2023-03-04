@@ -91,6 +91,7 @@ class Home : AppCompatActivity() {
 
     fun setSelectedInstrumentCode(instrumentCode: Int) {
         selectedInstrumentCode = instrumentCode
+        //Toast.makeText(this, "Usuario seleccionado: ${selectedInstrumentCode}", Toast.LENGTH_SHORT).show()
     }
 
 
