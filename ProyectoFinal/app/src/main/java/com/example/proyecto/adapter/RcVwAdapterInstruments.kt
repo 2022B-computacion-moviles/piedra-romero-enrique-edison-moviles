@@ -10,7 +10,8 @@ import com.example.proyecto.data.entity.Instrument
 
 class RcVwAdapterInstruments(
     private val parentContext: Home,
-    private val list: ArrayList<Instrument>
+    private val list: ArrayList<Instrument>,
+    private val onClickListener: (instrument: Instrument) -> Unit
 ): RecyclerView.Adapter<RcVwAdapterInstruments.MyViewHolder>() {
     inner class MyViewHolder(view: View): RecyclerView.ViewHolder(view), View.OnCreateContextMenuListener {
         val codeTextView: TextView
@@ -39,6 +40,11 @@ class RcVwAdapterInstruments(
             val typedValue = TypedValue()
             itemView.context.theme.resolveAttribute(android.R.attr.selectableItemBackground, typedValue, true)
             itemView.setBackgroundResource(typedValue.resourceId)
+
+
+            itemView.setOnClickListener { // Configuración del clic en el elemento
+                onClickListener(list[adapterPosition])
+            }
         }
 
         override fun onCreateContextMenu(menu: ContextMenu?, view: View?, menuInfo: ContextMenu.ContextMenuInfo?) {

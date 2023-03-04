@@ -62,7 +62,9 @@ class Home : AppCompatActivity() {
         list: ArrayList<Instrument>,
         recyclerView: RecyclerView
     ) {
-        val adapter = RcVwAdapterInstruments(this, list)
+        val adapter = RcVwAdapterInstruments(this, list, {intrument ->onIntrumentSelected(intrument)})
+        //adapter=CorreoAdapter(list, { correo -> onCorreoSelected(correo) }, { seccion -> onSeccionSelected(seccion) })
+
 
         recyclerView.adapter = adapter
         recyclerView.itemAnimator = androidx.recyclerview.widget.DefaultItemAnimator()
@@ -88,10 +90,17 @@ class Home : AppCompatActivity() {
     }
 
 
+    //Forma de obtener un elemento
 
+    //1ERA: al mantener pulsado y luego soltar
     fun setSelectedInstrumentCode(instrumentCode: Int) {
         selectedInstrumentCode = instrumentCode
         //Toast.makeText(this, "Usuario seleccionado: ${selectedInstrumentCode}", Toast.LENGTH_SHORT).show()
+    }
+
+    //2DA: al hacer clic
+    fun onIntrumentSelected(instrumentSelected: Instrument) {
+        Toast.makeText(this, "Usuario seleccionado: ${instrumentSelected.codeInstrument}", Toast.LENGTH_SHORT).show()
     }
 
 
