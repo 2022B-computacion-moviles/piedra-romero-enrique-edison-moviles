@@ -55,7 +55,6 @@ class ViewInstrument : AppCompatActivity() {
             Toast.makeText(this, "Añadido al carrito", Toast.LENGTH_SHORT).show()
         }
 
-
     }
 
     private fun sesionCurrent(){

@@ -5,10 +5,7 @@ import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.view.MenuItem
-import android.widget.Button
-import android.widget.EditText
-import android.widget.TextView
-import android.widget.Toast
+import android.widget.*
 import androidx.activity.OnBackPressedCallback
 import androidx.recyclerview.widget.DividerItemDecoration
 import androidx.recyclerview.widget.GridLayoutManager
@@ -28,16 +25,15 @@ class Home : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_home)
 
-        val btnCerrar = findViewById<Button>(R.id.btn_home_close)
+
 
         //SESIÓN
         sesionCurrent()
 
+        //MENÚ SESIÓN
+        menuSesion()
 
-        btnCerrar.setOnClickListener {
-            FirebaseAuth.getInstance().signOut()
-            onBackPressed()
-        }
+
 
 
         for (instrument in DataInstruments.instrumentsData) {
@@ -120,6 +116,37 @@ class Home : AppCompatActivity() {
         if (email != null) {
             emailText.text = email
         }
+    }
+
+    private fun menuSesion(){
+        val btnCerrar = findViewById<Button>(R.id.btn_home_close)
+        //btnCerrar.setOnClickListener {
+            //FirebaseAuth.getInstance().signOut()
+            //onBackPressed()
+        //}
+        btnCerrar.setOnClickListener { view ->
+            val popupMenu = PopupMenu(this, view)
+            popupMenu.inflate(R.menu.menu_sesion)
+
+            popupMenu.setOnMenuItemClickListener { menuItem ->
+                when (menuItem.itemId) {
+                    R.id.menu_sesion_carrito -> {
+                        startActivity(Intent(this, ListCarritoUser::class.java))
+                        true
+                    }
+                    R.id.menu_sesion_salir -> {
+                        FirebaseAuth.getInstance().signOut()
+                        //onBackPressed()
+                        startActivity(Intent(this, MainActivity::class.java))
+                        true
+                    }
+                    else -> false
+                }
+            }
+
+            popupMenu.show()
+        }
+
     }
 
 
