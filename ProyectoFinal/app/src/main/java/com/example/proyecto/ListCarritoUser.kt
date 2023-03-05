@@ -16,6 +16,7 @@ import com.example.proyecto.data.entity.Carrito
 import com.example.proyecto.data.firebase.FirebaseGlobal
 import com.google.firebase.auth.FirebaseAuth
 import android.os.Handler
+import android.widget.ImageView
 import com.example.proyecto.sesion.Sesion
 
 class ListCarritoUser : AppCompatActivity() {
@@ -37,8 +38,10 @@ class ListCarritoUser : AppCompatActivity() {
 
         //Header & Auth
         val btnHeader = findViewById<Button>(R.id.header_button)
+        val logoHeader = findViewById<ImageView>(R.id.header_logo)
         Sesion.sesionCurrent(this,btnHeader)
         Sesion.menuSesion(this,btnHeader)
+        Sesion.headerLogo(this, logoHeader)
 
     }
 

@@ -3,11 +3,9 @@ package com.example.proyecto.sesion
 import android.content.Context
 import android.content.Intent
 import android.widget.Button
+import android.widget.ImageView
 import android.widget.PopupMenu
-import com.example.proyecto.ListCarritoUser
-import com.example.proyecto.ListCompraUser
-import com.example.proyecto.MainActivity
-import com.example.proyecto.R
+import com.example.proyecto.*
 import com.google.firebase.auth.FirebaseAuth
 
 class Sesion {
@@ -18,6 +16,12 @@ class Sesion {
             if (email != null) {
                 btnHeader.text = email.substring(0, 1).toUpperCase()
             }
+        }
+        fun headerLogo(context: Context, headerLogo: ImageView){
+            headerLogo.setOnClickListener{
+                context.startActivity(Intent(context, Home::class.java))
+            }
+
         }
 
         fun menuSesion(context: Context, btnHeader: Button) {

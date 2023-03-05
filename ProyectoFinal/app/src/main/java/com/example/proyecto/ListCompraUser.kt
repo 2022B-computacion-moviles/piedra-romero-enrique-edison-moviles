@@ -5,6 +5,7 @@ import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.widget.Button
+import android.widget.ImageView
 import android.widget.PopupMenu
 import androidx.recyclerview.widget.DividerItemDecoration
 import androidx.recyclerview.widget.LinearLayoutManager
@@ -31,8 +32,10 @@ class ListCompraUser : AppCompatActivity() {
 
         //Header & Auth
         val btnHeader = findViewById<Button>(R.id.header_button)
+        val logoHeader = findViewById<ImageView>(R.id.header_logo)
         Sesion.sesionCurrent(this,btnHeader)
         Sesion.menuSesion(this,btnHeader)
+        Sesion.headerLogo(this, logoHeader)
     }
 
     @SuppressLint("NotifyDataSetChanged")

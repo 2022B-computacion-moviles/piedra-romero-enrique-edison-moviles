@@ -41,8 +41,10 @@ class Home : AppCompatActivity() {
 
         //Header & Auth
         val btnHeader = findViewById<Button>(R.id.header_button)
+        val logoHeader = findViewById<ImageView>(R.id.header_logo)
         Sesion.sesionCurrent(this,btnHeader)
         Sesion.menuSesion(this,btnHeader)
+        Sesion.headerLogo(this, logoHeader)
 
 
     }
