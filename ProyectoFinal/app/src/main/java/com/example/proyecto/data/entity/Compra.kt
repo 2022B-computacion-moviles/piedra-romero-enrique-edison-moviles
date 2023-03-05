@@ -7,7 +7,7 @@ class Compra (
     val codeCompra: Int,
     val codeInstrument: Int,
 
-    var fecha: LocalDate,
+    var fecha: String,
     var cantidad: Int,
     var total: Double
 ): Serializable

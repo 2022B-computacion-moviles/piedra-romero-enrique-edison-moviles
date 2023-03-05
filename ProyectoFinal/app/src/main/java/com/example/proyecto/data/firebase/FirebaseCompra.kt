@@ -4,21 +4,23 @@ import com.example.proyecto.data.entity.Carrito
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.firestore.ktx.firestore
 import com.google.firebase.ktx.Firebase
+import java.text.SimpleDateFormat
 import java.util.*
 import kotlin.collections.ArrayList
 
-class FirebaseCarrito {
+//UNA COMPRA ES UN POCO DISTINTO DE UN CARRITO PORQUE YA SE PAGA
+class FirebaseCompra {
     private val db = Firebase.firestore
     private val collectionReference = db.collection("clientes")
 
 
-    fun getAllCarritos(callback: (ArrayList<Carrito>) -> Unit) {
+    fun getAllCompras(callback: (ArrayList<Carrito>) -> Unit) {
         val currentUser = FirebaseAuth.getInstance().currentUser
         val email = currentUser?.email
 
         collectionReference
             .document(email.toString())
-            .collection("carrito")
+            .collection("compras")
             .get()
             .addOnSuccessListener { documents ->
                 val carritos = ArrayList<Carrito>()
@@ -42,39 +44,37 @@ class FirebaseCarrito {
 
         val entity = hashMapOf(
             "codeInstrument" to carrito.codeInstrument,
+            "fecha" to getFecha(),
             "cantidad" to carrito.cantidad,
             "total" to carrito.total
         )
-        //collectionReference.document(carrito.codeCarrito.toString()).set(entity)
 
         collectionReference
             .document(email.toString())
-            .collection("carrito")
+            .collection("compras")
             .document(getRandomCode().toString()).set(entity)
-    }
 
-    fun delete(code: Int,callback: (Boolean) -> Unit) {
-        val currentUser = FirebaseAuth.getInstance().currentUser
-        val email = currentUser?.email
-
-        collectionReference
-            .document(email.toString())
-            .collection("carrito")
-            .document(code.toString())
-            .delete().addOnSuccessListener {
-                callback(true)
-        }
+        //Elimina del carrito
+        FirebaseGlobal.firebaseCarrito.delete(carrito.codeCarrito){}
     }
 
 
-
-    fun getRandomCode():Int {
+    private fun getRandomCode():Int {
         var identificador = Date().time.toInt()
         if(identificador<0){
             identificador*=-1
         }
         return identificador
     }
+
+    private fun getFecha():String{
+        val calendar = Calendar.getInstance()
+        val dateFormat = SimpleDateFormat("yyyy-MM-dd HH:mm:ss", Locale.getDefault())
+        val currentDate = dateFormat.format(calendar.time)
+        return currentDate.toString()
+    }
+
+
 
 
 }

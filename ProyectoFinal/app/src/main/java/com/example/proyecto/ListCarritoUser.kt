@@ -15,6 +15,7 @@ import com.example.proyecto.adapter.RcVwAdapterCarritos
 import com.example.proyecto.data.entity.Carrito
 import com.example.proyecto.data.firebase.FirebaseGlobal
 import com.google.firebase.auth.FirebaseAuth
+import android.os.Handler
 
 class ListCarritoUser : AppCompatActivity() {
     private lateinit var selectedCarrito: Carrito
@@ -30,12 +31,15 @@ class ListCarritoUser : AppCompatActivity() {
             registerForContextMenu(rvCarritos)
         }
 
-
         //Header & Auth
         //SESIÓN
         sesionCurrent()
         //MENÚ SESIÓN
         menuSesion()
+
+
+        //Realizar Pago
+        pagar()
 
     }
 
@@ -71,6 +75,27 @@ class ListCarritoUser : AppCompatActivity() {
             }
             else -> super.onContextItemSelected(item)
         }
+    }
+
+    private fun pagar(){
+        val btnPagar = findViewById<Button>(R.id.btn_carrito_pagar)
+        btnPagar.setOnClickListener {
+            FirebaseGlobal.firebaseCarrito.getAllCarritos {
+                carritos ->
+                for(carrito in carritos){
+                    FirebaseGlobal.firebaseCompra.create(
+                        carrito
+                    )
+                }
+            }
+            Handler().postDelayed({
+                Toast.makeText(this, "Gracias por su compra", Toast.LENGTH_SHORT).show()
+                startActivity(Intent(this, ListCarritoUser::class.java))
+            }, 2000)
+
+
+        }
+
     }
 
     fun setSelectedCarrito(instrumentCarritov1: Carrito) {
