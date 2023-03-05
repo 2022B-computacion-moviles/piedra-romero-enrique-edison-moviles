@@ -8,6 +8,7 @@ import com.bumptech.glide.Glide
 import com.example.proyecto.data.entity.Carrito
 import com.example.proyecto.data.entity.Instrument
 import com.example.proyecto.data.firebase.FirebaseGlobal
+import com.example.proyecto.sesion.Sesion
 import com.google.firebase.auth.FirebaseAuth
 
 class ViewInstrument : AppCompatActivity() {
@@ -52,48 +53,11 @@ class ViewInstrument : AppCompatActivity() {
 
 
         //Header & Auth
-        //SESIÓN
-        sesionCurrent()
-        //MENÚ SESIÓN
-        menuSesion()
-
-    }
-
-    private fun sesionCurrent(){
-        //val emailText = findViewById<TextView>(R.id.home_email)
         val btnHeader = findViewById<Button>(R.id.header_button)
-        val currentUser = FirebaseAuth.getInstance().currentUser
-        val email = currentUser?.email.toString()
-        if (email != null) {
-            btnHeader.text = email.substring(0, 1).toUpperCase()
-        }
+        Sesion.sesionCurrent(this,btnHeader)
+        Sesion.menuSesion(this,btnHeader)
 
     }
 
-    private fun menuSesion(){
-        val btnHeader = findViewById<Button>(R.id.header_button)
-        btnHeader.setOnClickListener { view ->
-            val popupMenu = PopupMenu(this, view)
-            popupMenu.inflate(R.menu.menu_sesion)
 
-            popupMenu.setOnMenuItemClickListener { menuItem ->
-                when (menuItem.itemId) {
-                    R.id.menu_sesion_carrito -> {
-                        startActivity(Intent(this, ListCarritoUser::class.java))
-                        true
-                    }
-                    R.id.menu_sesion_salir -> {
-                        FirebaseAuth.getInstance().signOut()
-                        //onBackPressed()
-                        startActivity(Intent(this, MainActivity::class.java))
-                        true
-                    }
-                    else -> false
-                }
-            }
-
-            popupMenu.show()
-        }
-
-    }
 }
