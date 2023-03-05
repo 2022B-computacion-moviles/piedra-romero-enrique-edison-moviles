@@ -1,6 +1,7 @@
 package com.example.proyecto.data.firebase
 
 import com.example.proyecto.data.entity.Carrito
+import com.example.proyecto.data.entity.Compra
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.firestore.ktx.firestore
 import com.google.firebase.ktx.Firebase
@@ -14,7 +15,7 @@ class FirebaseCompra {
     private val collectionReference = db.collection("clientes")
 
 
-    fun getAllCompras(callback: (ArrayList<Carrito>) -> Unit) {
+    fun getAllCompras(callback: (ArrayList<Compra>) -> Unit) {
         val currentUser = FirebaseAuth.getInstance().currentUser
         val email = currentUser?.email
 
@@ -23,18 +24,19 @@ class FirebaseCompra {
             .collection("compras")
             .get()
             .addOnSuccessListener { documents ->
-                val carritos = ArrayList<Carrito>()
+                val compras = ArrayList<Compra>()
                 for (document in documents) {
-                    carritos.add(
-                        Carrito(
-                            codeCarrito=document.id.split("/").last().toInt(),
+                    compras.add(
+                        Compra(
+                            codeCompra=document.id.split("/").last().toInt(),
                             codeInstrument =document.getDouble("codeInstrument")!!.toInt(),
+                            fecha=document.getString("fecha")!!,
                             cantidad = document.getDouble("cantidad")!!.toInt(),
                             total = document.getDouble("total")!!
                         )
                     )
                 }
-                callback(carritos)
+                callback(compras)
             }
     }
 

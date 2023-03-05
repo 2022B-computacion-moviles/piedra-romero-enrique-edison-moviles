@@ -3,6 +3,9 @@
     xmlns:android="http://schemas.android.com/apk/res/android">
 
     <item
+        android:id="@+id/menu_sesion_compras"
+        android:title="Ver Compras" />
+    <item
         android:id="@+id/menu_sesion_carrito"
         android:title="Carrito" />
     <item
