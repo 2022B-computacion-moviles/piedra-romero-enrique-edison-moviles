@@ -58,10 +58,15 @@ class ListCarritoUser : AppCompatActivity() {
         adapter.notifyDataSetChanged()
     }
 
+    @SuppressLint("NotifyDataSetChanged")
     override fun onContextItemSelected(item: MenuItem): Boolean {
         return when (item.itemId) {
             R.id.menu_carrito_eliminar -> {
-                Toast.makeText(this, "Eliminado de Carrito", Toast.LENGTH_SHORT).show()
+                FirebaseGlobal.firebaseCarrito.delete(selectedCarrito.codeCarrito){
+                    Toast.makeText(this, "Eliminado de Carrito", Toast.LENGTH_SHORT).show()
+                    recreate()
+                }
+
                 return true
             }
             else -> super.onContextItemSelected(item)

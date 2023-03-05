@@ -53,9 +53,22 @@ class FirebaseCarrito {
             .document(email.toString())
             .collection("carrito")
             .document(getRandomCode().toString()).set(entity)
-
-
     }
+
+    fun delete(code: Int,callback: (Boolean) -> Unit) {
+        val currentUser = FirebaseAuth.getInstance().currentUser
+        val email = currentUser?.email
+
+        collectionReference
+            .document(email.toString())
+            .collection("carrito")
+            .document(code.toString())
+            .delete().addOnSuccessListener {
+                callback(true)
+        }
+    }
+
+
 
     fun getRandomCode():Int {
         var identificador = Date().time.toInt()
