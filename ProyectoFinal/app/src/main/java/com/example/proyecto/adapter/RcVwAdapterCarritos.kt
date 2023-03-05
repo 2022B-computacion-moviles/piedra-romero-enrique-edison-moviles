@@ -6,28 +6,27 @@ import android.widget.ImageView
 import android.widget.TextView
 import androidx.recyclerview.widget.RecyclerView
 import com.bumptech.glide.Glide
-import com.example.proyecto.Home
 import com.example.proyecto.ListCarritoUser
 import com.example.proyecto.R
 import com.example.proyecto.data.entity.Carrito
-import com.example.proyecto.data.entity.Instrument
+import com.example.proyecto.data.firebase.FirebaseGlobal
 
 class RcVwAdapterCarritos(
     private val parentContext: ListCarritoUser,
     private val list: ArrayList<Carrito>
 ): RecyclerView.Adapter<RcVwAdapterCarritos.MyViewHolder>() {
     inner class MyViewHolder(view: View): RecyclerView.ViewHolder(view), View.OnCreateContextMenuListener {
-        val codeTextView: TextView
+        val nombreTextView: TextView
         val cantidadTextView: TextView
         val totalTextView: TextView
-        //val photoImagenView: ImageView
+        val photoImagenView: ImageView
 
         init {
-            codeTextView = view.findViewById(R.id.rv_carrito_code_instrument)
+            nombreTextView = view.findViewById(R.id.rv_carrito_nombre_instrument)
             cantidadTextView = view.findViewById(R.id.rv_carrito_cantidad)
             totalTextView = view.findViewById(R.id.rv_carrito_total)
 
-            //photoImagenView = view.findViewById(R.id.rv_instrument_img)
+            photoImagenView = view.findViewById(R.id.rv_carrito_img)
 
             view.setOnCreateContextMenuListener(this)
 
@@ -67,11 +66,14 @@ class RcVwAdapterCarritos(
     override fun onBindViewHolder(holder: MyViewHolder, position: Int) {
         val carrito = this.list[position]
 
-        holder.codeTextView.text = carrito.codeInstrument.toString()
         holder.cantidadTextView.text = carrito.cantidad.toString()
         holder.totalTextView.text = "$" +carrito.total.toString()
 
-        //Glide.with(holder.photoImagenView.context).load(instrument.img).into(holder.photoImagenView)
+        FirebaseGlobal.firebaseInstruments.read(carrito.codeInstrument){
+                instrument ->
+            holder.nombreTextView.text = instrument.nombre
+            Glide.with(holder.photoImagenView.context).load(instrument.img).into(holder.photoImagenView)
+        }
     }
 
     override fun getItemCount(): Int {

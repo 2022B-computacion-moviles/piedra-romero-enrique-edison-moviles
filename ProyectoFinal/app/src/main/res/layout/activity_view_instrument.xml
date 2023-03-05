@@ -4,7 +4,6 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@color/principal"
     tools:context=".ViewInstrument">
 
     <include
@@ -56,6 +55,8 @@
         android:layout_height="wrap_content"
         android:layout_marginTop="16dp"
         android:text="Añadir"
+        android:background="@color/principal"
+        android:textColor="@color/white"
         app:layout_constraintEnd_toEndOf="@+id/view_instrument_img"
         app:layout_constraintHorizontal_bias="1.0"
         app:layout_constraintStart_toStartOf="@+id/view_instrument_img"
@@ -109,6 +110,7 @@
         android:layout_height="wrap_content"
         android:layout_marginTop="116dp"
         android:text="nombre"
+        android:textColor="@color/principal"
         android:textSize="20sp"
         android:textStyle="bold"
         app:layout_constraintEnd_toEndOf="parent"

@@ -43,5 +43,29 @@ class FirebaseInstruments {
         collectionReference.document(instrument.codeInstrument.toString()).set(entity)
     }
 
+    fun read(code: Int, callback: (Instrument) -> Unit) {
+        val instrumentReference = collectionReference.document(code.toString())
+
+        instrumentReference
+            .get()
+            .addOnSuccessListener { document ->
+                if (document.exists()) {
+                    val instrument=Instrument(
+                        codeInstrument = code,
+                        nombre = document.getString("nombre")!!,
+                        tipo = document.getString("tipo")!!,
+                        descripcion = document.getString("descripcion")!!,
+                        stock =  document.getDouble("stock")!!.toInt(),
+                        precio = document.getDouble("precio")!!,
+                        img = document.getString("img")!!,
+                    )
+                    callback(instrument)
+                }
+
+            }
+    }
+
+
+
 
 }

@@ -4,8 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".ListCarritoUser"
-    android:background="@color/principal">
+    tools:context=".ListCarritoUser">
 
     <include
         android:id="@+id/include2"
@@ -18,6 +17,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="Carrito de Compras"
+        android:textColor="@color/principal"
         android:textSize="20sp"
         android:textStyle="bold"
         app:layout_constraintEnd_toEndOf="parent"
@@ -30,6 +30,8 @@
         android:layout_height="wrap_content"
         android:layout_marginTop="16dp"
         android:text="Pagar"
+        android:background="@color/principal"
+        android:textColor="@color/white"
         app:layout_constraintEnd_toEndOf="@+id/rv_carritos"
         app:layout_constraintHorizontal_bias="0.496"
         app:layout_constraintStart_toStartOf="@+id/rv_carritos"
@@ -38,6 +40,7 @@
     <androidx.recyclerview.widget.RecyclerView
         android:id="@+id/rv_carritos"
         android:layout_width="360dp"
+        android:background="@color/white"
         android:layout_height="473dp"
         android:layout_marginTop="24dp"
         app:layout_constraintEnd_toEndOf="@+id/textView"
