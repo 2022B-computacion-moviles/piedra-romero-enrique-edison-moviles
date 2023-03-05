@@ -112,10 +112,11 @@ class Home : AppCompatActivity() {
     private fun sesionCurrent(){
         val emailText = findViewById<TextView>(R.id.home_email)
         val currentUser = FirebaseAuth.getInstance().currentUser
-        val email = currentUser?.email
+        val email = currentUser?.email.toString()
         if (email != null) {
-            emailText.text = email
+            emailText.text = email.substring(0, 1).toUpperCase()
         }
+
     }
 
     private fun menuSesion(){
