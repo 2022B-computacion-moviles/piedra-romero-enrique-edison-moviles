@@ -4,40 +4,24 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".Home">
+    tools:context=".Home"
+    android:background="@color/principal">
 
-  <TextView
-      android:id="@+id/home_email"
-      android:layout_width="184dp"
-      android:layout_height="27dp"
-      android:ems="10"
-      android:hint="Email"
-      android:inputType="textPersonName"
-      app:layout_constraintBottom_toBottomOf="parent"
-      app:layout_constraintEnd_toEndOf="parent"
-      app:layout_constraintHorizontal_bias="0.163"
-      app:layout_constraintStart_toStartOf="parent"
-      app:layout_constraintTop_toTopOf="parent"
-      app:layout_constraintVertical_bias="0.022" />
-
-  <Button
-      android:id="@+id/btn_home_close"
-      android:layout_width="50dp"
-      android:layout_height="50dp"
-      android:layout_marginTop="16dp"
-      android:background="@drawable/circular_button_bg"
-      app:layout_constraintEnd_toEndOf="parent"
-      app:layout_constraintHorizontal_bias="0.728"
-      app:layout_constraintStart_toEndOf="@+id/home_email"
-      app:layout_constraintTop_toTopOf="parent" />
+  <include
+      layout="@layout/header"
+      tools:layout_editor_absoluteX="60dp"
+      tools:layout_editor_absoluteY="16dp" />
 
   <androidx.recyclerview.widget.RecyclerView
       android:id="@+id/rv_intruments"
-      android:layout_width="348dp"
-      android:layout_height="558dp"
+      android:layout_width="386dp"
+      android:layout_height="623dp"
+      android:background="@color/white"
       app:layout_constraintBottom_toBottomOf="parent"
       app:layout_constraintEnd_toEndOf="parent"
+      app:layout_constraintHorizontal_bias="0.48"
       app:layout_constraintStart_toStartOf="parent"
-      app:layout_constraintTop_toTopOf="parent" />
+      app:layout_constraintTop_toTopOf="parent"
+      app:layout_constraintVertical_bias="0.851" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

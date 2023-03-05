@@ -25,33 +25,24 @@ class Home : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_home)
 
-
-
-        //SESIÓN
-        sesionCurrent()
-
-        //MENÚ SESIÓN
-        menuSesion()
-
-
-
-
+        //Ingresa datos
         for (instrument in DataInstruments.instrumentsData) {
             FirebaseGlobal.firebaseInstruments.create(instrument)
         }
 
+        //RecyclerView
         val rvInstruments=findViewById<RecyclerView>(R.id.rv_intruments)
-
         FirebaseGlobal.firebaseInstruments.getAllInstruments { instruments ->
-            //var aux=""
-            //for (instrument in instruments) {
-            //    aux+=instrument.nombre +" ";
-            //}
             initializeRecyclerView(instruments, rvInstruments)
             registerForContextMenu(rvInstruments)
-
         }
 
+
+        //Header & Auth
+        //SESIÓN
+        sesionCurrent()
+        //MENÚ SESIÓN
+        menuSesion()
 
 
     }
@@ -110,22 +101,19 @@ class Home : AppCompatActivity() {
     }
 
     private fun sesionCurrent(){
-        val emailText = findViewById<TextView>(R.id.home_email)
+        //val emailText = findViewById<TextView>(R.id.home_email)
+        val btnHeader = findViewById<Button>(R.id.header_button)
         val currentUser = FirebaseAuth.getInstance().currentUser
         val email = currentUser?.email.toString()
         if (email != null) {
-            emailText.text = email.substring(0, 1).toUpperCase()
+            btnHeader.text = email.substring(0, 1).toUpperCase()
         }
 
     }
 
     private fun menuSesion(){
-        val btnCerrar = findViewById<Button>(R.id.btn_home_close)
-        //btnCerrar.setOnClickListener {
-            //FirebaseAuth.getInstance().signOut()
-            //onBackPressed()
-        //}
-        btnCerrar.setOnClickListener { view ->
+        val btnHeader = findViewById<Button>(R.id.header_button)
+        btnHeader.setOnClickListener { view ->
             val popupMenu = PopupMenu(this, view)
             popupMenu.inflate(R.menu.menu_sesion)
 

@@ -4,7 +4,8 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".MainActivity">
+    tools:context=".MainActivity"
+    android:background="@color/principal">
 
     <Button
         android:id="@+id/btn_login_acceder"
@@ -12,9 +13,9 @@
         android:layout_height="wrap_content"
         android:layout_marginStart="24dp"
         android:layout_weight="1"
-        android:background="@color/azulMarino"
+        android:background="@color/white"
         android:text="Acceder"
-        android:textColor="@color/white"
+        android:textColor="@color/boton"
         app:layout_constraintBottom_toBottomOf="@+id/btn_login_registrar"
         app:layout_constraintStart_toEndOf="@+id/btn_login_registrar"
         app:layout_constraintTop_toTopOf="@+id/btn_login_registrar"
@@ -27,7 +28,7 @@
         android:layout_marginStart="40dp"
         android:layout_marginTop="28dp"
         android:layout_weight="1"
-        android:background="@color/azul"
+        android:background="@color/boton"
         android:text="Registrar"
         android:textColor="@color/white"
         app:layout_constraintStart_toStartOf="@+id/login_password"
@@ -36,7 +37,8 @@
     <EditText
         android:id="@+id/login_email"
         android:layout_width="326dp"
-        android:layout_height="wrap_content"
+        android:background="@color/white"
+        android:layout_height="50dp"
         android:ems="10"
         android:hint="Email"
         android:inputType="textPersonName"
@@ -50,7 +52,8 @@
     <EditText
         android:id="@+id/login_password"
         android:layout_width="326dp"
-        android:layout_height="wrap_content"
+        android:background="@color/white"
+        android:layout_height="50dp"
         android:layout_marginTop="20dp"
         android:ems="10"
         android:hint="Contraseña"
