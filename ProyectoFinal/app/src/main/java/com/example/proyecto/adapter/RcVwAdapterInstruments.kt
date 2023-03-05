@@ -54,7 +54,7 @@ class RcVwAdapterInstruments(
                 val inflater = MenuInflater(view?.context)
                 inflater.inflate(R.menu.menu_instrument, menu)
 
-                parentContext.setSelectedInstrumentCode(list[adapterPosition].codeInstrument)
+                parentContext.setSelectedInstrumentCode(list[adapterPosition])
             }
         }
     }

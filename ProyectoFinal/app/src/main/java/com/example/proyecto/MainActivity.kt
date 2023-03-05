@@ -49,9 +49,7 @@ class MainActivity : AppCompatActivity() {
                     .signInWithEmailAndPassword(emailEditText.text.toString(), passwordEditText.text.toString())
                     .addOnCompleteListener {
                         if(it.isSuccessful){
-                            startActivity(Intent(this, Home::class.java).apply {
-                                putExtra("emailUser",it.result?.user?.email?:"")
-                            })
+                            startActivity(Intent(this, Home::class.java))
                         }
                         else{
                             showAlert()

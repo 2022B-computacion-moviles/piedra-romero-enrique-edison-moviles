@@ -22,17 +22,17 @@ import com.example.proyecto.data.util.DataInstruments
 import com.google.firebase.auth.FirebaseAuth
 
 class Home : AppCompatActivity() {
-    private var selectedInstrumentCode: Int? = null
+    private lateinit var selectedInstrument: Instrument
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_home)
 
         val btnCerrar = findViewById<Button>(R.id.btn_home_close)
-        val emailText = findViewById<TextView>(R.id.home_email)
-        var emailUser= intent.getStringExtra("emailUser")
 
-        emailText.text=emailUser
+        //SESIÓN
+        sesionCurrent()
+
 
         btnCerrar.setOnClickListener {
             FirebaseAuth.getInstance().signOut()
@@ -85,10 +85,11 @@ class Home : AppCompatActivity() {
     override fun onContextItemSelected(item: MenuItem): Boolean {
         return when (item.itemId) {
             R.id.menu_instrument_ver -> {
-                //val intent = Intent(this, ListCarro::class.java)
-                //intent.putExtra("selectedConcesionarioCode", selectedConcesionarioCode)
-                //startActivity(intent)
-                Toast.makeText(this, "Usuario seleccionado:", Toast.LENGTH_SHORT).show()
+                //Toast.makeText(this, "Usuario seleccionado:", Toast.LENGTH_SHORT).show()
+                startActivity(Intent(this, ViewInstrument::class.java).apply {
+                    putExtra("instrumentSelected",selectedInstrument)
+                })
+
 
                 return true
             }
@@ -100,17 +101,26 @@ class Home : AppCompatActivity() {
     //Formas de obtener un elemento
 
     //1ERA: al mantener pulsado y luego soltar
-    fun setSelectedInstrumentCode(instrumentCode: Int) {
-        selectedInstrumentCode = instrumentCode
+    fun setSelectedInstrumentCode(instrumentSelectedv1: Instrument) {
+        selectedInstrument = instrumentSelectedv1
         //Toast.makeText(this, "Usuario seleccionado: ${selectedInstrumentCode}", Toast.LENGTH_SHORT).show()
     }
 
     //2DA: al hacer clic
     fun onIntrumentSelected(instrumentSelected: Instrument) {
-        Toast.makeText(this, "Usuario seleccionado: ${instrumentSelected.codeInstrument}", Toast.LENGTH_SHORT).show()
+        //Toast.makeText(this, "${instrumentSelected.codeInstrument}", Toast.LENGTH_SHORT).show()
         startActivity(Intent(this, ViewInstrument::class.java).apply {
             putExtra("instrumentSelected",instrumentSelected)
         })
+    }
+
+    private fun sesionCurrent(){
+        val emailText = findViewById<TextView>(R.id.home_email)
+        val currentUser = FirebaseAuth.getInstance().currentUser
+        val email = currentUser?.email
+        if (email != null) {
+            emailText.text = email
+        }
     }
 
 
