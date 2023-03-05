@@ -2,9 +2,12 @@ package com.example.proyecto.data.firebase
 
 import com.example.proyecto.data.entity.Carrito
 import com.example.proyecto.data.entity.Instrument
+import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.firestore.ktx.firestore
 import com.google.firebase.ktx.Firebase
 import java.time.LocalDate
+import java.util.*
+import kotlin.collections.ArrayList
 
 class FirebaseCarrito {
     private val db = Firebase.firestore
@@ -29,7 +32,9 @@ class FirebaseCarrito {
             }
     }
 
-    fun create(carrito: Carrito, email: String) {
+    fun create(carrito: Carrito) {
+        val currentUser = FirebaseAuth.getInstance().currentUser
+        val email = currentUser?.email
 
         val entity = hashMapOf(
             "codeInstrument" to carrito.codeInstrument,
@@ -39,9 +44,19 @@ class FirebaseCarrito {
         //collectionReference.document(carrito.codeCarrito.toString()).set(entity)
 
         collectionReference
-            .document(email)
+            .document(email.toString())
             .collection("carrito")
-            .document(carrito.codeCarrito.toString()).set(entity)
+            .document(getRandomCode().toString()).set(entity)
+
+
+    }
+
+    fun getRandomCode():Int {
+        var identificador = Date().time.toInt()
+        if(identificador<0){
+            identificador*=-1
+        }
+        return identificador
     }
 
 

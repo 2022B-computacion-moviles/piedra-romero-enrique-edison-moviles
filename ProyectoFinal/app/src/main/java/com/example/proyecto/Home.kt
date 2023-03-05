@@ -85,7 +85,6 @@ class Home : AppCompatActivity() {
     override fun onContextItemSelected(item: MenuItem): Boolean {
         return when (item.itemId) {
             R.id.menu_instrument_ver -> {
-                //Toast.makeText(this, "Usuario seleccionado:", Toast.LENGTH_SHORT).show()
                 startActivity(Intent(this, ViewInstrument::class.java).apply {
                     putExtra("instrumentSelected",selectedInstrument)
                 })

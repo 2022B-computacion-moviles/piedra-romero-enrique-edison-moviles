@@ -5,8 +5,11 @@ import android.os.Bundle
 import android.widget.Button
 import android.widget.ImageView
 import android.widget.TextView
+import android.widget.Toast
 import com.bumptech.glide.Glide
+import com.example.proyecto.data.entity.Carrito
 import com.example.proyecto.data.entity.Instrument
+import com.example.proyecto.data.firebase.FirebaseGlobal
 import com.google.firebase.auth.FirebaseAuth
 
 class ViewInstrument : AppCompatActivity() {
@@ -42,8 +45,14 @@ class ViewInstrument : AppCompatActivity() {
 
         val aniadirCarrito = findViewById<Button>(R.id.btn_add_carrito)
         aniadirCarrito.setOnClickListener {
-
-
+            FirebaseGlobal.firebaseCarrito.create(
+                Carrito(
+                    0,
+                    instrumentSelected.codeInstrument,
+                1,
+                1*instrumentSelected.precio)
+            )
+            Toast.makeText(this, "Añadido al carrito", Toast.LENGTH_SHORT).show()
         }
 
 
