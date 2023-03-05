@@ -15,7 +15,13 @@ class FirebaseCarrito {
 
 
     fun getAllCarritos(callback: (ArrayList<Carrito>) -> Unit) {
-        collectionReference.get()
+        val currentUser = FirebaseAuth.getInstance().currentUser
+        val email = currentUser?.email
+
+        collectionReference
+            .document(email.toString())
+            .collection("carrito")
+            .get()
             .addOnSuccessListener { documents ->
                 val instruments = ArrayList<Carrito>()
                 for (document in documents) {
