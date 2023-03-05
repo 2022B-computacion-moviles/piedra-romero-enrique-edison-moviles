@@ -67,8 +67,10 @@ class ListCarritoUser : AppCompatActivity() {
         return when (item.itemId) {
             R.id.menu_carrito_eliminar -> {
                 FirebaseGlobal.firebaseCarrito.delete(selectedCarrito.codeCarrito){
-                    Toast.makeText(this, "Eliminado de Carrito", Toast.LENGTH_SHORT).show()
-                    recreate()
+                    Handler().postDelayed({
+                        Toast.makeText(this, "Eliminado de Carrito", Toast.LENGTH_SHORT).show()
+                        startActivity(Intent(this, ListCarritoUser::class.java))
+                    }, 1000)
                 }
 
                 return true
@@ -91,7 +93,7 @@ class ListCarritoUser : AppCompatActivity() {
             Handler().postDelayed({
                 Toast.makeText(this, "Gracias por su compra", Toast.LENGTH_SHORT).show()
                 startActivity(Intent(this, ListCarritoUser::class.java))
-            }, 2000)
+            }, 1000)
 
 
         }
